@@ -202,7 +202,7 @@ class LoaiSpController extends Controller
 
             $destionation = date('Y/m/d'). '/'. end($tmp);
             
-            File::move(config('icho.upload_path').$dataArr['icon_url'], config('icho.upload_path').$destionation);
+            File::move(config('moigioi.upload_path').$dataArr['icon_url'], config('moigioi.upload_path').$destionation);
             
             $dataArr['icon_url'] = $destionation;
         }  
@@ -216,7 +216,7 @@ class LoaiSpController extends Controller
 
             $destionation = date('Y/m/d'). '/'. end($tmp);
             
-            File::move(config('icho.upload_path').$dataArr['icon_url'], config('icho.upload_path').$destionation);
+            File::move(config('moigioi.upload_path').$dataArr['icon_url'], config('moigioi.upload_path').$destionation);
             
             $dataArr['banner_menu'] = $destionation;
         }
@@ -230,7 +230,7 @@ class LoaiSpController extends Controller
 
             $destionation = date('Y/m/d'). '/'. end($tmp);
             
-            File::move(config('icho.upload_path').$dataArr['icon_mau'], config('icho.upload_path').$destionation);
+            File::move(config('moigioi.upload_path').$dataArr['icon_mau'], config('moigioi.upload_path').$destionation);
             
             $dataArr['icon_mau'] = $destionation;
         }  
@@ -244,7 +244,7 @@ class LoaiSpController extends Controller
 
             $destionation = date('Y/m/d'). '/'. end($tmp);
             
-            File::move(config('icho.upload_path').$dataArr['icon_km'], config('icho.upload_path').$destionation);
+            File::move(config('moigioi.upload_path').$dataArr['icon_km'], config('moigioi.upload_path').$destionation);
             
             $dataArr['icon_km'] = $destionation;
         }  
@@ -331,7 +331,7 @@ class LoaiSpController extends Controller
 
             $destionation = date('Y/m/d'). '/'. end($tmp);
             
-            File::move(config('icho.upload_path').$dataArr['icon_url'], config('icho.upload_path').$destionation);
+            File::move(config('moigioi.upload_path').$dataArr['icon_url'], config('moigioi.upload_path').$destionation);
             
             $dataArr['icon_url'] = $destionation;
         }  
@@ -345,7 +345,7 @@ class LoaiSpController extends Controller
 
             $destionation = date('Y/m/d'). '/'. end($tmp);
             
-            File::move(config('icho.upload_path').$dataArr['icon_km'], config('icho.upload_path').$destionation);
+            File::move(config('moigioi.upload_path').$dataArr['icon_km'], config('moigioi.upload_path').$destionation);
             
             $dataArr['icon_km'] = $destionation;
         } 
@@ -359,7 +359,7 @@ class LoaiSpController extends Controller
 
             $destionation = date('Y/m/d'). '/'. end($tmp);
             
-            File::move(config('icho.upload_path').$dataArr['banner_menu'], config('icho.upload_path').$destionation);
+            File::move(config('moigioi.upload_path').$dataArr['banner_menu'], config('moigioi.upload_path').$destionation);
             
             $dataArr['banner_menu'] = $destionation;            
         }
@@ -373,7 +373,7 @@ class LoaiSpController extends Controller
 
             $destionation = date('Y/m/d'). '/'. end($tmp);
             
-            File::move(config('icho.upload_path').$dataArr['icon_mau'], config('icho.upload_path').$destionation);
+            File::move(config('moigioi.upload_path').$dataArr['icon_mau'], config('moigioi.upload_path').$destionation);
             
             $dataArr['icon_mau'] = $destionation;
         }  
