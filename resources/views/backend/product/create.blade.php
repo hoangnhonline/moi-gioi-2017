@@ -54,15 +54,10 @@
                   <!-- Tab panes -->
                   <div class="tab-content">
                     <div role="tabpanel" class="tab-pane active" id="home">
-                      <div class="form-group col-md-4 pleft-5">
-                          <label for="email">Loại <span class="red-star">*</span></label>
-                            <select class="form-control" name="type" id="type">
-                                <option value="1" {{ old('type', $type) == 1 ? "selected" : "" }}>Bán</option>
-                                <option value="2" {{ old('type', $type) == 2 ? "selected" : "" }}>Cho thuê</option>
-                            </select>
-                        </div>
-                        <div class="form-group col-md-4 none-padding">
-                          <label for="email">Danh mục cha<span class="red-star">*</span></label>
+                      
+                        <input type="hidden" name="type" value="1">
+                        <div class="form-group pleft-5">
+                          <label for="email">Danh mục<span class="red-star">*</span></label>
                           <select class="form-control" name="estate_type_id" id="estate_type_id">
                             <option value="">--Chọn--</option>
                             @foreach( $estateTypeArr as $value )
@@ -71,26 +66,7 @@
                             >{{ $value->name }}</option>
                             @endforeach
                           </select>
-                        </div>
-                        <div class="form-group col-md-4">
-                          <label for="email">Danh mục con</label>
-                          <?php 
-                          $cateList = (object) [];
-                          $estate_type_id = old('estate_type_id', $estate_type_id);
-                          if($estate_type_id > 0){
-                            $cateList = DB::table('cate')->where('estate_type_id', $estate_type_id)->get();
-                          }
-                          ?>
-                          <select class="form-control" name="cate_id" id="cate_id">
-                            <option value="">--Chọn--</option>
-                            @foreach( $cateList as $value )
-                            <option value="{{ $value->id }}"
-                            {{ old('cate_id') == $value->id ? "selected" : "" }}                           
-
-                            >{{ $value->name }}</option>
-                            @endforeach
-                          </select>
-                        </div>
+                        </div>                       
                         <div class="form-group col-md-4  pleft-5">
                           <label for="email">Tỉnh/TP <span class="red-star">*</span></label>
                             <select class="form-control" name="city_id" id="city_id">
@@ -348,11 +324,9 @@
                      <div role="tabpanel" class="tab-pane" id="settings">
                         <div class="form-group" style="margin-top:10px;margin-bottom:10px">  
                          
-                          <div class="col-md-12" style="text-align:center">                            
-                            
-                            <input type="file" id="file-image"  style="display:none" multiple/>
+                          <div class="col-md-12" style="text-align:center">
                          
-                            <button class="btn btn-primary btn-sm" id="btnUploadImage" type="button"><span class="glyphicon glyphicon-upload" aria-hidden="true"></span> Upload</button>
+                            <button class="btn btn-primary btnMultiUpload" type="button"><span class="glyphicon glyphicon-upload" aria-hidden="true"></span> Upload</button>
                             <div class="clearfix"></div>
                             <div id="div-image" style="margin-top:10px"></div>
                           </div>

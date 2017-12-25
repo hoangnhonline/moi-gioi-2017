@@ -176,12 +176,12 @@
                   </td>
                   @endif
                   <td>
-                    <img class="img-thumbnail lazy" width="80" data-original="{{ $item->image_urls ? Helper::showImage($item->image_urls) : URL::asset('admin/dist/img/no-image.jpg') }}" alt="Nổi bật" title="Nổi bật" />
+                    <img class="img-thumbnail lazy" width="80" data-original="{{ $item->image_urls ? Helper::showImage($item->image_urls) : URL::asset('public/admin/dist/img/no-image.jpg') }}" alt="Nổi bật" title="Nổi bật" />
                   </td>
                   <td>                  
                     <a style="color:{{ $item->cart_status == 1 ? "#444" : "red" }};font-weight:bold" href="{{ route( 'product.edit', [ 'id' => $item->id ]) }}">{{ $item->title }}</a> 
                     @if( $item->is_hot == 1 )
-                  <img class="img-thumbnail" src="{{ URL::asset('admin/dist/img/star.png')}}" alt="Nổi bật" title="Nổi bật" />
+                  <img class="img-thumbnail" src="{{ URL::asset('public/admin/dist/img/star.png')}}" alt="Nổi bật" title="Nổi bật" />
                   @endif <br />
                     <strong style="color:#337ab7;font-style:italic"> {{ Helper::getName($item->estate_type_id, 'estate_type') }}</strong>
                     <p>
@@ -218,7 +218,7 @@
                     <a class="btn btn-default btn-sm" href="{{ route('chi-tiet', [$item->slug_loai, $item->slug, $item->id] ) }}" target="_blank"><i class="fa fa-eye" aria-hidden="true"></i> Xem</a>
                     <a href="{{ route( 'product.edit', [ 'id' => $item->id ]) }}" class="btn btn-warning btn-sm"><span class="glyphicon glyphicon-pencil"></span></a>                 
 
-                    <a onclick="return callDelete('{{ $item->name }}','{{ route( 'product.destroy', [ 'id' => $item->id ]) }}');" class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-trash"></span></a>
+                    <a onclick="return callDelete('{{ $item->title }}','{{ route( 'product.destroy', [ 'id' => $item->id ]) }}');" class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-trash"></span></a>
 
                   </td>
                 </tr> 
