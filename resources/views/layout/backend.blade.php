@@ -17,14 +17,14 @@
   <!-- Ionicons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
   <!-- Theme style -->
-  <link rel="stylesheet" href="{{ URL::asset('backend/dist/css/AdminLTE.css') }}">
+  <link rel="stylesheet" href="{{ URL::asset('public/admin/dist/css/AdminLTE.css') }}">
   <!-- AdminLTE Skins. Choose a skin from the css/skins
        folder instead of downloading all of them to reduce the load. -->
-  <link rel="stylesheet" href="{{ URL::asset('backend/dist/css/skins/_all-skins.min.css') }}">
+  <link rel="stylesheet" href="{{ URL::asset('public/admin/dist/css/skins/_all-skins.min.css') }}">
   <!-- iCheck -->
   <link rel="stylesheet" href="{{ URL::asset('backend/plugins/iCheck/flat/blue.css') }}">
-  <link rel="stylesheet" href="{{ URL::asset('backend/dist/css/select2.min.css') }}">
-  <link rel="stylesheet" href="{{ URL::asset('backend/dist/css/sweetalert2.min.css') }}">  
+  <link rel="stylesheet" href="{{ URL::asset('public/admin/dist/css/select2.min.css') }}">
+  <link rel="stylesheet" href="{{ URL::asset('public/admin/dist/css/sweetalert2.min.css') }}">  
 
 
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -89,23 +89,23 @@
 </script>
 <!-- Bootstrap 3.3.6 -->
 <script src="{{ URL::asset('backend/bootstrap/js/bootstrap.min.js') }}"></script>
-<script src="{{ URL::asset('backend/dist/js/ajax-upload.js') }}"></script>
-<script src="{{ URL::asset('backend/dist/js/form.js') }}"></script>
-<script src="{{ URL::asset('backend/dist/js/sweetalert2.min.js') }}"></script>
-<script src="{{ URL::asset('backend/dist/js/select2.min.js') }}"></script>
-<script src="{{ URL::asset('backend/dist/js/es6-promise.min.js') }}"></script>
+<script src="{{ URL::asset('public/admin/dist/js/ajax-upload.js') }}"></script>
+<script src="{{ URL::asset('public/admin/dist/js/form.js') }}"></script>
+<script src="{{ URL::asset('public/admin/dist/js/sweetalert2.min.js') }}"></script>
+<script src="{{ URL::asset('public/admin/dist/js/select2.min.js') }}"></script>
+<script src="{{ URL::asset('public/admin/dist/js/es6-promise.min.js') }}"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.11.2/moment.min.js"></script>
 
 <!-- Slimscroll -->
 <script src="{{ URL::asset('backend/plugins/slimScroll/jquery.slimscroll.min.js') }}"></script>
 <!-- AdminLTE App -->
-<script src="{{ URL::asset('backend/dist/js/app.min.js') }}"></script>
+<script src="{{ URL::asset('public/admin/dist/js/app.min.js') }}"></script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-<script src="{{ URL::asset('backend/dist/js/pages/dashboard.js') }}"></script>
+<script src="{{ URL::asset('public/admin/dist/js/pages/dashboard.js') }}"></script>
 <!-- AdminLTE for demo purposes -->
-<script src="{{ URL::asset('backend/dist/js/demo.js') }}"></script>
-<script src="{{ URL::asset('backend/dist/js/lazy.js') }}"></script>
-<script src="{{ URL::asset('backend/dist/js/ckeditor/ckeditor.js') }}"></script>
+<script src="{{ URL::asset('public/admin/dist/js/demo.js') }}"></script>
+<script src="{{ URL::asset('public/admin/dist/js/lazy.js') }}"></script>
+<script src="{{ URL::asset('public/admin/dist/js/ckeditor/ckeditor.js') }}"></script>
 
 <script type="text/javascript" type="text/javascript">
 $(document).on('click', '#btnSaveNoti', function(){

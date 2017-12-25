@@ -44,13 +44,7 @@
                       </ul>
                   </div>
               @endif
-               <div class="form-group">
-                  <label>Danh mục cha</label>
-                  <select class="form-control" name="type" id="type">                  
-                    <option value="1" {{ old('type', $detail->type) == 1 ? "selected" : "" }}>Bán</option>
-                      <option value="2" {{ old('type', $detail->type) == 2 ? "selected" : "" }}>Cho thuê</option>
-                  </select>
-                </div> 
+               <input type="hidden" name="type" value="1">
                <!-- text input -->
               <div class="form-group">
                 <label>Tên danh mục <span class="red-star">*</span></label>
@@ -125,7 +119,7 @@
 </div>
 <input type="hidden" id="route_upload_tmp_image" value="{{ route('image.tmp-upload') }}">
 @stop
-@section('javascript_page')
+@section('js')
 <script type="text/javascript">
   $(document).ready(function(){
     $('#btnUploadIcon').click(function(){        

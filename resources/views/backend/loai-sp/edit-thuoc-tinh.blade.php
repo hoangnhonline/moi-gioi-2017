@@ -80,7 +80,7 @@
 </div>
 <input type="hidden" id="route-ajax-get-thuoc-tinh-by-id" value="{{ route('loai-thuoc-tinh.ajax-get-loai-thuoc-tinh-by-id') }}">
 @stop
-@section('javascript_page')
+@section('js')
 <script type="text/javascript">
 function callDelete(name, url){  
   swal({

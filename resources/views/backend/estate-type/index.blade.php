@@ -21,23 +21,7 @@
       <p class="alert alert-info" >{{ Session::get('message') }}</p>
       @endif
       <a href="{{ route('estate-type.create') }}?type={{ $type }}" class="btn btn-info btn-sm" style="margin-bottom:5px">Tạo mới</a>
-      <div class="panel panel-default">
-        <div class="panel-heading">
-          <h3 class="panel-title">Bộ lọc</h3>
-        </div>
-        <div class="panel-body">
-          <form class="form-inline" role="form" method="GET" action="{{ route('estate-type.index') }}" id="formSearch">
-            <div class="form-group">
-              <label for="email">Loại :</label>
-              <select class="form-control" name="type" id="type">
-                  <option value="1" {{ $type == 1 ? "selected" : "" }}>Bán</option>
-                  <option value="2" {{ $type == 2 ? "selected" : "" }}>Cho thuê</option>
-              </select>
-            </div>            
-            <button type="submit" class="btn btn-primary btn-sm">Lọc</button>
-          </form>         
-        </div>
-      </div>
+      
       <div class="box">
 
         <div class="box-header with-border">
@@ -50,8 +34,7 @@
             <tr>
               <th style="width: 1%">#</th>
               <th style="width: 1%;white-space:nowrap">Thứ tự</th>
-              <th>Tên</th>
-              <th style="text-align:center">Danh mục con</th>
+              <th>Tên</th>              
               <th width="1%;" style="white-space:nowrap">Thao tác</th>
             </tr>
             <tbody>
@@ -62,7 +45,7 @@
               <tr id="row-{{ $item->id }}">
                 <td><span class="order">{{ $i }}</span></td>
                 <td style="vertical-align:middle;text-align:center">
-                  <img src="{{ URL::asset('admin/dist/img/move.png')}}" class="move img-thumbnail" alt="Cập nhật thứ tự"/>
+                  <img src="{{ URL::asset('public/admin/dist/img/move.png')}}" class="move img-thumbnail" alt="Cập nhật thứ tự"/>
                 </td>
                 <td>                  
                   <a href="{{ route( 'estate-type.edit', [ 'id' => $item->id ]) }}">{{ $item->name }}</a>
@@ -73,8 +56,7 @@
 
                   <p>{{ $item->description }}</p>
                 </td> 
-                <td style="text-align:center"><a class="btn btn-info btn-sm" href="{{ route('cate.index', ['estate_type_id' => $item->id, 'type' => $item->type])}}">{{ $item->cate->count() }}</a></td>
-               
+        
                 <td style="white-space:nowrap; text-align:right">                  
                   <a href="{{ route( 'estate-type.edit', [ 'id' => $item->id ]) }}" class="btn-sm btn btn-warning"><span class="glyphicon glyphicon-pencil"></span></a>                 
                 
@@ -102,7 +84,7 @@
 <!-- /.content -->
 </div>
 @stop
-@section('javascript_page')
+@section('js')
 <script type="text/javascript">
 function callDelete(name, url){  
   swal({
