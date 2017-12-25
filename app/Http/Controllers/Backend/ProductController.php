@@ -398,43 +398,32 @@ class ProductController extends Controller
             if( !empty( $dataArr['image_tmp_url'] )){
 
                 foreach ($dataArr['image_tmp_url'] as $k => $image_url) {
-
-                    if( $image_url && $dataArr['image_tmp_name'][$k] ){
-
-                        $tmp = explode('/', $image_url);
-
-                        if(!is_dir('uploads/'.date('Y/m/d'))){
-                            mkdir('uploads/'.date('Y/m/d'), 0777, true);
-                        }
-                        if(!is_dir('uploads/thumbs/'.date('Y/m/d'))){
-                            mkdir('uploads/thumbs/'.date('Y/m/d'), 0777, true);
-                        }
-
-                        $destionation = date('Y/m/d'). '/'. end($tmp);
-                        //var_dump(config('moigioi.upload_path').$image_url, config('moigioi.upload_path').$destionation);die;
-                        File::move(config('moigioi.upload_path').$image_url, config('moigioi.upload_path').$destionation);
+                    
+                    $origin_img = base_path().$image_url;
+                    if( $image_url ){
 
                         $imageArr['is_thumbnail'][] = $is_thumbnail = $dataArr['thumbnail_id'] == $image_url  ? 1 : 0;
 
-                        if($is_thumbnail == 1){
-                            $img = Image::make(config('moigioi.upload_path').$destionation);
-                            $w_img = $img->width();
-                            $h_img = $img->height();
-                            $tile = 170/105;
-                         
-                            if($w_img/$h_img <= $tile){
-                                Image::make(config('moigioi.upload_path').$destionation)->resize(170, null, function ($constraint) {
-                                        $constraint->aspectRatio();
-                                })->crop(170, 105)->save(config('moigioi.upload_thumbs_path').$destionation);
-                            }else{
-                                Image::make(config('moigioi.upload_path').$destionation)->resize(null, 105, function ($constraint) {
-                                        $constraint->aspectRatio();
-                                })->crop(170, 105)->save(config('moigioi.upload_thumbs_path').$destionation);
-                            }
+                        $img = Image::make($origin_img);
+                        $w_img = $img->width(); // 283 
+                        $h_img = $img->height(); // 200
 
-                        }
+                        $tmpArrImg = explode('/', $origin_img);
+                        
+                        $new_img = config('moigioi.upload_thumbs_path').end($tmpArrImg);
+                       
+                        if($w_img/$h_img > 283/200){
 
-                        $imageArr['name'][] = $destionation;
+                            Image::make($origin_img)->resize(null, 200, function ($constraint) {
+                                    $constraint->aspectRatio();
+                            })->crop(283, 200)->save($new_img);
+                        }else{
+                            Image::make($origin_img)->resize(283, null, function ($constraint) {
+                                    $constraint->aspectRatio();
+                            })->crop(283, 200)->save($new_img);
+                        }                           
+
+                        $imageArr['name'][] = $image_url;
                         
                     }
                 }

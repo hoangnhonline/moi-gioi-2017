@@ -174,10 +174,12 @@
                           <label>Slug <span class="red-star">*</span></label>                  
                           <input type="text" class="form-control" name="slug" id="slug" value="{{ old('slug', $detail->slug) }}">
                         </div>
+
                         <div class="form-group col-md-6  pleft-5" >                  
                             <label>Giá<span class="red-star">*</span></label>
                             <input type="text" class="form-control" name="price" id="price" value="{{ old('price', $detail->price) }}">
                         </div>
+                        
                         <div class="form-group col-md-6 none-padding" >                  
                             <label>Đơn vị giá<span class="red-star">*</span></label>
                             <select class="form-control" name="price_unit_id" id="price_unit_id">
@@ -211,6 +213,10 @@
                             >{{ $value->name }}</option>
                             @endforeach
                           </select>
+                        </div>
+                        <div class="form-group" >                  
+                            <label>Hoa hồng<span class="red-star">*</span></label>
+                            <input type="text" class="form-control" name="hoa_hong" id="hoa_hong" value="{{ old('hoa_hong', $detail->hoa_hong) }}" placeholder="%"> 
                         </div>
                         <div class="form-group col-md-12 none-padding">
                             <label>Địa chỉ</label>
@@ -379,7 +385,7 @@
                             
                             <input type="file" id="file-image"  style="display:none" multiple/>
                          
-                            <button class="btn btn-primary btn-sm" id="btnUploadImage" type="button"><span class="glyphicon glyphicon-upload" aria-hidden="true"></span> Upload</button>
+                            <button class="btn btn-primary btnMultiUpload" type="button"><span class="glyphicon glyphicon-upload" aria-hidden="true"></span> Upload</button>
                             <div class="clearfix"></div>
                             <div id="div-image" style="margin-top:10px">                              
                               @if( $hinhArr )
@@ -388,7 +394,7 @@
                                     <img class="img-thumbnail" src="{{ Helper::showImage($hinh) }}" style="width:100%">
                                     <div class="checkbox">                                   
                                       <label><input type="radio" name="thumbnail_id" class="thumb" value="{{ $k }}" {{ $detail->thumbnail_id == $k ? "checked" : "" }}> Ảnh đại diện </label>
-                                      <button class="btn btn-danger btn-sm remove-image" type="button" data-value="{{  $hinh }}" data-id="{{ $k }}" ><span class="glyphicon glyphicon-trash"></span></button>
+                                      <button class="btn btn-danger btn-sm remove-image" type="button" data-value="{{  $hinh }}" data-id="{{ $k }}" >Xóa</button>
                                     </div>
                                     <input type="hidden" name="image_id[]" value="{{ $k }}">
                                   </div>

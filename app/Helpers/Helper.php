@@ -64,20 +64,62 @@ class Helper
     }
     public static function showImage($image_url, $type = 'original'){
 
-        //return strpos($image_url, 'http') === false ? config('moigioi.upload_url') . $type . '/' . $image_url : $image_url;        
-        return strpos($image_url, 'http') === false ? config('moigioi.upload_url') . $image_url : $image_url;        
+        //return strpos($image_url, 'http') === false ? config('phukien.upload_url') . $type . '/' . $image_url : $image_url;        
+        return strpos($image_url, 'http') === false ? env('APP_URL') . $image_url : $image_url;        
 
     }
     public static function showImageThumb($image_url, $object_type = 1, $folder = ''){             
         // type = 1 : original 2 : thumbs
-        //object_type = 1 : product, 2 :article  3: project             
+        //object_type = 1 : product, 2 :article  3: project          
+        $tmpArrImg = explode('/', $image_url);                       
+        
         if(strpos($image_url, 'http') === false){
             if($object_type == 1){
-                return config('moigioi.upload_url') . 'thumbs/' . $folder. '/' . $image_url;
+                $image_url = config('phukien.upload_url_thumbs').end($tmpArrImg);   
+                return $image_url;
             }elseif($object_type == 2){
-                return config('moigioi.upload_url') . 'thumbs/articles/'. $folder. '/' . $image_url;
+                $image_url = config('phukien.upload_url_thumbs').'articles/'.end($tmpArrImg);   
+                return $image_url;
             }else{
-                return config('moigioi.upload_url') . 'thumbs/projects/'. $folder. '/' . $image_url;
+                return env('APP_URL') . $folder. $image_url;
+            }    
+        }else{
+            return $image_url;
+        }
+        
+    }
+    public static function showImageThumb2($image_url, $object_type = 1, $folder = ''){             
+        // type = 1 : original 2 : thumbs
+        //object_type = 1 : product, 2 :article  3: project          
+        $tmpArrImg = explode('/', $image_url);
+                        
+        $image_url = config('phukien.upload_url_thumbs_2').end($tmpArrImg);           
+        if(strpos($image_url, 'http') === false){
+            if($object_type == 1){
+                return env('APP_URL') . $folder. $image_url;
+            }elseif($object_type == 2){
+                return env('APP_URL') . $folder. $image_url;
+            }else{
+                return env('APP_URL') . $folder. $image_url;
+            }    
+        }else{
+            return $image_url;
+        }
+        
+    }
+    public static function showImageThumb3($image_url, $object_type = 1, $folder = ''){             
+        // type = 1 : original 2 : thumbs
+        //object_type = 1 : product, 2 :article  3: project          
+        $tmpArrImg = explode('/', $image_url);
+                        
+        $image_url = config('phukien.upload_url_thumbs_3').end($tmpArrImg);           
+        if(strpos($image_url, 'http') === false){
+            if($object_type == 1){
+                return env('APP_URL') . $folder. $image_url;
+            }elseif($object_type == 2){
+                return env('APP_URL') . $folder. $image_url;
+            }else{
+                return env('APP_URL') . $folder. $image_url;
             }    
         }else{
             return $image_url;

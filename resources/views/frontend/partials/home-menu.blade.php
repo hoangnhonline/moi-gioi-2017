@@ -32,6 +32,6 @@
 
         @endforeach
         
-        <li class="level0 postnew {{ (in_array(\Request::route()->getName(), ['ky-gui-thanh-cong', 'ky-gui'])) ? "active" : "" }}"><a href="{{ route('ky-gui') }}"><img src="{{ URL::asset('assets/images/icon-postnews.png') }}" alt="Ký gửi"> Ký gửi</a></li>
+        <li class="level0 postnew {{ (in_array(\Request::route()->getName(), ['ky-gui-thanh-cong', 'ky-gui'])) ? "active" : "" }}"><a href="{{ route('ky-gui') }}"><img src="{{ URL::asset('public/assets/images/icon-postnews.png') }}" alt="Ký gửi"> Ký gửi</a></li>
     </ul>
 </div><!-- /.navbar-collapse -->

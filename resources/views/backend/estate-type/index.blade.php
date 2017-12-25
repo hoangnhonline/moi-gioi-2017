@@ -4,7 +4,7 @@
 <!-- Content Header (Page header) -->
 <section class="content-header">
   <h1>
-    {{ $type == 1  ? "Bất động sản bán" : "Bất động sản cho thuê"}}
+    {{ $type == 1  ? "Danh mục" : "Bất động sản cho thuê"}}
   </h1>
   <ol class="breadcrumb">
     <li><a href="#"><i class="fa fa-dashboard"></i> Dashboard</a></li>

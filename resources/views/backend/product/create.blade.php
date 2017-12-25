@@ -149,6 +149,7 @@
                             <label>Giá<span class="red-star">*</span></label>
                             <input type="text" class="form-control" name="price" id="price" value="{{ old('price') }}">
                         </div>
+                        
                         <div class="form-group col-md-6 none-padding pleft-5" >                  
                             <label>Đơn vị giá<span class="red-star">*</span></label>
                             <select class="form-control" name="price_unit_id" id="price_unit_id">
@@ -182,6 +183,10 @@
                             >{{ $value->name }}</option>
                             @endforeach
                           </select>
+                        </div>
+                        <div class="form-group" >                  
+                            <label>Hoa hồng<span class="red-star">*</span></label>
+                            <input type="text" class="form-control" name="hoa_hong" id="hoa_hong" value="{{ old('hoa_hong') }}" placeholder="%"> 
                         </div>
                         <div class="form-group col-md-12 none-padding">
                             <label>Địa chỉ</label>

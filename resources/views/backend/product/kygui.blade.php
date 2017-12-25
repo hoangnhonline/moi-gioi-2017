@@ -27,13 +27,7 @@
         </div>
         <div class="panel-body">
           <form class="form-inline" id="searchForm" role="form" method="GET" action="{{ route('product.kygui') }}">            
-            <div class="form-group">              
-              <select class="form-control" name="type" id="type">
-                  <option value="">--Loại--</option>
-                  <option value="1" {{ $arrSearch['type'] == 1 ? "selected" : "" }}>Bán</option>
-                  <option value="2" {{ $arrSearch['type'] == 2 ? "selected" : "" }}>Cho thuê</option>
-              </select>
-            </div>
+            <input type="hidden" name="type" value="1">
             <div class="form-group">              
               <select class="form-control" name="cart_status" id="cart_status">
                   <option value="">--Trạng thái--</option>

@@ -145,7 +145,7 @@ $bannerArr = DB::table('banner')->where(['object_id' => 5, 'object_type' => 3])-
     <div class="col-sm-12 col-xs-12">
       <div class="row">
         <div class="block-title block-title-common">
-          <h3><span class="icon-tile2"><img src="{{ URL::asset('assets/images/icon-living.png') }}" alt="Phân Tích Dự Án"> Phân Tích Dự Án</h3>
+          <h3><span class="icon-tile2"><img src="{{ URL::asset('public/assets/images/icon-living.png') }}" alt="Phân Tích Dự Án"> Phân Tích Dự Án</h3>
         </div>
         <div class="block-contents">
 
@@ -180,7 +180,7 @@ $bannerArr = DB::table('banner')->where(['object_id' => 5, 'object_type' => 3])-
     <div class="col-sm-12 col-xs-12">
       <div class="row">
         <div class="block-title block-title-common">          
-          <h3><span class="icon-tile2"><img src="{{ URL::asset('assets/images/icon-tvl.png') }}" alt="Tư vấn luật"></span> Tư vấn luật</h3>
+          <h3><span class="icon-tile2"><img src="{{ URL::asset('public/assets/images/icon-tvl.png') }}" alt="Tư vấn luật"></span> Tư vấn luật</h3>
         </div>
         <div class="block-contents">
           <div class="news-fengshui clearfix">
@@ -215,7 +215,7 @@ $bannerArr = DB::table('banner')->where(['object_id' => 5, 'object_type' => 3])-
     <div class="col-sm-12 col-xs-12">
       <div class="row">
         <div class="block-title block-title-common">
-          <h3><span class="icon-tile2"><img src="{{ URL::asset('assets/images/icon-tkkt.png') }}" alt="Tư vấn thiết kế"> Tư vấn thiết kế</h3>
+          <h3><span class="icon-tile2"><img src="{{ URL::asset('public/assets/images/icon-tkkt.png') }}" alt="Tư vấn thiết kế"> Tư vấn thiết kế</h3>
         </div>
         <div class="block-contents">
 
@@ -250,7 +250,7 @@ $bannerArr = DB::table('banner')->where(['object_id' => 5, 'object_type' => 3])-
     <div class="col-sm-12 col-xs-12">
       <div class="row">
         <div class="block-title block-title-common">
-          <h3><span class="icon-tile2"><img src="{{ URL::asset('assets/images/icon-fengshui.png') }}" alt=""> Phong thủy</h3>
+          <h3><span class="icon-tile2"><img src="{{ URL::asset('public/assets/images/icon-fengshui.png') }}" alt=""> Phong thủy</h3>
         </div>
         <div class="block-contents">
           <div class="news-fengshui clearfix">
