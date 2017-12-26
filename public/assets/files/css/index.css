@@ -6558,6 +6558,7 @@ ul.tabs li a {
 .btn-facebook {
     background-color: #3b5998 !important;
 }
-#register_popup_form .form-control-wrapper{
+#register_popup_form .form-control-wrapper {
     margin-bottom: 15px !important;
-    .inline-block {display: inline-block;}
+}
+.inline-block {display: inline-block;}
