@@ -111,7 +111,7 @@
                <div class="container">
                   <div class="row">
                      <div class="block-logo col-sm-3 col-xs-5">
-                        <a href="{{ route('home') }}" title="Logo"><img src="{{ URL::asset('public/assets/images/logo_gd.jpg') }}" alt="Logo"></a>
+                        <a href="{{ route('home') }}" title="Logo"><img src="{{ Helper::showImage($settingArr['logo']) }}" alt="Logo"></a>
                      </div>
                      <!-- /block-log -->
                      <div class="block-search col-sm-6 col-xs-7">
