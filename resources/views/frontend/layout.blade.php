@@ -286,5 +286,10 @@ function searchProduct() {
 }
 </script>
 @include('frontend.partials.modal')
+<input type="hidden" id="route-ajax-login-fb" value="{{route('ajax-login-by-fb')}}">
+   <input type="hidden" id="fb-app-id" value="{{ env('FACEBOOK_APP_ID') }}">
+   <input type="hidden" id="route-auth-login-ajax" value="{{ route('auth-login-ajax') }}">
+   <input type="hidden" id="route-register-customer-ajax" value="{{ route('register-customer-ajax') }}">
+   <input type="hidden" id="route-register-newsletter" value="{{ route('register.newsletter') }}">
    </body>
 </html>

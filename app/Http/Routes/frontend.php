@@ -15,6 +15,25 @@ Route::get('/test', function() {
 });
 
 
+Route::group(['prefix' => 'social-auth'], function () {
+    Route::group(['prefix' => 'facebook'], function () {
+        Route::get('redirect/', ['as' => 'fb-auth', 'uses' => 'SocialAuthController@redirect']);
+        Route::get('callback/', ['as' => 'fb-callback', 'uses' => 'SocialAuthController@callback']);
+        Route::post('fb-login', ['as' => 'ajax-login-by-fb', 'uses' => 'SocialAuthController@fbLogin']);
+    });
+
+    Route::group(['prefix' => 'google'], function () {
+        Route::get('redirect/', ['as' => 'gg-auth', 'uses' => 'SocialAuthController@googleRedirect']);
+        Route::get('callback/', ['as' => 'gg-callback', 'uses' => 'SocialAuthController@googleCallback']);
+    });
+
+});
+
+Route::group(['prefix' => 'authentication'], function () {
+    Route::post('check_login', ['as' => 'auth-login', 'uses' => 'AuthenticationController@checkLogin']);
+    Route::post('login_ajax', ['as' =>  'auth-login-ajax', 'uses' => 'AuthenticationController@checkLoginAjax']);
+    Route::get('/user-logout', ['as' => 'user-logout', 'uses' => 'AuthenticationController@logout']);
+});
 Route::group(['namespace' => 'Frontend'], function()
 {
     Route::get('/', ['as' => 'home', 'uses' => 'HomeController@index']);
@@ -48,7 +67,15 @@ Route::group(['namespace' => 'Frontend'], function()
     Route::get('so-sanh.html', ['as' => 'so-sanh', 'uses' => 'CompareController@index']);
     Route::get('lien-he.html', ['as' => 'contact', 'uses' => 'HomeController@contact']);
     Route::get('{slug}.html', ['as' => 'danh-muc', 'uses' => 'ProductController@cate']);
-
+    Route::get('/tai-khoan/khoa-hoc-cua-toi', ['as' => 'khoa-hoc-cua-toi', 'uses' => 'CustomerController@courses']);
+    Route::get('/tai-khoan/xem-thong-tin', ['as' => 'xem-thong-tin', 'uses' => 'CustomerController@info']); 
+    Route::get('{slugCateParent}/{slugCateChild}', ['as' => 'cate', 'uses' => 'CateController@cateChild']);
+    
+    Route::post('/customer/update', ['as' => 'update-customer', 'uses' => 'CustomerController@update']);
+    
+    Route::post('/customer/register', ['as' => 'register-customer', 'uses' => 'CustomerController@register']);
+    Route::post('/customer/register-ajax', ['as' => 'register-customer-ajax', 'uses' => 'CustomerController@registerAjax']);
+    Route::post('/customer/checkemail', ['as' => 'checkemail-customer', 'uses' => 'CustomerController@isEmailExist']);  
 
 });
 

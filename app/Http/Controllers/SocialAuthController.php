@@ -18,62 +18,6 @@ class SocialAuthController extends Controller
         return Socialite::driver('facebook')->redirect();
     }
 
-    public function callback()
-    {
-        $providerUser = Socialite::driver('facebook')->user();
-        $data['email'] = $providerUser->getEmail();
-
-        $getCustomer = Customer::where('email', $data['email'])->first();
-
-        if(is_null($getCustomer)) {
-            Session::put('fb_id', $providerUser->getId());
-
-            if(!$providerUser->getName()) {
-                Session::put('fb_name', $providerUser->getName());
-            }
-
-            if(!$providerUser->getEmail()) {
-                Session::put('fb_email', $providerUser->getEmail());
-            }
-
-            $customer = new Customer;
-            $customer->full_name = $providerUser->getName();
-            $customer->email = $providerUser->getEmail();
-            $customer->facebook_id = $providerUser->getId();
-            $customer->save();
-
-            Session::flash('register', 'true');
-            Session::put('login', true);
-            Session::put('userId', $customer->id);
-            Session::put('facebook_id', $customer->facebook_id);
-            Session::put('username', $customer->full_name);
-            Session::put('avatar', $customer->image_url);
-            Session::put('new-register', true);
-            Session::forget('vanglai');
-            Session::forget('is_vanglai');
-            return redirect()->route('shipping-step-2');
-
-
-        } else {
-            Session::put('login', true);
-            Session::put('userId', $getCustomer->id);
-            Session::put('username', $getCustomer->full_name);
-            Session::put('facebook_id', $customer->facebook_id);
-            Session::put('avatar', $getCustomer->image_url);
-            Session::forget('vanglai');
-            Session::forget('is_vanglai');
-            return redirect()->route('shipping-step-2');
-            // return redirect()->back();
-        }
-
-        // $data['id'] = $providerUser->getId();
-        // $data['nickname'] = $providerUser->getNickname();
-        // $data['name'] = $providerUser->getName();
-        // $data['email'] = $providerUser->getEmail();
-        // $data['avatar'] = $providerUser->getAvatar();
-        // dd($data);
-    }
-
     public function googleRedirect()
     {
         return Socialite::driver('google')->redirect();
@@ -113,8 +57,9 @@ class SocialAuthController extends Controller
 
         $fb            = App::make('SammyK\LaravelFacebookSdk\LaravelFacebookSdk');
         $response      = $fb->get('/me?fields=id,name,email,picture.width(200).height(200)', $fb_token);
+       
         $facebook_user = $response->getGraphUser();
-
+        
         $facebook['email'] = $facebook_user['email'];
         $facebook['id']    = $facebook_user['id'];
         $facebook['name']  = $facebook_user['name'];
@@ -134,21 +79,25 @@ class SocialAuthController extends Controller
             }
 
             $customer = new Customer;
-            $customer->full_name    =  $facebook['name'];
+            $customer->fullname    =  $facebook['name'];
             $customer->email        =  $facebook['email'];
             $customer->facebook_id  =  $facebook['id'];
             $customer->image_url    =  $facebook['avatar'];
+            $customer->last_login    =  date('Y-m-d H:i:s');
+            $customer->type =  1;
+            $customer->score =  10;
             $customer->save();
 
             Session::flash('register', 'true');
             Session::put('login', true);
             Session::put('userId', $customer->id);
             Session::put('facebook_id', $customer->facebook_id);
-            Session::put('username', $customer->full_name);
+            Session::put('username', $customer->fullname);
+            Session::put('avatar', $customer->image_url);
             Session::put('new-register', true);
             Session::flash('new-register-fb', 'true');
             return response()->json([
-                'sucess' => 1
+                'success' => 1
             ]);
 
 
@@ -156,17 +105,18 @@ class SocialAuthController extends Controller
 
             if(!$getCustomer->image_url) {
                 $getCustomer->image_url = $facebook['avatar'];
+                //$getCustomer->last_login    =  date('Y-m-d H:i:s');
                 $getCustomer->save();
             }
 
             Session::put('login', true);
             Session::put('userId', $getCustomer->id);
             Session::put('facebook_id', $getCustomer->facebook_id);
-            Session::put('username', $getCustomer->full_name);
+            Session::put('username', $getCustomer->fullname);
             Session::put('avatar', $getCustomer->image_url);
             
             return response()->json([
-                'sucess' => 0
+                'success' => 0
             ]);
         }
 

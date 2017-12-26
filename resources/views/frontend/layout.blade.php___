@@ -462,6 +462,7 @@ src="https://www.facebook.com/tr?id=252732271885321&ev=PageView
 	<!-- Js Common -->
 	<script src="{{ URL::asset('public/admin/dist/js/sweetalert2.min.js') }}"></script>
 	<script src="{{ URL::asset('public/assets/js/common.js') }}"></script>	
+	<script src="{{ URL::asset('public/assets/js/home.js') }}"></script>	
 	@if(\Request::route()->getName() != "ky-gui")
 	<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCedG6K88zgGTC746bf-qLgf1ZAG7FUj7Q&sensor=false&libraries=places"></script> 
 	@endif
