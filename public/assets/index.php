@@ -47,6 +47,7 @@
     <!-- ===== Responsive CSS ===== -->
     <link rel="stylesheet" type="text/css" href="files/css/responsive.css">
     <link rel="stylesheet" type="text/css" href="files/css/font-awesome.min.css">
+
     <link rel="stylesheet" href="js/bootstrap/bootstrap.min.css" >
     <?php include("blocks/javascript.php"); ?>
     <link rel="stylesheet" type="text/css" href="files/style.css">
@@ -156,11 +157,12 @@
             <?php include 'blocks/right.php'?>
         </div>
         <div class="left">
-            <?php include "blocks/content_home.php"; ?>
+            <?php //include "blocks/content_home.php"; ?>
             <?php //include "page/about.php"; ?>
             <?php //include "page/news.php"; ?>
             <?php //include "page/detail_news.php"; ?>
             <?php //include "page/contact.php"; ?>
+            <?php include "page/ky-gui.php"; ?>
         </div>
 
         <div class="clear"></div>

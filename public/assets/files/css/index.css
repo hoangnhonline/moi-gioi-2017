@@ -4780,7 +4780,9 @@ div.at4-arrow.at-up {
     color: #FFF;
     text-transform: uppercase;
     display: block;
-    padding: 15px 30px;    
+    padding: 15px 14px;
+    text-indent: 25px;
+    margin-right: 20px;
 }
 
 .trangchu {
@@ -6558,4 +6560,4 @@ ul.tabs li a {
 }
 #register_popup_form .form-control-wrapper{
     margin-bottom: 15px !important;
-}
+    .inline-block {display: inline-block;}
