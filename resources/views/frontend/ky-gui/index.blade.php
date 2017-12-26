@@ -12,10 +12,10 @@
         <li class="active">Ký gửi</li>
     </ul>
 </article>
-<section class="main" id="site-main">
+<section class="main" id="site-main" style="border:1px solid rgba(204, 204, 204, 0.44)">
 
 	<section class="container">
-		<section class="row">
+		<section class="row" >
 			<!-- <section class="col-sm-3 col-xs-12 block-sitebar"> -->
 				<!-- <article class="block-sidebar block-news-sidebar">
 					<div class="block-title-common">
@@ -35,7 +35,7 @@
 				</article> --><!-- /block-news-sidebar -->
 			<!-- </section> --><!-- /block-site-right -->
 
-			<section class="block-sitemain">
+			<section class="block-sitemain" >
 				<article class="block-post-news">
 					<div class="block-title-common">
 						<h3>

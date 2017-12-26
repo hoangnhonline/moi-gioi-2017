@@ -104,11 +104,11 @@
          });
          
       </script>
-      <div class="container">
-         <h1 style="display:none">NHÀ ĐẤT CỦ CHI | NHÀ ĐẤT CHÂU CỦ CHI</h1>
+      <div class="">
+         <h1 style="display:none">NHÀ ĐẤT CỦ CHI | NHÀ ĐẤT CỦ CHI</h1>
          <div class="header" id="header">
             <div class="header-top">
-               <div class="container">
+               <div class="">
                   <div class="row">
                      <div class="block-logo col-sm-3 col-xs-5">
                         <a href="{{ route('home') }}" title="Logo"><img src="{{ Helper::showImage($settingArr['logo']) }}" alt="Logo"></a>
@@ -225,13 +225,15 @@
            </div>
        </div>
        @endif
-        <div class="container">
+        <div @if($routeName != "ky-gui") class="container" @endif>
          <div class="clear"></div>
          <div class="center">
+          @if($routeName != "ky-gui")
             <div class="right">
                @include('frontend.partials.right')
             </div>
-            <div class="left">
+            @endif
+            <div @if($routeName != "ky-gui") class="left" @endif >
                @yield('content')               
             </div>
             <div class="clear"></div>
@@ -316,6 +318,7 @@ function searchProduct() {
    document.frm_search.submit();
 }
 </script>
+@yield('javascript_page')
 @include('frontend.partials.modal')
 <input type="hidden" id="route-ajax-login-fb" value="{{route('ajax-login-by-fb')}}">
    <input type="hidden" id="fb-app-id" value="{{ env('FACEBOOK_APP_ID') }}">

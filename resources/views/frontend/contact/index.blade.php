@@ -8,13 +8,13 @@
     <li class="active">Liên hệ</li>
   </ul>
 </article><!-- /block-breadcrumb -->
-<section class="block-content">
+<section class="block-content " style="padding:10px 20px">
         <div class="block-common">  
         <div id="contact" class="page-content page-contact">
             <div id="message-box-conact"></div>
             <div class="row">
                 
-                <div class="col-sm-8">	
+                <div class="col-sm-12 ">	
                     <h3 class="page-heading">
                         <span class="page-heading-title2">THÔNG TIN Liên hệ</span>
                     </h3>               
@@ -61,27 +61,7 @@
                     </div>
                     </form>
                 </div>
-                <div class="col-xs-12 col-sm-4" id="contact_form_map">                    
-                    <div class="row">
-                        <div class="col-sm-12" style="margin-bottom:20px">
-                            <div class="introduce-title">Thông tin Công ty</div>
-                            <ul id="introduce-company"  class="introduce-list">
-                                <li><a href="{{ route('danh-muc', 'gioi-thieu') }}">Giới thiệu</a></li>
-                                <li><a href="{{ route('chuong-trinh-khuyen-mai') }}">Khuyến mãi</a></li>
-                                <li><a href="{{ route('contact') }}">Liên hệ</a></li>
-                            </ul>
-                        </div>                       
-                        <div class="col-sm-12">
-                            <div class="introduce-title">CHÍNH SÁCH</div>
-                            <ul id = "introduce-support"  class="introduce-list">
-                                <li><a href="{{ route('danh-muc', 'bao-mat-thong-tin') }}">Bảo mật thông tin</a></li>
-                                <li><a href="{{ route('danh-muc', 'thanh-toan') }}">Phương thức thanh toán</a></li>
-                                <li><a href="{{ route('danh-muc', 'hinh-thuc-van-chuyen') }}">Hình thức vận chuyển</a></li>
-                                <li><a href="{{ route('danh-muc', 'chinh-sach-bao-hanh') }}">Chính sách bảo hành</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
+               
             </div>
         </div>
 
@@ -93,6 +73,9 @@
     .contact-form-box input {
         font-size: 14px;
         border: 1px solid #ccc
+    }
+    .form-selector{
+        margin-bottom: 10px;
     }
 </style>
 @endsection

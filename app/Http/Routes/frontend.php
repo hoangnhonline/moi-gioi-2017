@@ -44,6 +44,7 @@ Route::group(['namespace' => 'Frontend'], function()
         return Redirect::to('/nha-dat-long-an.html', 301);         
     });
     Route::get('/du-an', ['as' => 'du-an', 'uses' => 'ProjectsController@index']);    
+    Route::post('/send-contact', ['as' => 'send-contact', 'uses' => 'ContactController@store']);
     Route::get('du-an/{slug}', ['as' => 'detail-project', 'uses' => 'ProjectsController@detail']);
     Route::get('du-an/{slug}/{slugtab}', ['as' => 'tab', 'uses' => 'ProjectsController@tab']);
     Route::post('/tmp-upload-multiple-fe', ['as' => 'image.tmp-upload-multiple-fe', 'uses' => 'UploadController@tmpUploadMultipleFE']);

@@ -24,10 +24,10 @@
                <div class="clear"></div>
                <div class="menu_nho">
                   <a href="{{ route('home') }}" title="Trang chủ">Trang chủ</a>
-                  <a href="#gioi-thieu.html">Giới thiệu</a>
-                  <a href="#phong-thuy.html">Ký gửi</a>
-                  <a href="#tin-tuc.html">Tin tức</a>
-                  <a href="#lien-he.html">Liên hệ</a>
+                  <a href="{{ route('danh-muc', 'gioi-thieu' ) }}">Giới thiệu</a>
+                  <a href="{{ route('ky-gui') }}">Ký gửi</a>
+                  <a href="{{ route('news-list', 'tin-tuc') }}">Tin tức</a>
+                  <a href="{{ route('contact') }}">Liên hệ</a>
                   <div class="clear"></div>
                </div>
                <div class="clear"></div>
@@ -62,16 +62,16 @@
    <div class="menu_desktop" style="display: none;">
       <ul>
          <li><a href="{{ route('home') }}" title="Trang chủ" class="trangchu active_trangchu">trang chủ</a></li>
-         <li><a href="#gioi-thieu.html" class="gioithieu ">giới thiệu</a></li>
+         <li><a href="{{ route('danh-muc', 'gioi-thieu' ) }}" class="gioithieu ">giới thiệu</a></li>
          <li><a class="trangchu" href="{{ route('du-an') }}">Dự án bán</a>
          </li>
          <li><a class="trangchu " href="{{ route('danh-muc', 'nha-ban') }}">Nhà bán </a>
          </li>
          <li><a class="trangchu " href="{{ route('danh-muc', 'nha-cho-thue') }}">Nhà cho thuê</a>
          </li>
-         <li><a href="#phong-thuy.html" class="phongthuy ">ký gửi</a></li>
-         <li><a href="#tin-tuc.html" class="tintuc ">tin tức</a></li>
-         <li><a href="#lien-he.html" class="lienhe ">liên hệ</a></li>
+         <li><a href="{{ route('ky-gui') }}" class="phongthuy ">ký gửi</a></li>
+         <li><a href="{{ route('news-list', 'tin-tuc') }}" class="tintuc ">tin tức</a></li>
+         <li><a href="{{ route('contact') }}" class="lienhe ">liên hệ</a></li>
       </ul>
       <div class="clear"></div>
    </div>
