@@ -5,14 +5,14 @@ use Illuminate\Database\Eloquent\Model;
 
 class Customer extends Model  {
 
-	/**
-	 * The database table used by the model.
-	 *
-	 * @var string
-	 */
-	protected $table = 'customers';
+  /**
+   * The database table used by the model.
+   *
+   * @var string
+   */
+  protected $table = 'customers';
 
-	 /**
+   /**
      * Indicates if the model should be timestamped.
      *
      * @var bool
@@ -25,30 +25,28 @@ class Customer extends Model  {
      */
     protected $fillable = [
       'id',
-      'full_name',
+      'fullname',
       'email',
       'address',
-      'phone',
-      'hand_phone',
-      'company',
-      'tax_no',
+      'phone',     
       'username',
       'password',
       'type',
       'last_login',
-      'status',
-      'city_id',
-      'district_id',
-      'ward_id',
-      'facebook_id',
-      'address_type',
+      'status',      
+      'facebook_id',      
       'image_url',
-      'key_reset'
+      'key_reset',
+      'score'
     ];
 
     public function tinh()
     {
         return $this->hasOne('App\Models\City', 'id', 'city_id');
+    }
+    public function courses()
+    {
+        return $this->hasMany('App\Models\UserCourses', 'user_id');
     }
 
     public function huyen()
@@ -58,5 +56,9 @@ class Customer extends Model  {
     public function xa()
     {
         return $this->hasOne('App\Models\Ward', 'id', 'ward_id');
+    }
+    public function country()
+    {
+        return $this->hasOne('App\Models\Country', 'id', 'country_id');
     }
 }

@@ -1,13 +1,13 @@
 $(document).ready(function(){
-	$('a.addcart-link').click(function() {
-	    var product_id = $(this).data('id');
-	    add_product_to_cart(product_id);
-	});
-	$.ajaxSetup({
-	      headers: {
-	          'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-	      }
-	  }); 
+  $('a.addcart-link').click(function() {
+      var product_id = $(this).data('id');
+      add_product_to_cart(product_id);
+  });
+  $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    }); 
 });
 
 function add_product_to_cart(product_id) {
@@ -59,23 +59,9 @@ $(document).ready(function() {
           },
           success : function(data){            
             if(data.success == 1) { // new user              
-              swal('', 'ChĂ o má»«ng thĂ nh viĂªn má»›i.<br><p style="color:#51A0FB;margin:10px 5px">TĂ i khoáº£n cá»§a báº¡n Ä‘Æ°á»£c táº·ng <strong>10</strong> Ä‘iá»ƒm</p>', 'info').then(function(){
+              swal('', '<p>Chào mừng thành viên mới.</p>', 'info').then(function(){
                       location.reload();
                     });
-            } else { // old user              
-              $.ajax({
-                url : $('#route-score-day').val(),
-                type : 'GET',
-                success : function(response){
-                  if(response.success == 1){
-                    swal('', 'ChĂºc má»«ng báº¡n.<br><p style="color:#51A0FB;margin:10px 5px">TĂ i khoáº£n cá»§a báº¡n vá»«a Ä‘Æ°á»£c cá»™ng <strong>1</strong> Ä‘iá»ƒm cho láº§n Ä‘Äƒng nháº­p Ä‘áº§u tiĂªn trong ngĂ y.</p>', 'info').then(function(){
-                      location.reload();
-                    });
-                  }else{
-                    location.reload();
-                  }
-                }
-              });
             }
             
           }
@@ -96,7 +82,7 @@ $(document).on('keypress', '#popup-register-email, #popup-register-password, #po
   }
 });
 $(document).ready(function () {
-	$('#login_popup_submit_1').click(function() {		
+  $('#login_popup_submit_1').click(function() {   
         var $form = $(this).parents('form');        
         var error = [];
         var list_check = ['login_email', 'login_password'];
@@ -140,7 +126,7 @@ $(document).ready(function () {
               success : function(data){
                if(data.error == 1)
                {
-                  $('#login-form #error_login').html('Email hoáº·c máº­t kháº©u khĂ´ng Ä‘Ăºng.')
+                  $('#login-form #error_login').html('Email hoặc mật khẩu không đúng.')
                }
                else {
                     location.reload();
@@ -172,16 +158,16 @@ $(document).ready(function () {
               },
               success : function(data){
                 if(+data){
-                  swal('', 'ÄÄƒng kĂ½ nháº­n báº£n tin thĂ nh cĂ´ng.', 'success');
+                  swal('', 'Đăng ký nhận bản tin thành công.', 'success');
                 }
                 else {
-                  swal('', 'Äá»‹a chá»‰ email Ä‘Ă£ Ä‘Æ°á»£c Ä‘Äƒng kĂ½ trÆ°á»›c Ä‘Ă³.', 'error');
+                  swal('', 'Địa chỉ email đã được đăng ký trước đó.', 'error');
                 }
                 $('#txtNewsletter').val("");
               }
             });
         } else {
-            swal({ title: '', text: 'Vui lĂ²ng nháº­p Ä‘á»‹a chá»‰ email há»£p lá»‡.', type: 'error' });
+            swal({ title: '', text: 'Vui lòng nhập địa chỉ email hợp lệ.', type: 'error' });
         }
     });
 
@@ -234,22 +220,7 @@ $(document).ready(function () {
               success : function(data){
                if(data.error == 1)
                {
-                  $('#login_popup_form #error_login').html('Email hoáº·c máº­t kháº©u khĂ´ng Ä‘Ăºng.')
-               }
-               else {
-                    $.ajax({
-                      url : $('#route-score-day').val(),
-                      type : 'GET',
-                      success : function(response){
-                        if(response.success == 1){
-                          swal('', 'ChĂºc má»«ng báº¡n.<br><p style="color:#51A0FB;margin:10px 5px">TĂ i khoáº£n cá»§a báº¡n vá»«a Ä‘Æ°á»£c cá»™ng <strong>1</strong> Ä‘iá»ƒm cho láº§n Ä‘Äƒng nháº­p Ä‘áº§u tiĂªn trong ngĂ y.</p>', 'info').then(function(){
-                            location.reload();
-                          });
-                        }else{
-                          location.reload();
-                        }
-                      }
-                    });
+                  $('#login_popup_form #error_login').html('Email hoặc mật khẩu không đúng.')
                }
               }
             });
@@ -307,11 +278,6 @@ $(document).ready(function () {
                 {
                     $('small[er=NOT_VALIDATED]').show();
                     $('small[er=notEmpty]').hide();
-                }
-                else {
-                     swal('', 'ChĂ o má»«ng thĂ nh viĂªn má»›i.<br><p style="color:#51A0FB;margin:10px 5px">TĂ i khoáº£n cá»§a báº¡n Ä‘Æ°á»£c táº·ng <strong>10</strong> Ä‘iá»ƒm</p>', 'info').then(function(){
-                      location.reload();
-                    });
                 }
               }
             });

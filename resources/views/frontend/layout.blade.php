@@ -49,6 +49,7 @@
       <link rel="stylesheet" type="text/css" href="{{ URL::asset('public/assets/files/css/responsive.css') }}">
       <link rel="stylesheet" href="{{ URL::asset('public/assets/js/bootstrap/bootstrap.min.css') }}" >      
       <link rel="stylesheet" type="text/css" href="{{ URL::asset('public/assets/files/style.css') }}">
+      <link rel="stylesheet" type="text/css" href="{{ URL::asset('public/assets/css/swal.min.css') }}">
       <script src="{{ URL::asset('public/assets/js/jquery.min.js') }}"></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
       <!-- ===== JS Bootstrap ===== -->
@@ -60,6 +61,8 @@
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
       <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
       <![endif]-->
+      <script src="{{ URL::asset('public/assets/js/home.js') }}"></script>
+      <script src="{{ URL::asset('public/assets/js/swal.min.js') }}"></script>
 
    </head>
    <body>
@@ -68,7 +71,7 @@
     var js, fjs = d.getElementsByTagName(s)[0];
     if (d.getElementById(id)) return;
     js = d.createElement(s); js.id = id;
-    js.src = "//connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v2.10&appId=567408173358902";
+    js.src = "//connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v2.10&appId=1526808407403480";
     fjs.parentNode.insertBefore(js, fjs);
   }(document, 'script', 'facebook-jssdk'));</script>
   <script>window.twttr = (function(d, s, id) {
@@ -160,7 +163,7 @@
                                           
                                        </div>
                                     </div><!-- /user-dropdown-header -->                        
-                                    <p class="text-center">Điểm tích lũy : <span style="color:#51A0FB;font-weight:bold">{{ $detailUser->score }}</p></strong>
+                                    <p class="text-center">Điểm tích lũy : <span style="color:#51A0FB;font-weight:bold"></p></strong>
                                     <div class="user-dropdown-links clearfix">
                                        <a class="link" href="{{ route('xem-thong-tin') }}" >Thông tin tài khoản</a>
                                        <a class="link" href="{{ route('khoa-hoc-cua-toi') }}">Các khoá học của tôi</a>
@@ -182,8 +185,10 @@
          <div class="clear"></div>
          <div class="div_an" style="display: block;"></div>
          <div class="clear"></div>
+       </div>
          <!-- Start menu -->
          @include('frontend.partials.menu')
+
          <!-- End menu -->
          <div class="clear"></div>
          @if($routeName == 'home')
@@ -220,6 +225,7 @@
            </div>
        </div>
        @endif
+        <div class="container">
          <div class="clear"></div>
          <div class="center">
             <div class="right">
@@ -232,9 +238,7 @@
          </div>
          <div class="clear"></div>
          <!-- Start Footer-->
-         <div class="footer">
-            @include('frontend.partials.footer')
-         </div>
+         
          <!-- End footer -->
          <div class="clear"></div>
          <div class="fix_tel">
@@ -249,6 +253,9 @@
             </a>
          </div>
       </div>
+      <div class="footer">
+            @include('frontend.partials.footer')
+         </div>
       <div id="bttop" style="display: block;"></div>
       
       <!-- /.modal -->
