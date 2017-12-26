@@ -92,6 +92,7 @@ Route::group(['namespace' => 'Backend', 'prefix' => 'backend', 'middleware' => '
         Route::post('/update', ['as' => 'pages.update', 'uses' => 'PagesController@update']);
         Route::get('{id}/destroy', ['as' => 'pages.destroy', 'uses' => 'PagesController@destroy']);
     });
+        Route::post('save-content', ['as' => 'save-content', 'uses' => "SettingsController@saveContent"]);
     Route::group(['prefix' => 'custom-link'], function () {
         Route::get('/', ['as' => 'custom-link.index', 'uses' => 'CustomLinkController@index']);
         Route::get('/create', ['as' => 'custom-link.create', 'uses' => 'CustomLinkController@create']);

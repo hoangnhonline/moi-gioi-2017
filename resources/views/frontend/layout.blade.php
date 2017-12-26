@@ -91,27 +91,64 @@
                      </div>
                      <!-- /block-search -->
                      <div class="block-user col-sm-3 col-xs-12">
-                        <div class="block-content">
-                           <span class="ava-img">
-                           <img alt="" src="{{ URL::asset('public/assets/images/user.svg') }}">
-                           </span>
-                           <div class="ava-info" >
-                              <p><strong><a title="Header" data-toggle="popover" data-placement="bottom" data-content="Content222">Đăng nhập, đăng ký</a></strong></p>
-                              <p class="small">Tài khoản</p>
-                           </div>
-                        </div>
-                        <div class="popover fade bottom">
-                           <div class="arrow"></div>
-                           <div class="popover-content">
-                              <div class="popover-signin">
-                                 <a class="btn btn-block btn-white" href="#" data-toggle="modal" data-target="#login-modal">Đăng nhập</a>
-                                 <a class="btn btn-block btn-white" href="#" data-toggle="modal" data-target="#register-modal">Đăng ký tài khoản mới</a>
-                                 <a class="btn btn-block login-button-fb btn-social" href="#">Đăng nhập với Facebook</a>
-                                 <a class="btn btn-block login-button-google btn-social" href="#">Đăng nhập với Google+</a>
+                        @if( !Session::get('login') )
+                           <div class="block-content">
+                              <span class="ava-img">
+                                 <img alt="user" src="{{ URL::asset('public/assets/images/icon-user.png') }}">
+                              </span>
+                              <div class="ava-info">
+                                 <p><strong>Đăng nhập, đăng ký</strong></p>
+                                 <p class="small">Tài khoản</p>
                               </div>
                            </div>
-                        </div>
-                        <!-- /popover -->
+                           <div class="popover fade bottom in">
+                               <div class="arrow"></div>
+                               <div class="popover-content">
+                                   <div class="popover-signin">
+                                    <button class="btn btn-block btn-white" data-toggle="modal" data-target="#login-modal">Đăng nhập</button>
+                                    <button class="btn btn-block btn-white" data-toggle="modal" data-target="#register-modal">Đăng ký tài khoản mới</button>
+                                    <button class="btn btn-block login-button-fb btn-social facebook-login" >Đăng nhập với Facebook</button>                      
+                                    </div>
+                               </div>
+                           </div><!-- /popover -->
+                           @else
+                           <?php 
+                           $detailUser = DB::table('customers')->where('id', Session::get('userId'))->first();
+                           ?>
+                           <div class="block-content">
+                              <span class="ava-img">
+                                 <img alt="{{ Session::get('username') }}" src="{{ Session::get('avatar') ? Session::get('avatar') :  URL::asset('public/assets/images/icon-user.png') }}">
+                              </span>
+                              <div class="ava-info hidden-md hidden-sm hidden-xs">
+                                 <p><strong>{{ Session::get('username') }}</strong></p>
+                                 <p class="small">Tài khoản</p>
+                              </div>
+                           </div>
+                           <div class="popover fade bottom in">
+                                <div class="popover-content">
+                                 <div class="popover-user">
+                                    <div class="user-dropdown-header clearfix">
+                                       <div class="user-dropdown-header-left">
+                                          <img class="user-avatar-medium" src="{{ Session::get('avatar') ? Session::get('avatar') :  URL::asset('public/assets/images/icon-user.png') }}" alt="{{ Session::get('username') }}">
+                                       </div>
+                                       <div class="user-dropdown-header-right">
+                                          <p class="name">{{ Session::get('username') }}</p>
+                                          
+                                       </div>
+                                    </div><!-- /user-dropdown-header -->                        
+                                    <p class="text-center">Điểm tích lũy : <span style="color:#51A0FB;font-weight:bold">{{ $detailUser->score }}</p></strong>
+                                    <div class="user-dropdown-links clearfix">
+                                       <a class="link" href="{{ route('xem-thong-tin') }}" >Thông tin tài khoản</a>
+                                       <a class="link" href="{{ route('khoa-hoc-cua-toi') }}">Các khoá học của tôi</a>
+                                       <!--<a class="link" href="#">Lịch sử giao dịch</a>-->
+                                    </div><!-- /user-dropdown-links -->
+                                    <div class="user-dropdown-logout clearfix">
+                                       <a class="btn btn-flat btn-logout" href="{{route('user-logout')}}"><i class="fa fa-power-off"></i>Đăng xuất</a>
+                                    </div><!-- /user-dropdown-logout -->
+                                 </div>
+                                 </div>
+                           </div><!-- /popover -->
+                           @endif
                      </div>
                      <!-- /block-user -->
                   </div>
@@ -189,123 +226,7 @@
          </div>
       </div>
       <div id="bttop" style="display: block;"></div>
-      <div class="modal fade" id="login-modal">
-         <div class="modal-dialog" role="document">
-            <div class="modal-content">
-               <div class="modal-header">
-                  <button aria-hidden="true" class="close" data-dismiss="modal" type="button">×</button>
-                  <h3 class="modal-title">Đăng nhập</h3>
-               </div>
-               <div class="modal-body">
-                  <form action="/users/sign_in" method="post">
-                     <p class="sub-title">Đăng nhập bằng email</p>
-                     <div class="form-control-wrapper">
-                        <input class="form-control" id="email" name="user[email]" placeholder="Email" required="true" type="email" value="">
-                     </div>
-                     <div class="form-control-wrapper">
-                        <input class="form-control" id="password" name="user[password]" placeholder="Mật khẩu" required="true" type="password">
-                     </div>
-                     <div class="form-control-wrapper">
-                        <input class="btn btn-login-submit" type="submit" value="Đăng nhập">
-                     </div>
-                  </form>
-                  <p class="forgot-password-link">
-                     <a class="btn-link" data-dismiss="modal" data-target="#fogot-password-dialog" data-toggle="modal" href="#" id="forgot-password-button">Quên mật khẩu đăng nhập?</a>
-                  </p>
-               </div>
-               <div class="modal-footer">
-                  <div class="forgot-password-link clearfix">
-                     <a class="btn btn-link show-social-link" href="#" data-toggle="collapse" data-target=".social-area">
-                     Đăng nhập với tài khoản mạng xã hội
-                     <span>
-                     <i class="fa fa-angle-down"></i>
-                     </span>
-                     </a>
-                     <div class="form-control-wrapper social-area collapse">
-                        <div class="row">
-                           <div class="col-md-6">
-                              <a class="btn-facebook" href="/users/auth/facebook">
-                              <i class="left fa fa-facebook"></i>
-                              <span class="left">Facebook</span>
-                              </a>
-                           </div>
-                           <div class="col-md-6">
-                              <a class="btn-google" href="/users/auth/google_oauth2">
-                              <i class="left fa fa-google-plus"></i>
-                              <span class="left">Google+</span>
-                              </a>
-                           </div>
-                        </div>
-                     </div>
-                  </div>
-                  <p class="bottom-text">
-                     Chưa có tài khoản?
-                     <a class="btn-link" data-dismiss="modal" data-target="#register-modal" data-toggle="modal" href="#">Đăng ký</a>
-                  </p>
-               </div>
-            </div>
-            <!-- /.modal-content -->
-         </div>
-         <!-- /.modal-dialog -->
-      </div>
-      <!-- /.modal -->
-      <div class="modal fade in" id="register-modal">
-         <div class="modal-dialog">
-            <div class="modal-content">
-               <div class="modal-header">
-                  <button aria-hidden="true" class="close" data-dismiss="modal" type="button">×</button>
-                  <h3 class="modal-title">Đăng ký</h3>
-               </div>
-               <div class="modal-body">
-                  <form action="/users" method="post">
-                     <p class="sub-title">Đăng ký bằng email</p>
-                     <div class="form-control-wrapper">
-                        <input class="form-control" id="name" name="user[name]" placeholder="Họ và tên" required="true" type="text" value="">
-                     </div>
-                     <div class="form-control-wrapper">
-                        <input class="form-control" id="email" name="user[email]" placeholder="Email" required="true" type="email" value="">
-                     </div>
-                     <div class="form-control-wrapper">
-                        <input class="form-control" id="password" name="user[password]" placeholder="Mật khẩu" required="true" type="password">
-                     </div>
-                     <div class="form-control-wrapper">
-                        <input class="btn btn-login-submit" type="submit" value="Đăng ký">
-                     </div>
-                  </form>
-               </div>
-               <div class="modal-footer">
-                  <div class="forgot-password-link clearfix">
-                     <a class="btn btn-link show-social-link" href="#" data-toggle="collapse" data-target=".social-area">
-                     Đăng nhập với tài khoản mạng xã hội
-                     <span>
-                     <i class="fa fa-angle-down"></i>
-                     </span>
-                     </a>
-                     <div class="form-control-wrapper social-area collapse">
-                        <div class="row">
-                           <div class="col-md-6">
-                              <a class="btn-facebook" href="/users/auth/facebook">
-                              <i class="left fa fa-facebook"></i>
-                              <span class="left">Facebook</span>
-                              </a>
-                           </div>
-                           <div class="col-md-6">
-                              <a class="btn-google" href="/users/auth/google_oauth2">
-                              <i class="left fa fa-google-plus"></i>
-                              <span class="left">Google+</span>
-                              </a>
-                           </div>
-                        </div>
-                     </div>
-                  </div>
-                  <p class="bottom-text">
-                     Đã có tài khoản?
-                     <a class="btn-link" data-dismiss="modal" data-target="#login-modal" data-toggle="modal" href="#">Đăng nhập</a>
-                  </p>
-               </div>
-            </div>
-         </div>
-      </div>
+      
       <!-- /.modal -->
 <script type="text/javascript">
     $(document).ready(function (e) {
@@ -364,5 +285,6 @@ function searchProduct() {
    document.frm_search.submit();
 }
 </script>
+@include('frontend.partials.modal')
    </body>
 </html>
