@@ -61,13 +61,13 @@
 <div class="menu menu_fix">
    <div class="menu_desktop" style="display: none;">
       <ul>
-         <li><a href="#" class="trangchu active_trangchu">trang chủ</a></li>
+         <li><a href="{{ route('home') }}" title="Trang chủ" class="trangchu active_trangchu">trang chủ</a></li>
          <li><a href="#gioi-thieu.html" class="gioithieu ">giới thiệu</a></li>
-         <li><a class="trangchu " href="#bat-dong-san/dat-nen.html">Dự án bán</a>
+         <li><a class="trangchu" href="{{ route('du-an') }}">Dự án bán</a>
          </li>
-         <li><a class="trangchu " href="#bat-dong-san/can-ho.html">Nhà bán </a>
+         <li><a class="trangchu " href="{{ route('danh-muc', 'nha-ban') }}">Nhà bán </a>
          </li>
-         <li><a class="trangchu " href="#bat-dong-san/nha-xuong.html">Nhà cho thuê</a>
+         <li><a class="trangchu " href="{{ route('danh-muc', 'nha-cho-thue') }}">Nhà cho thuê</a>
          </li>
          <li><a href="#phong-thuy.html" class="phongthuy ">ký gửi</a></li>
          <li><a href="#tin-tuc.html" class="tintuc ">tin tức</a></li>

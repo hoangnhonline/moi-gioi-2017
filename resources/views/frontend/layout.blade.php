@@ -125,6 +125,7 @@
          @include('frontend.partials.menu')
          <!-- End menu -->
          <div class="clear"></div>
+         @if($routeName == 'home')
          <div id="" >
            <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
                <!-- Indicators -->
@@ -157,6 +158,7 @@
                </a>
            </div>
        </div>
+       @endif
          <div class="clear"></div>
          <div class="center">
             <div class="right">

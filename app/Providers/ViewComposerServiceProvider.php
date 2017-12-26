@@ -75,11 +75,13 @@ class ViewComposerServiceProvider extends ServiceProvider
         	$footerLink = CustomLink::where('block_id', 2)->orderBy('display_order', 'asc')->get();
         	$supportList = Support::orderBy('display_order', 'asc')->get();
         	$menuList = Menu::where('menu_id', 1)->orderBy('display_order', 'asc')->get();
+        	$routeName = \Request::route()->getName();
 			$view->with( ['settingArr' => $settingArr, 
 			'banList' => $banList, 'thueList' => $thueList, 'articleCate' => $articleCate, 'districtList' => $districtList, 'tinRandom' => $tinRandom, 'customLink' => $customLink, 'landingList' => $landingList, 'landing2List' => $landing2List, 'priceList' => $priceList, 'areaList' => $areaList,
 			'directionList' => $directionList, 'footerLink' => $footerLink, 'supportList' => $supportList,
 			'menuList' => $menuList,
-			'cityList' => $cityList
+			'cityList' => $cityList,
+			'routeName' => $routeName
 			] );
 			
 		});
