@@ -6,24 +6,24 @@
             <div class="khung_menu12">
                <ul>
                   <li>
-                     <a href="#bat-dong-san/dat-nen.html">Dự án bán</a>
+                     <a href="{{ route('du-an') }}">Dự án bán</a>
                      <ul>
                      </ul>
                   </li>
                   <li>
-                     <a href="#bat-dong-san/can-ho.html">Nhà bán</a>
+                     <a href="{{ route('danh-muc', "nha-ban" ) }}">Nhà bán</a>
                      <ul>
                      </ul>
                   </li>
                   <li>
-                     <a href="#bat-dong-san/nha-xuong.html">Nhà cho thuê</a>
+                     <a href="{{ route('danh-muc', "nha-cho-thue" ) }}">Nhà cho thuê</a>
                      <ul>
                      </ul>
                   </li>
                </ul>
                <div class="clear"></div>
                <div class="menu_nho">
-                  <a href="#">Trang chủ</a>
+                  <a href="{{ route('home') }}" title="Trang chủ">Trang chủ</a>
                   <a href="#gioi-thieu.html">Giới thiệu</a>
                   <a href="#phong-thuy.html">Ký gửi</a>
                   <a href="#tin-tuc.html">Tin tức</a>
