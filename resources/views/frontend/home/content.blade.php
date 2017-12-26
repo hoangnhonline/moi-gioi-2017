@@ -1,143 +1,40 @@
 @include('frontend.partials.meta')
 @section('content')
-<p class="title-home"><a>Đất nền</a></p>
+@foreach($estateTypeList as $et)
+<p class="title-home"><a>{!! $et->name !!}</a></p>
 <div class="clear"></div>
+@if(!empty($productArr[$et->id]))
 <div>
+   
+   @foreach($productArr[$et->id] as $pro)
+   <?php //dd($pro); ?>
    <div class="product ">
       <div class="hinhsp">
-         <a href="#bat-dong-san/dat-nen-xa-nhuan-duc-cu-chi/1147.html"><img
-            class="img_trung img_trung_1147" src="files/473811046257.jpg"
+         <a href="{{ route('chi-tiet', [$pro->slug_loai, $pro->slug, $pro->id]) }}"><img
+            class="img_trung" src="{{ Helper::showImageThumb($pro->image_url) }}"
             alt="đất nền xã nhuận đức ,củ chi" style="height: 198.587px;"></a>
-         <a class="chitiet" href="#bat-dong-san/dat-nen-xa-nhuan-duc-cu-chi/1147.html">Chi tiết</a>
+         <a class="chitiet" href="{{ route('chi-tiet', [$pro->slug_loai, $pro->slug, $pro->id]) }}">Chi tiết</a>
          <a class="tham-gia-ban" href="#bat-dong-san/dat-nen-xa-nhuan-duc-cu-chi/1147.html">Tham gia ban</a> 
          <div class="clear"></div>
       </div>
-      <a class="tensp" href="#bat-dong-san/dat-nen-xa-nhuan-duc-cu-chi/1147.html">đất nền xã nhuận đức ,củ
-      chi (1 tỷ 650 triệu)</a>        
-      <a href="#bat-dong-san/dat-nen-xa-nhuan-duc-cu-chi/1147.html">
+      <a class="tensp" href="{{ route('chi-tiet', [$pro->slug_loai, $pro->slug, $pro->id]) }}">{!! $pro->title !!}</a>        
+      
          <p class="giagoc">Giá: <span
-            style="color:#1060EB;">1 tỷ 650 triệu</span></p>
-      </a>
-      <a href="#bat-dong-san/dat-nen-xa-nhuan-duc-cu-chi/1147.html">
+            style="color:#1060EB;">{!! number_format($pro->price) !!} {!! Helper::getName($pro->price_unit_id, 'price_unit') !!}</span></p>     
+      
          <p class="size_chatlieu">Hoa hồng :
-            <span style="color:#1060EB;">10%</span>
+            <span style="color:#1060EB;">{{ $pro->hoa_hong }}%</span>
          </p>
-      </a>
+      
       <div class="clear"></div>
-   </div>
-   <div class="product ">
-      <div class="hinhsp">
-         <a href="#bat-dong-san/dat-nen-xa-nhuan-duc-cu-chi/1147.html"><img
-            class="img_trung img_trung_1147" src="files/473811046257.jpg"
-            alt="đất nền xã nhuận đức ,củ chi" style="height: 198.587px;"></a>
-         <a class="chitiet" href="#bat-dong-san/dat-nen-xa-nhuan-duc-cu-chi/1147.html">Chi tiết</a>
-         <a class="tham-gia-ban" href="#bat-dong-san/dat-nen-xa-nhuan-duc-cu-chi/1147.html">Tham gia ban</a> 
-         <div class="clear"></div>
-      </div>
-      <a class="tensp" href="#bat-dong-san/dat-nen-xa-nhuan-duc-cu-chi/1147.html">đất nền xã nhuận đức ,củ
-      chi (1 tỷ 650 triệu)</a>        
-      <a href="#bat-dong-san/dat-nen-xa-nhuan-duc-cu-chi/1147.html">
-         <p class="giagoc">Giá: <span
-            style="color:#1060EB;">1 tỷ 650 triệu</span></p>
-      </a>
-      <a href="#bat-dong-san/dat-nen-xa-nhuan-duc-cu-chi/1147.html">
-         <p class="size_chatlieu">Hoa hồng :
-            <span style="color:#1060EB;">10%</span>
-         </p>
-      </a>
-      <div class="clear"></div>
-   </div>
-   <div class="product ">
-      <div class="hinhsp">
-         <a href="#bat-dong-san/dat-nen-xa-nhuan-duc-cu-chi/1147.html"><img
-            class="img_trung img_trung_1147" src="files/473811046257.jpg"
-            alt="đất nền xã nhuận đức ,củ chi" style="height: 198.587px;"></a>
-         <a class="chitiet" href="#bat-dong-san/dat-nen-xa-nhuan-duc-cu-chi/1147.html">Chi tiết</a>
-         <a class="tham-gia-ban" href="#bat-dong-san/dat-nen-xa-nhuan-duc-cu-chi/1147.html">Tham gia ban</a> 
-         <div class="clear"></div>
-      </div>
-      <a class="tensp" href="#bat-dong-san/dat-nen-xa-nhuan-duc-cu-chi/1147.html">đất nền xã nhuận đức ,củ
-      chi (1 tỷ 650 triệu)</a>        
-      <a href="#bat-dong-san/dat-nen-xa-nhuan-duc-cu-chi/1147.html">
-         <p class="giagoc">Giá: <span
-            style="color:#1060EB;">1 tỷ 650 triệu</span></p>
-      </a>
-      <a href="#bat-dong-san/dat-nen-xa-nhuan-duc-cu-chi/1147.html">
-         <p class="size_chatlieu">Hoa hồng :
-            <span style="color:#1060EB;">10%</span>
-         </p>
-      </a>
-      <div class="clear"></div>
-   </div>
-   <div class="product ">
-      <div class="hinhsp">
-         <a href="#bat-dong-san/dat-nen-xa-nhuan-duc-cu-chi/1147.html"><img
-            class="img_trung img_trung_1147" src="files/473811046257.jpg"
-            alt="đất nền xã nhuận đức ,củ chi" style="height: 198.587px;"></a>
-         <a class="chitiet" href="#bat-dong-san/dat-nen-xa-nhuan-duc-cu-chi/1147.html">Chi tiết</a>
-         <a class="tham-gia-ban" href="#bat-dong-san/dat-nen-xa-nhuan-duc-cu-chi/1147.html">Tham gia ban</a> 
-         <div class="clear"></div>
-      </div>
-      <a class="tensp" href="#bat-dong-san/dat-nen-xa-nhuan-duc-cu-chi/1147.html">đất nền xã nhuận đức ,củ
-      chi (1 tỷ 650 triệu)</a>        
-      <a href="#bat-dong-san/dat-nen-xa-nhuan-duc-cu-chi/1147.html">
-         <p class="giagoc">Giá: <span
-            style="color:#1060EB;">1 tỷ 650 triệu</span></p>
-      </a>
-      <a href="#bat-dong-san/dat-nen-xa-nhuan-duc-cu-chi/1147.html">
-         <p class="size_chatlieu">Hoa hồng :
-            <span style="color:#1060EB;">10%</span>
-         </p>
-      </a>
-      <div class="clear"></div>
-   </div>
-   <div class="product ">
-      <div class="hinhsp">
-         <a href="#bat-dong-san/dat-nen-xa-nhuan-duc-cu-chi/1147.html"><img
-            class="img_trung img_trung_1147" src="files/473811046257.jpg"
-            alt="đất nền xã nhuận đức ,củ chi" style="height: 198.587px;"></a>
-         <a class="chitiet" href="#bat-dong-san/dat-nen-xa-nhuan-duc-cu-chi/1147.html">Chi tiết</a>
-         <a class="tham-gia-ban" href="#bat-dong-san/dat-nen-xa-nhuan-duc-cu-chi/1147.html">Tham gia ban</a> 
-         <div class="clear"></div>
-      </div>
-      <a class="tensp" href="#bat-dong-san/dat-nen-xa-nhuan-duc-cu-chi/1147.html">đất nền xã nhuận đức ,củ
-      chi (1 tỷ 650 triệu)</a>        
-      <a href="#bat-dong-san/dat-nen-xa-nhuan-duc-cu-chi/1147.html">
-         <p class="giagoc">Giá: <span
-            style="color:#1060EB;">1 tỷ 650 triệu</span></p>
-      </a>
-      <a href="#bat-dong-san/dat-nen-xa-nhuan-duc-cu-chi/1147.html">
-         <p class="size_chatlieu">Hoa hồng :
-            <span style="color:#1060EB;">10%</span>
-         </p>
-      </a>
-      <div class="clear"></div>
-   </div>
-   <div class="product ">
-      <div class="hinhsp">
-         <a href="#bat-dong-san/dat-nen-xa-nhuan-duc-cu-chi/1147.html"><img
-            class="img_trung img_trung_1147" src="files/473811046257.jpg"
-            alt="đất nền xã nhuận đức ,củ chi" style="height: 198.587px;"></a>
-         <a class="chitiet" href="#bat-dong-san/dat-nen-xa-nhuan-duc-cu-chi/1147.html">Chi tiết</a>
-         <a class="tham-gia-ban" href="#bat-dong-san/dat-nen-xa-nhuan-duc-cu-chi/1147.html">Tham gia ban</a> 
-         <div class="clear"></div>
-      </div>
-      <a class="tensp" href="#bat-dong-san/dat-nen-xa-nhuan-duc-cu-chi/1147.html">đất nền xã nhuận đức ,củ
-      chi (1 tỷ 650 triệu)</a>        
-      <a href="#bat-dong-san/dat-nen-xa-nhuan-duc-cu-chi/1147.html">
-         <p class="giagoc">Giá: <span
-            style="color:#1060EB;">1 tỷ 650 triệu</span></p>
-      </a>
-      <a href="#bat-dong-san/dat-nen-xa-nhuan-duc-cu-chi/1147.html">
-         <p class="size_chatlieu">Hoa hồng :
-            <span style="color:#1060EB;">10%</span>
-         </p>
-      </a>
-      <div class="clear"></div>
-   </div>
+   </div> 
+   @endforeach  
+   
    <div class="phantrang">
       <a href="#">Xem thêm</a>
    </div>
    <div class="clear"></div>
 </div>
+@endif
+@endforeach
 @stop

@@ -739,7 +739,7 @@ a.at-branding-logo:visited {
 }
 
 .highslide img {
-    cursor: url(images/graphics/zoomin.cur), pointer !important;
+    cursor: url(../../images/graphics/zoomin.cur), pointer !important;
 }
 
 .at-share-dock.atss {
@@ -4703,7 +4703,7 @@ div.at4-arrow.at-up {
 }
 
 .hotline1 {
-    background: url(images/phone.png) left no-repeat;
+    background: url(../../images/phone.png) left no-repeat;
     font-size: 29px;
     font-family: utm_impact;
     padding-left: 23px;
@@ -4784,115 +4784,115 @@ div.at4-arrow.at-up {
 }
 
 .trangchu {
-    background: url(images/icon_home.png) 10% center no-repeat;
+    background: url(../../images/icon_home.png) 10% center no-repeat;
 }
 
 .trangchu:hover {
-    background: url(images/icon_home1.png) 10% center no-repeat, #fff;
+    background: url(../../images/icon_home1.png) 10% center no-repeat, #fff;
     color: #1060EB;
 }
 
 .active_trangchu {
-    background: url(images/icon_home1.png) 10% center no-repeat, #fff;
+    background: url(../../images/icon_home1.png) 10% center no-repeat, #fff;
     color: #1060EB !important;
 }
 
 .gioithieu {
-    background: url(images/icon_gioithieu.png) 10% center no-repeat;
+    background: url(../../images/icon_gioithieu.png) 10% center no-repeat;
 }
 
 .gioithieu:hover {
-    background: url(images/icon_gioithieu1.png) 10% center no-repeat, #fff;
+    background: url(../../images/icon_gioithieu1.png) 10% center no-repeat, #fff;
     color: #1060EB;
 }
 
 .active_gioithieu {
-    background: url(images/icon_gioithieu1.png) 10% center no-repeat, #fff;
+    background: url(../../images/icon_gioithieu1.png) 10% center no-repeat, #fff;
     color: #1060EB !important;
 }
 
 .sanpham {
-    background: url(images/icon_sanpham.png) 10% center no-repeat;
+    background: url(../../images/icon_sanpham.png) 10% center no-repeat;
 }
 
 .sanpham:hover {
-    background: url(images/icon_sanpham1.png) 10% center no-repeat, #fff;
+    background: url(../../images/icon_sanpham1.png) 10% center no-repeat, #fff;
     color: #1060EB;
 }
 
 .active_sanpham {
-    background: url(images/icon_sanpham1.png) 10% center no-repeat, #fff;
+    background: url(../../images/icon_sanpham1.png) 10% center no-repeat, #fff;
     color: #1060EB !important;
 }
 
 .phongthuy {
-    background: url(images/icon_phongthuy.png) 10% center no-repeat;
+    background: url(../../images/icon_phongthuy.png) 10% center no-repeat;
 }
 
 .phongthuy:hover {
-    background: url(images/icon_phongthuy1.png) 10% center no-repeat, #fff;
+    background: url(../../images/icon_phongthuy1.png) 10% center no-repeat, #fff;
     color: #1060EB;
 }
 
 .active_phongthuy {
-    background: url(images/icon_phongthuy1.png) 10% center no-repeat, #fff;
+    background: url(../../images/icon_phongthuy1.png) 10% center no-repeat, #fff;
     color: #1060EB !important;
 }
 
 .khonggiandep {
-    background: url(images/icon_khonggiandep.png) 10% center no-repeat;
+    background: url(../../images/icon_khonggiandep.png) 10% center no-repeat;
     text-indent: 45px !important;
 }
 
 .khonggiandep:hover {
-    background: url(images/icon_khonggiandep1.png) 10% center no-repeat, #fff;
+    background: url(../../images/icon_khonggiandep1.png) 10% center no-repeat, #fff;
     color: #1060EB;
 }
 
 .active_khonggiandep {
-    background: url(images/icon_khonggiandep1.png) 10% center no-repeat, #fff;
+    background: url(../../images/icon_khonggiandep1.png) 10% center no-repeat, #fff;
     color: #1060EB !important;
 }
 
 .tintuc {
-    background: url(images/icon_tintuc.png) 10% center no-repeat;
+    background: url(../../images/icon_tintuc.png) 10% center no-repeat;
 }
 
 .tintuc:hover {
-    background: url(images/icon_tintuc1.png) 10% center no-repeat, #fff;
+    background: url(../../images/icon_tintuc1.png) 10% center no-repeat, #fff;
     color: #1060EB;
 }
 
 .active_tintuc {
-    background: url(images/icon_tintuc1.png) 10% center no-repeat, #fff;
+    background: url(../../images/icon_tintuc1.png) 10% center no-repeat, #fff;
     color: #1060EB !important;
 }
 
 .khuyenmai {
-    background: url(images/icon_khuyenmai.png) 10% center no-repeat;
+    background: url(../../images/icon_khuyenmai.png) 10% center no-repeat;
 }
 
 .khuyenmai:hover {
-    background: url(images/icon_khuyenmai1.png) 10% center no-repeat, #fff;
+    background: url(../../images/icon_khuyenmai1.png) 10% center no-repeat, #fff;
     color: #1060EB;
 }
 
 .active_khuyenmai {
-    background: url(images/icon_khuyenmai1.png) 10% center no-repeat, #fff;
+    background: url(../../images/icon_khuyenmai1.png) 10% center no-repeat, #fff;
     color: #1060EB !important;
 }
 
 .lienhe {
-    background: url(images/icon_lienhe.png) 10% center no-repeat;
+    background: url(../../images/icon_lienhe.png) 10% center no-repeat;
 }
 
 .lienhe:hover {
-    background: url(images/icon_lienhe1.png) 10% center no-repeat, #fff;
+    background: url(../../images/icon_lienhe1.png) 10% center no-repeat, #fff;
     color: #1060EB;
 }
 
 .active_lienhe {
-    background: url(images/icon_lienhe1.png) 10% center no-repeat, #fff;
+    background: url(../../images/icon_lienhe1.png) 10% center no-repeat, #fff;
     color: #1060EB !important;
 }
 
@@ -4994,7 +4994,7 @@ div.at4-arrow.at-up {
     float: right;
     margin: 10px;;
     color: #fff;
-    background: url(images/sprites-small.png) no-repeat 8px 10px;
+    background: url(../../images/sprites-small.png) no-repeat 8px 10px;
     display: block;
     border: #aad862 solid 1px;
     padding: 10px 5px 0 35px;
@@ -5049,7 +5049,7 @@ div.at4-arrow.at-up {
 }
 
 .nut_menu111 {
-    background: url(images/menu.png) no-repeat;
+    background: url(../../images/menu.png) no-repeat;
     width: 57px;
     height: 35px;
     cursor: pointer;
@@ -5059,7 +5059,7 @@ div.at4-arrow.at-up {
 }
 
 .nut_menu111:hover {
-    background: url(images/menu1.png) no-repeat;
+    background: url(../../images/menu1.png) no-repeat;
 }
 
 .keyword11 {
@@ -5071,7 +5071,7 @@ div.at4-arrow.at-up {
     height: 30px;
     padding: 0px 10px;
     outline: none;
-    background: url(images/search.png) 95% no-repeat, #fff;
+    background: url(../../images/search.png) 95% no-repeat, #fff;
     margin: 19px 0px;
 }
 
@@ -5081,7 +5081,7 @@ div.at4-arrow.at-up {
 }
 
 .hotline2 {
-    background: url(images/phone2.png) left no-repeat;
+    background: url(../../images/phone2.png) left no-repeat;
     font-size: 29px;
     font-family: utm_impact;
     padding-left: 30px;
@@ -5204,7 +5204,7 @@ div.at4-arrow.at-up {
     display: block;
     width: 40px;
     height: 40px;
-    background: #398844 url(images/sprites-small.png) no-repeat 12px -870px;
+    background: #398844 url(../../images/sprites-small.png) no-repeat 12px -870px;
     position: absolute;
     top: 10px;
     left: -40px;
@@ -5233,7 +5233,7 @@ div.at4-arrow.at-up {
     position: absolute;
     top: 10px;
     right: 10px;
-    background: #1060EB url(images/sprites-small.png) no-repeat 10px -980px;
+    background: #1060EB url(../../images/sprites-small.png) no-repeat 10px -980px;
     float: right;
     cursor: pointer;
 }
@@ -5261,7 +5261,7 @@ div.at4-arrow.at-up {
 }
 
 .home_trung1 {
-    background: url(images/sprites-small.png) no-repeat 15px -927px;
+    background: url(../../images/sprites-small.png) no-repeat 15px -927px;
     padding-left: 47px !important;
 }
 
@@ -5271,7 +5271,7 @@ div.at4-arrow.at-up {
 }
 
 .caret {
-    background: url(images/sprites-small.png) no-repeat right -754px;
+    background: url(../../images/sprites-small.png) no-repeat right -754px;
     float: right;
     width: 15%;
     padding: 8px 0px;
@@ -5279,7 +5279,7 @@ div.at4-arrow.at-up {
 }
 
 .caret1 {
-    background: url(images/sprites-small.png) no-repeat right -665px;
+    background: url(../../images/sprites-small.png) no-repeat right -665px;
 }
 
 .div_dong_menu {
@@ -5296,7 +5296,7 @@ div.at4-arrow.at-up {
     width: 20px;
     height: 20px;
     display: inline-block;
-    background: url(images/sprites-small.png) no-repeat 0 -880px;
+    background: url(../../images/sprites-small.png) no-repeat 0 -880px;
     vertical-align: middle;
     padding-left: 5px;
 }
@@ -5402,7 +5402,7 @@ a.captionOrange:hover {
 }
 
 .title_tuvansanpham {
-    background: url(images/tuvan.png) left no-repeat;
+    background: url(../../images/tuvan.png) left no-repeat;
     color: #7D7A7A;
     text-transform: uppercase;
     font-size: 16px;
@@ -5575,7 +5575,7 @@ ul.tabs li a {
     text-transform: uppercase;
     color: #7D7A7A;
     font-size: 18px;
-    background: url(images/sofa.png) left no-repeat;
+    background: url(../../images/sofa.png) left no-repeat;
     display: block;
     text-indent: 35px;
     float: left;
@@ -5590,7 +5590,7 @@ ul.tabs li a {
     text-transform: uppercase;
     color: #7D7A7A;
     font-size: 18px;
-    background: url(images/noithat.png) left no-repeat;
+    background: url(../../images/noithat.png) left no-repeat;
     display: block;
     text-indent: 35px;
     float: left;
@@ -5606,7 +5606,7 @@ ul.tabs li a {
     text-transform: uppercase;
     color: #7D7A7A;
     font-size: 18px;
-    background: url(images/banchay.png) left no-repeat;
+    background: url(../../images/banchay.png) left no-repeat;
     display: block;
     text-indent: 35px;
     float: left;
@@ -5806,7 +5806,7 @@ ul.tabs li a {
 }
 
 .title_khtb {
-    background: url(images/khtb.png) left no-repeat;
+    background: url(../../images/khtb.png) left no-repeat;
     max-width: 1200px;
     margin: 0 auto;
     text-indent: 50px;

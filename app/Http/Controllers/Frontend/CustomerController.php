@@ -52,7 +52,7 @@ class CustomerController extends Controller
         $email = $request->email;
 
         $customer = Customer::where('email', $email)->first();
-        $full_name = $request->full_name;
+        $fullname = $request->fullname;
         $password = $request->password;
 
         if(!is_null($customer)) {
@@ -67,7 +67,7 @@ class CustomerController extends Controller
         //set Session user for login here
         Session::put('login', true);
         Session::put('userId', $customer->id);
-        Session::put('username', $customer->full_name);
+        Session::put('username', $customer->fullname);
         Session::put('new-register', true);
         Session::forget('vanglai');
         Session::forget('is_vanglai');
@@ -127,7 +127,7 @@ class CustomerController extends Controller
         Session::put('login', true);
         Session::put('userId', $customer->id);
         Session::put('new-register', true);
-        Session::put('username', $customer->full_name);
+        Session::put('username', $customer->fullname);
         Session::forget('vanglai');
         Session::forget('is_vanglai');
         return response()->json(['error' => 0]);

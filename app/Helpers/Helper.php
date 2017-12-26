@@ -64,7 +64,7 @@ class Helper
     }
     public static function showImage($image_url, $type = 'original'){
 
-        //return strpos($image_url, 'http') === false ? config('phukien.upload_url') . $type . '/' . $image_url : $image_url;        
+        //return strpos($image_url, 'http') === false ? config('moigioi.upload_url') . $type . '/' . $image_url : $image_url;        
         return strpos($image_url, 'http') === false ? env('APP_URL') . $image_url : $image_url;        
 
     }
@@ -75,10 +75,10 @@ class Helper
         
         if(strpos($image_url, 'http') === false){
             if($object_type == 1){
-                $image_url = config('phukien.upload_url_thumbs').end($tmpArrImg);   
+                $image_url = config('moigioi.upload_url_thumbs').end($tmpArrImg);   
                 return $image_url;
             }elseif($object_type == 2){
-                $image_url = config('phukien.upload_url_thumbs').'articles/'.end($tmpArrImg);   
+                $image_url = config('moigioi.upload_url_thumbs').'articles/'.end($tmpArrImg);   
                 return $image_url;
             }else{
                 return env('APP_URL') . $folder. $image_url;
@@ -93,7 +93,7 @@ class Helper
         //object_type = 1 : product, 2 :article  3: project          
         $tmpArrImg = explode('/', $image_url);
                         
-        $image_url = config('phukien.upload_url_thumbs_2').end($tmpArrImg);           
+        $image_url = config('moigioi.upload_url_thumbs_2').end($tmpArrImg);           
         if(strpos($image_url, 'http') === false){
             if($object_type == 1){
                 return env('APP_URL') . $folder. $image_url;
@@ -112,7 +112,7 @@ class Helper
         //object_type = 1 : product, 2 :article  3: project          
         $tmpArrImg = explode('/', $image_url);
                         
-        $image_url = config('phukien.upload_url_thumbs_3').end($tmpArrImg);           
+        $image_url = config('moigioi.upload_url_thumbs_3').end($tmpArrImg);           
         if(strpos($image_url, 'http') === false){
             if($object_type == 1){
                 return env('APP_URL') . $folder. $image_url;

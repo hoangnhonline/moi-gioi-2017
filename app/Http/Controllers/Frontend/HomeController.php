@@ -117,7 +117,14 @@ class HomeController extends Controller
         $phantich = Articles::where('cate_id', 1)->orderBy('id', 'desc')->limit(6)->get()->toArray();
         $videoList = Video::where('status', 1)->orderBy('display_order')->get();
         $videoFirst = $videoList->first();     
-        return view('frontend.home.index', compact('bannerArr', 'articlesArr', 'socialImage', 'seo', 'countMess', 'hotProduct', 'tinThiTruong', 'luat', 'khonggiansong', 'phongthuy', 'tinRandom','hotProduct2', 'luat', 'tuvan', 'videoList', 'videoFirst'));
+
+        $estateTypeList = EstateType::where('status', 1)->get();
+        foreach($estateTypeList as $estate_type){
+            $productArr[$estate_type->id] = Product::where('estate_type_id', $estate_type->id)->leftJoin('product_img', 'product_img.id', '=','product.thumbnail_id')        
+                     ->join('estate_type', 'estate_type.id', '=','product.estate_type_id')                  
+                    ->select('product_img.image_url as image_url', 'product.*', 'estate_type.slug as slug_loai')->orderBy('is_hot', 'desc')->orderBy('id', 'desc')->limit('9')->get();
+        }
+        return view('frontend.home.index', compact('bannerArr', 'articlesArr', 'socialImage', 'seo', 'countMess', 'hotProduct', 'tinThiTruong', 'luat', 'khonggiansong', 'phongthuy', 'tinRandom','hotProduct2', 'luat', 'tuvan', 'videoList', 'videoFirst', 'estateTypeList', 'productArr'));
 
     }
 
