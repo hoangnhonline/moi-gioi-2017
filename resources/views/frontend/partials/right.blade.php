@@ -82,7 +82,7 @@
          <li style="border-bottom:1px solid #ECECEC;margin-bottom:10px;">
             <div class="div_img_tt">
                <a href="#tin-tuc/sieu-do-thi-moi-cu-chi-va-ly-trinh-dai-lo-ven-song-sai-gon/109.html"><img
-                  class="img_ttnb" src="files/sieu-do-thi-moi-cu-chi-1488096283.jpg"
+                  class="img_ttnb" src="{{ URL::asset('public/assets/files/sieu-do-thi-moi-cu-chi-1488096283.jpg') }}"
                   width="90" height="90"
                   alt="siêu đô thị mới củ chi và lý trình đại lộ ven sông sài gòn"></a>
                <div class="clear"></div>
@@ -108,7 +108,7 @@
             <div class="div_img_tt">
                <a href="#tin-tuc/bang-gia-dat-o-huyen-cu-chi-tphcm-20152019/108.html"><img
                   class="img_ttnb"
-                  src="files/bang-gia-dat-o-huyen-cu-chi-tphcm-20152019-1478348748.jpg"
+                  src="{{ URL::asset('public/assets/files/bang-gia-dat-o-huyen-cu-chi-tphcm-20152019-1478348748.jpg') }}"
                   width="90" height="90"
                   alt="BẢNG GIÁ ĐẤT Ở HUYỆN CỦ CHI TP.HCM 2015-2019"></a>
                <div class="clear"></div>

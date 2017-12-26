@@ -84,7 +84,7 @@
                <div class="container">
                   <div class="row">
                      <div class="block-logo col-sm-3 col-xs-5">
-                        <a href="#" title=""><img src="images/logo_gd.jpg" alt=""></a>
+                        <a href="#" title=""><img src="{{ URL::asset('public/assets/images/logo_gd.jpg') }}" alt=""></a>
                      </div>
                      <!-- /block-log -->
                      <div class="block-search col-sm-6 col-xs-7">
@@ -93,7 +93,7 @@
                      <div class="block-user col-sm-3 col-xs-12">
                         <div class="block-content">
                            <span class="ava-img">
-                           <img alt="" src="images/user.svg">
+                           <img alt="" src="{{ URL::asset('public/assets/images/user.svg') }}">
                            </span>
                            <div class="ava-info" >
                               <p><strong><a title="Header" data-toggle="popover" data-placement="bottom" data-content="Content222">Đăng nhập, đăng ký</a></strong></p>
@@ -141,7 +141,7 @@
                      <div style="filter: alpha(opacity=70); opacity:0.7; position: absolute; display: block;
                         background-color: #000; top: 0px; left: 0px;width: 100%;height:100%;">
                      </div>
-                     <div style="position: absolute; display: block; background: url(css/slider_responsive/loading.gif) no-repeat center center;top: 0px; left: 0px;width: 100%;height:100%;">
+                     <div style="position: absolute; display: block; background: url({{ URL::asset('public/assets/css/slider_responsive/loading.gif') }}) no-repeat center center;top: 0px; left: 0px;width: 100%;height:100%;">
                      </div>
                   </div>
                   <div u="slides"
@@ -157,14 +157,14 @@
                         style="width: 1349px; height: 500px; top: 0px; left: 0px; position: absolute; overflow: hidden;">
                         <a u="image" href="http://datgiarecuchi.com/" target="_blank"
                            style="width: 1349px; height: 500px; top: 0px; left: 0px;"><img
-                           src="files/374592624762819.jpg" border="0"
+                           src="{{ URL::asset('public/assets/files/374592624762819.jpg') }}" border="0"
                            style="width: 1349px; height: 500px; top: 0px; left: 0px; position: absolute;"></a>
                         <div u="loading"
                            style="position: absolute; top: 0px; left: 0px; width: 1349px; height: 500px; z-index: 1000; display: none;">
                            <div style="filter: alpha(opacity=70); opacity:0.7; position: absolute; display: block;
                               background-color: #000; top: 0px; left: 0px;width: 100%;height:100%;">
                            </div>
-                           <div style="position: absolute; display: block; background: url(css/slider_responsive/loading.gif) no-repeat center center;top: 0px; left: 0px;width: 100%;height:100%;">
+                           <div style="position: absolute; display: block; background: url({{ URL::asset('public/assets/css/slider_responsive/loading.gif') }}) no-repeat center center;top: 0px; left: 0px;width: 100%;height:100%;">
                            </div>
                         </div>
                      </div>
@@ -172,14 +172,14 @@
                         style="width: 1349px; height: 500px; top: 0px; left: 1349px; position: absolute; overflow: hidden;">
                         <a u="image" href="http://datgiarecuchi.com/" target="_blank"
                            style="width: 1349px; height: 500px; top: 0px; left: 0px;"><img
-                           src="files/768057908224703.png" border="0"
+                           src="{{ URL::asset('public/assets/files/768057908224703.png') }}" border="0"
                            style="width: 1349px; height: 500px; top: 0px; left: 0px; position: absolute;"></a>
                         <div u="loading"
                            style="position: absolute; top: 0px; left: 0px; width: 1349px; height: 500px; z-index: 1000; display: none;">
                            <div style="filter: alpha(opacity=70); opacity:0.7; position: absolute; display: block;
                               background-color: #000; top: 0px; left: 0px;width: 100%;height:100%;">
                            </div>
-                           <div style="position: absolute; display: block; background: url(css/slider_responsive/loading.gif) no-repeat center center;top: 0px; left: 0px;width: 100%;height:100%;">
+                           <div style="position: absolute; display: block; background: url({{ URL::asset('public/assets/css/slider_responsive/loading.gif') }}) no-repeat center center;top: 0px; left: 0px;width: 100%;height:100%;">
                            </div>
                         </div>
                      </div>
@@ -187,14 +187,14 @@
                         style="width: 1349px; height: 500px; top: 0px; left: -1349px; position: absolute; overflow: hidden;">
                         <a u="image" href="#nhadatchaucuchi.com" target="_blank"
                            style="width: 1349px; height: 500px; top: 0px; left: 0px;"><img
-                           src="files/975116879698721.jpg" border="0"
+                           src="{{ URL::asset('public/assets/files/975116879698721.jpg') }}" border="0"
                            style="width: 1349px; height: 500px; top: 0px; left: 0px; position: absolute;"></a>
                         <div u="loading"
                            style="position: absolute; top: 0px; left: 0px; width: 1349px; height: 500px; z-index: 1000; display: none;">
                            <div style="filter: alpha(opacity=70); opacity:0.7; position: absolute; display: block;
                               background-color: #000; top: 0px; left: 0px;width: 100%;height:100%;">
                            </div>
-                           <div style="position: absolute; display: block; background: url(css/slider_responsive/loading.gif) no-repeat center center;top: 0px; left: 0px;width: 100%;height:100%;">
+                           <div style="position: absolute; display: block; background: url({{ URL::asset('public/assets/css/slider_responsive/loading.gif') }}) no-repeat center center;top: 0px; left: 0px;width: 100%;height:100%;">
                            </div>
                         </div>
                      </div>
@@ -202,14 +202,14 @@
                         style="width: 1349px; height: 500px; top: 0px; left: -1349px; position: absolute; overflow: hidden;">
                         <a u="image" href="#nhadatchaucuchi.com" target="_blank"
                            style="width: 1349px; height: 500px; top: 0px; left: 0px;"><img
-                           src="files/144661499335848.jpg" border="0"
+                           src="{{ URL::asset('public/assets/files/144661499335848.jpg') }}" border="0"
                            style="width: 1349px; height: 500px; top: 0px; left: 0px; position: absolute;"></a>
                         <div u="loading"
                            style="position: absolute; top: 0px; left: 0px; width: 1349px; height: 500px; z-index: 1000; display: none;">
                            <div style="filter: alpha(opacity=70); opacity:0.7; position: absolute; display: block;
                               background-color: #000; top: 0px; left: 0px;width: 100%;height:100%;">
                            </div>
-                           <div style="position: absolute; display: block; background: url(css/slider_responsive/loading.gif) no-repeat center center;top: 0px; left: 0px;width: 100%;height:100%;">
+                           <div style="position: absolute; display: block; background: url({{ URL::asset('public/assets/css/slider_responsive/loading.gif') }}) no-repeat center center;top: 0px; left: 0px;width: 100%;height:100%;">
                            </div>
                         </div>
                      </div>
