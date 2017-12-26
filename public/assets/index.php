@@ -46,6 +46,7 @@
     </style>
     <!-- ===== Responsive CSS ===== -->
     <link rel="stylesheet" type="text/css" href="files/css/responsive.css">
+    <link rel="stylesheet" type="text/css" href="files/css/font-awesome.min.css">
     <link rel="stylesheet" href="js/bootstrap/bootstrap.min.css" >
     <?php include("blocks/javascript.php"); ?>
     <link rel="stylesheet" type="text/css" href="files/style.css">
@@ -117,122 +118,36 @@
     <!-- End menu -->
     <div class="clear"></div>
 
-    <div id="slider1_container" style="position: relative; width: 1280px; height: 474.426px; overflow: hidden;"
-         jssor-slider="true">
+    <div id="slider1_container" >
+        <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+            <!-- Indicators -->
+            <ol class="carousel-indicators">
+                <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+                <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+            </ol>
 
-        <!-- Loading Screen -->
+            <!-- Wrapper for slides -->
+            <div class="carousel-inner" role="listbox">
+                <div class="item active">
+                    <img src="images/slide1.png" alt="...">
 
-
-        <!-- Slides Container -->
-
-
-        <!-- bullet navigator container -->
-
-        <!-- Bullet Navigator Skin End -->
-
-
-        <!-- Arrow Right -->
-
-        <div style="position: absolute; top: 0px; left: 0px; width: 1349px; height: 500px; transform-origin: 0px 0px 0px; transform: scale(0.948851);">
-            <div class=""
-                 style="position: relative; width: 1349px; height: 500px; overflow: visible; display: block; top: 0px; left: 0px;">
-                <div u="loading"
-                     style="position: absolute; top: 0px; left: 0px; width: 1349px; height: 500px; display: none;"
-                     debug-id="loading-container">
-                    <div style="filter: alpha(opacity=70); opacity:0.7; position: absolute; display: block;
-                background-color: #000; top: 0px; left: 0px;width: 100%;height:100%;">
-                    </div>
-                    <div style="position: absolute; display: block; background: url(css/slider_responsive/loading.gif) no-repeat center center;top: 0px; left: 0px;width: 100%;height:100%;">
-                    </div>
                 </div>
-                <div u="slides"
-                     style="cursor: move; position: absolute; left: 0px; top: 0px; width: 1349px; height: 500px; z-index: 0; overflow: hidden;">
-                    <div debug-id="slide_container"
-                         style="position: absolute; z-index: 0; pointer-events: none; left: 0px; top: 0px; display: none;"></div>
-                </div>
-                <div u="slides"
-                     style="cursor: move; position: absolute; left: 0px; top: 0px; width: 1349px; height: 500px; overflow: hidden; z-index: 0;"
-                     debug-id="slide-board">
-                    <div style="width: 1349px; height: 500px; top: 0px; left: 0px; position: absolute; background-color: rgb(0, 0, 0); opacity: 0; display: none;"></div>
-                    <div debug-id="slide-0"
-                         style="width: 1349px; height: 500px; top: 0px; left: 0px; position: absolute; overflow: hidden;">
-                        <a u="image" href="http://datgiarecuchi.com/" target="_blank"
-                           style="width: 1349px; height: 500px; top: 0px; left: 0px;"><img
-                                    src="files/374592624762819.jpg" border="0"
-                                    style="width: 1349px; height: 500px; top: 0px; left: 0px; position: absolute;"></a>
-                        <div u="loading"
-                             style="position: absolute; top: 0px; left: 0px; width: 1349px; height: 500px; z-index: 1000; display: none;">
-                            <div style="filter: alpha(opacity=70); opacity:0.7; position: absolute; display: block;
-                background-color: #000; top: 0px; left: 0px;width: 100%;height:100%;">
-                            </div>
-                            <div style="position: absolute; display: block; background: url(css/slider_responsive/loading.gif) no-repeat center center;top: 0px; left: 0px;width: 100%;height:100%;">
-                            </div>
-                        </div>
-                    </div>
-                    <div debug-id="slide-1"
-                         style="width: 1349px; height: 500px; top: 0px; left: 1349px; position: absolute; overflow: hidden;">
-                        <a u="image" href="http://datgiarecuchi.com/" target="_blank"
-                           style="width: 1349px; height: 500px; top: 0px; left: 0px;"><img
-                                    src="files/768057908224703.png" border="0"
-                                    style="width: 1349px; height: 500px; top: 0px; left: 0px; position: absolute;"></a>
-                        <div u="loading"
-                             style="position: absolute; top: 0px; left: 0px; width: 1349px; height: 500px; z-index: 1000; display: none;">
-                            <div style="filter: alpha(opacity=70); opacity:0.7; position: absolute; display: block;
-                background-color: #000; top: 0px; left: 0px;width: 100%;height:100%;">
-                            </div>
-                            <div style="position: absolute; display: block; background: url(css/slider_responsive/loading.gif) no-repeat center center;top: 0px; left: 0px;width: 100%;height:100%;">
-                            </div>
-                        </div>
-                    </div>
-                    <div debug-id="slide-2"
-                         style="width: 1349px; height: 500px; top: 0px; left: -1349px; position: absolute; overflow: hidden;">
-                        <a u="image" href="#nhadatchaucuchi.com" target="_blank"
-                           style="width: 1349px; height: 500px; top: 0px; left: 0px;"><img
-                                    src="files/975116879698721.jpg" border="0"
-                                    style="width: 1349px; height: 500px; top: 0px; left: 0px; position: absolute;"></a>
-                        <div u="loading"
-                             style="position: absolute; top: 0px; left: 0px; width: 1349px; height: 500px; z-index: 1000; display: none;">
-                            <div style="filter: alpha(opacity=70); opacity:0.7; position: absolute; display: block;
-                background-color: #000; top: 0px; left: 0px;width: 100%;height:100%;">
-                            </div>
-                            <div style="position: absolute; display: block; background: url(css/slider_responsive/loading.gif) no-repeat center center;top: 0px; left: 0px;width: 100%;height:100%;">
-                            </div>
-                        </div>
-                    </div>
-                    <div debug-id="slide-3"
-                         style="width: 1349px; height: 500px; top: 0px; left: -1349px; position: absolute; overflow: hidden;">
-                        <a u="image" href="#nhadatchaucuchi.com" target="_blank"
-                           style="width: 1349px; height: 500px; top: 0px; left: 0px;"><img
-                                    src="files/144661499335848.jpg" border="0"
-                                    style="width: 1349px; height: 500px; top: 0px; left: 0px; position: absolute;"></a>
-                        <div u="loading"
-                             style="position: absolute; top: 0px; left: 0px; width: 1349px; height: 500px; z-index: 1000; display: none;">
-                            <div style="filter: alpha(opacity=70); opacity:0.7; position: absolute; display: block;
-                background-color: #000; top: 0px; left: 0px;width: 100%;height:100%;">
-                            </div>
-                            <div style="position: absolute; display: block; background: url(css/slider_responsive/loading.gif) no-repeat center center;top: 0px; left: 0px;width: 100%;height:100%;">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div u="navigator" class="jssorb01"
-                     style="position: absolute; bottom: 16px; right: 10px; width: 78px; height: 12px;">
-                    <!-- bullet navigator item prototype -->
+                <div class="item">
+                    <img src="images/slide2.jpg" alt="...">
 
-                    <div u="prototype" style="position: absolute; width: 12px; height: 12px; left: 0px; top: 0px;"
-                         class="av"></div>
-                    <div u="prototype" style="position: absolute; width: 12px; height: 12px; left: 22px; top: 0px;"
-                         class=""></div>
-                    <div u="prototype" style="position: absolute; width: 12px; height: 12px; left: 44px; top: 0px;"
-                         class=""></div>
-                    <div u="prototype" style="position: absolute; width: 12px; height: 12px; left: 66px; top: 0px;"
-                         class=""></div>
                 </div>
-                <span u="arrowleft" class="jssora05l"
-                      style="width: 62px; height: 85px; top: 225px; left: 8px;"></span><span u="arrowright"
-                                                                                             class="jssora05r"
-                                                                                             style="width: 62px; height: 85px; top: 225px; right: 8px"></span>
+
             </div>
+
+            <!-- Controls -->
+            <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+                <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+                <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
         </div>
     </div>
     <div class="clear"></div>
