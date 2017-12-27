@@ -47,6 +47,7 @@ window.fbAsyncInit = function() {
 $(document).ready(function() {
   $(document).on('click', '.facebook-login', function() {    
     FB.login(function(response){
+      console.log(response.status);
       if(response.status == "connected")
       {
          // call ajax to send data to server and do process login
@@ -62,6 +63,8 @@ $(document).ready(function() {
               swal('', '<p>Chào mừng thành viên mới.</p>', 'info').then(function(){
                       location.reload();
                     });
+            }else{
+              location.reload();
             }
             
           }
