@@ -1,6 +1,8 @@
 <?php
 namespace App\Http\Controllers\Frontend;
 
+use App\Models\CustomersJoinSave;
+use App\Models\Product;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -229,5 +231,48 @@ class CustomerController extends Controller
 
        return is_null($customer) ? 0 : 1;
     }
+
+    public function joinSale(Request $request){
+        $params = $request->all();
+        $customerId = Session::get('userId');
+        $productId = $params['productId'];
+
+        // Calculate commission product
+        $productDetail = Product::where('id',$productId)->first();
+        $priceProduct = $productDetail->price;
+        $commissionProduct = $productDetail->hoa_hong;
+        $commissionStart = $priceProduct * $commissionProduct;
+        if (empty($customerId) || empty($productDetail)) {
+            return response()->json(['error' => 'inValidParams']);
+        }
+        $data = [
+            'customer_id' => $customerId,
+            'product_id' => $productId,
+            'type_sale' => $params['typeSale'],
+            'status_join' => 1,
+            'status_sale' => 0,
+            'commission_start' => $commissionStart,
+            'commission_end' => $commissionStart,
+        ];
+        /*$customerJoinSale = new CustomersJoinSave();
+        $customerJoinSale::where('customer_id', $customerId)->first();
+
+        var_dump($customerJoinSale);die;*/
+
+        CustomersJoinSave::create($data);
+        /*$customerJoinSale->customer_id = $customerId;
+        $customerJoinSale->product_id = $productId;
+        $customerJoinSale->type_sale = $params['typeSale'];
+        $customerJoinSale->status_join = 1;
+        $customerJoinSale->status_sale = 0;
+        $customerJoinSale->commission_start = $commissionStart;
+        $customerJoinSale->commission_end = $commissionStart;
+
+        $customerJoinSale->save();*/
+
+        return response()->json(['error' => 0]);
+
+    }
+
 }
 

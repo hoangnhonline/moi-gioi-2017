@@ -14,7 +14,7 @@
             class="img_trung" src="{{ Helper::showImageThumb($pro->image_url) }}"
             alt="đất nền xã nhuận đức ,củ chi" style="height: 198.587px;"></a>
          <a class="chitiet" href="{{ route('chi-tiet', [$pro->slug_loai, $pro->slug, $pro->id]) }}">Chi tiết</a>
-         <a class="tham-gia-ban" href="javascript:;" @if (!Session::get('login')) data-toggle="modal" data-target="#login-modal" @endif>Tham gia bán</a> 
+         <a class="tham-gia-ban" data-id="{{ $pro->id }}" href="javascript:;" data-toggle="modal" @if (!Session::get('login')) data-target="#login-modal" @else data-target="#join-sales-modal" @endif>Tham gia bán</a>
          <div class="clear"></div>
       </div>
       <a class="tensp" href="{{ route('chi-tiet', [$pro->slug_loai, $pro->slug, $pro->id]) }}">{!! $pro->title !!}</a>        

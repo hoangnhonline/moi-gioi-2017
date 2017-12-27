@@ -71,7 +71,7 @@
     var js, fjs = d.getElementsByTagName(s)[0];
     if (d.getElementById(id)) return;
     js = d.createElement(s); js.id = id;
-    js.src = "//connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v2.10&appId=1526808407403480";
+    js.src = "//connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v2.10&appId=374053293006522";
     fjs.parentNode.insertBefore(js, fjs);
   }(document, 'script', 'facebook-jssdk'));</script>
   <script>window.twttr = (function(d, s, id) {
@@ -323,5 +323,6 @@ function searchProduct() {
    <input type="hidden" id="route-auth-login-ajax" value="{{ route('auth-login-ajax') }}">
    <input type="hidden" id="route-register-customer-ajax" value="{{ route('register-customer-ajax') }}">
    <input type="hidden" id="route-register-newsletter" value="{{ route('register.newsletter') }}">
+   <input type="hidden" id="route-customer-join-sale-ajax" value="{{ route('customer-join-sale')  }}">
    </body>
 </html>

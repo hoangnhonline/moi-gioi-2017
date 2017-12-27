@@ -126,3 +126,37 @@
 		border: 1px solid red;	
 	}
 </style>
+
+<!-- Join sales modal -->
+<div class="modal fade" id="join-sales-modal">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button aria-hidden="true" class="close" data-dismiss="modal" type="button">×</button>
+                <h3 class="modal-title">Tham gia bán</h3>
+            </div>
+            <form method="POST" id="join_sale_popup_form" action="{{ route('customer-join-sale') }}">
+                {{ csrf_field() }}
+                <div class="modal-body">
+                    <label class="radio-inline">
+                        <input type="radio" name="typeSales" value="1">Bán trực tiếp
+                    </label>
+                    <label class="radio-inline">
+                        <input type="radio" id="typeSale" name="typeSales" value="2">Để lại số điện thoại khách
+                    </label>
+                    <input type="hidden" value="" name="productId" id="productIdJoinSale">
+                </div>
+                <div class="modal-footer">
+                    <div id="collapseSuccess" class="hide">
+                        <div class="alert alert-success" role="alert">Yêu cầu của bạn đã được gửi đi! </div>
+                    </div>
+                    <button id="btnSaveJoinSales" class="btn btn-primary" type="button" data-toggle="collapse"  aria-expanded="false" aria-controls="collapseSuccess">
+                        Save
+                    </button>
+
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </form>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- End join sales /.modal -->

@@ -284,5 +284,46 @@ $(document).ready(function () {
         }
 
     });
+
+    /* get product id */
+    $('.tham-gia-ban').click(function () {
+        var productId = $(this).data('id');
+        $('#productIdJoinSale').val(productId);
+    });
+
+    $('#btnSaveJoinSales').click(function(){
+        var error = [];
+        var typeSale = $('#typeSale:checked').val();
+        var productId = $('#productIdJoinSale').val();
+
+        if(!typeSale) {
+            error.push('typeSale');
+        }
+
+        if(error.length) {
+            for(i in error) {
+                $('#'+error[i]).addClass('error');
+            }
+            return false;
+        }
+
+        if(!error.length)
+        {
+            $('#btnSaveJoinSales').prop('disabled', true);
+            $('#collapseSuccess').removeClass('hide');
+            $.ajax({
+                url: $('#route-customer-join-sale-ajax').val(),
+                method: "POST",
+                data : {
+                    typeSale: typeSale,
+                    productId: productId
+                },
+                success : function(data){
+                    window.location.href = "http://moigioi.com";
+                }
+            });
+        }
+
+    });
     
 });
