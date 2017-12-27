@@ -57,6 +57,7 @@
             <tr>
               <th style="width: 1%">#</th>                            
               <th>Thông tin liên hệ</th>              
+              <th width="10%">Thông tin đăng ký bán</th>
               <th width="10%">Thời gian tạo</th>
               <th width="1%;white-space:nowrap">Thao tác</th>
             </tr>
@@ -77,7 +78,10 @@
                   @if($item->phone != '')
                   {{ $item->phone }}</br>
                   @endif
-                </td>              
+                </td>
+                <td>
+                  <button class="btn btn-info"><a href="">Chi tiết</a></button>
+                </td>
                 <td>{{ date('d-m-Y H:i', strtotime($item->created_at)) }}</td>
                 <td style="white-space:nowrap">                                  
                   

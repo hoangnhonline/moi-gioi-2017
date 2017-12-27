@@ -313,7 +313,6 @@ $(document).ready(function () {
         if(!error.length)
         {
             $('#btnSaveJoinSales').prop('disabled', true);
-            $('.loading').removeClass('hide');
             $.ajax({
                 url: $('#route-customer-join-sale-ajax').val(),
                 method: "POST",
@@ -324,7 +323,6 @@ $(document).ready(function () {
                 success : function(data){
                     if (data.error == 0){
                         $('#collapseSuccess').removeClass('hide');
-                        $('.loading').addClass('hide');
                         setTimeout(function(){
                             window.location.reload(1);
                         }, 3000);
