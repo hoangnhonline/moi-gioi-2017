@@ -310,7 +310,7 @@ $(document).ready(function () {
         if(!error.length)
         {
             $('#btnSaveJoinSales').prop('disabled', true);
-            $('#collapseSuccess').removeClass('hide');
+            $('.loading').removeClass('hide');
             $.ajax({
                 url: $('#route-customer-join-sale-ajax').val(),
                 method: "POST",
@@ -319,6 +319,7 @@ $(document).ready(function () {
                     productId: productId
                 },
                 success : function(data){
+                    $('#collapseSuccess').removeClass('hide');
                     window.location.href = "http://moigioi.com";
                 }
             });
