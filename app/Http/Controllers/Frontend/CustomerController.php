@@ -241,7 +241,7 @@ class CustomerController extends Controller
         $productDetail = Product::where('id',$productId)->first();
         $priceProduct = $productDetail->price;
         $commissionProduct = $productDetail->hoa_hong;
-        $commissionStart = $priceProduct * $commissionProduct;
+        $commissionStart = ($priceProduct * $commissionProduct) / 100;
         if (empty($customerId) || empty($productDetail)) {
             return response()->json(['error' => 'inValidParams']);
         }
@@ -254,21 +254,8 @@ class CustomerController extends Controller
             'commission_start' => $commissionStart,
             'commission_end' => $commissionStart
         ];
-        /*$customerJoinSale = new CustomersJoinSave();
-        $customerJoinSale::where('customer_id', $customerId)->first();
-
-        var_dump($customerJoinSale);die;*/
 
         CustomersJoinSale::create($data);
-        /*$customerJoinSale->customer_id = $customerId;
-        $customerJoinSale->product_id = $productId;
-        $customerJoinSale->type_sale = $params['typeSale'];
-        $customerJoinSale->status_join = 1;
-        $customerJoinSale->status_sale = 0;
-        $customerJoinSale->commission_start = $commissionStart;
-        $customerJoinSale->commission_end = $commissionStart;
-
-        $customerJoinSale->save();*/
 
         return response()->json(['error' => 0]);
 

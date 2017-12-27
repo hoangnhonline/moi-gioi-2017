@@ -322,8 +322,13 @@ $(document).ready(function () {
                     productId: productId
                 },
                 success : function(data){
-                    $('#collapseSuccess').removeClass('hide');
-                    window.location.href = "http://moigioi.com";
+                    if (data.error == 0){
+                        $('#collapseSuccess').removeClass('hide');
+                        $('.loading').addClass('hide');
+                        setTimeout(function(){
+                            window.location.reload(1);
+                        }, 3000);
+                    }
                 }
             });
         }
