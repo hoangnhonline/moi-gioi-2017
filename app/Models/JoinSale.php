@@ -3,7 +3,7 @@
 use Illuminate\Database\Eloquent\Model;
 
 
-class CustomersJoinSave extends Model  {
+class JoinSave extends Model  {
 
   /**
    * The database table used by the model.

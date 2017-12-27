@@ -23,7 +23,7 @@ use App\Models\Video;
 use App\Models\Price;
 use App\Models\Area;
 use App\Models\Settings;
-
+use App\Models\JoinSave;
 use Helper, File, Session, Auth, Hash;
 
 class HomeController extends Controller
@@ -34,7 +34,7 @@ class HomeController extends Controller
 
     public function __construct(){
         
-       
+       JoinSave::all();
 
     }
     public function getChild(Request $request){

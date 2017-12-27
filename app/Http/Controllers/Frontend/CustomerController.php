@@ -1,7 +1,6 @@
 <?php
 namespace App\Http\Controllers\Frontend;
 
-use App\Models\CustomersJoinSave;
 use App\Models\Product;
 use Illuminate\Http\Request;
 
@@ -12,6 +11,7 @@ use App\Models\OrderDetail;
 use App\Models\Customer;
 use App\Models\City;
 use App\Models\CustomerNotification;
+use App\Models\JoinSave;
 use Helper, File, Session, Auth, Hash, Validator;
 use Mail;
 
@@ -252,14 +252,14 @@ class CustomerController extends Controller
             'status_join' => 1,
             'status_sale' => 0,
             'commission_start' => $commissionStart,
-            'commission_end' => $commissionStart,
+            'commission_end' => $commissionStart
         ];
         /*$customerJoinSale = new CustomersJoinSave();
         $customerJoinSale::where('customer_id', $customerId)->first();
 
         var_dump($customerJoinSale);die;*/
 
-        CustomersJoinSave::create($data);
+        JoinSave::create($data);
         /*$customerJoinSale->customer_id = $customerId;
         $customerJoinSale->product_id = $productId;
         $customerJoinSale->type_sale = $params['typeSale'];
