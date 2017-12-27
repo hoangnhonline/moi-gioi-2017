@@ -32,7 +32,7 @@ class HomeController extends Controller
     public static $loaiSpArrKey = [];    
 
     public function __construct(){       
-       
+
 
     }
     public function getChild(Request $request){
@@ -122,7 +122,11 @@ class HomeController extends Controller
                      ->join('estate_type', 'estate_type.id', '=','product.estate_type_id')                  
                     ->select('product_img.image_url as image_url', 'product.*', 'estate_type.slug as slug_loai')->orderBy('is_hot', 'desc')->orderBy('id', 'desc')->limit('9')->get();
         }
-        return view('frontend.home.index', compact('bannerArr', 'articlesArr', 'socialImage', 'seo', 'countMess', 'hotProduct', 'tinThiTruong', 'luat', 'khonggiansong', 'phongthuy', 'tinRandom','hotProduct2', 'luat', 'tuvan', 'videoList', 'videoFirst', 'estateTypeList', 'productArr'));
+        $joinedProductArrId = [];
+        if(Session::get('userId') > 0){
+            $joinedProductArrId = Customer::joinedProduct(Session::get('userId'));       
+        }
+        return view('frontend.home.index', compact('bannerArr', 'articlesArr', 'socialImage', 'seo', 'countMess', 'hotProduct', 'tinThiTruong', 'luat', 'khonggiansong', 'phongthuy', 'tinRandom','hotProduct2', 'luat', 'tuvan', 'videoList', 'videoFirst', 'estateTypeList', 'productArr', 'joinedProductArrId'));
 
     }
 

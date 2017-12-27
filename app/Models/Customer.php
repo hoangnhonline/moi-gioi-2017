@@ -61,4 +61,10 @@ class Customer extends Model  {
     {
         return $this->hasOne('App\Models\Country', 'id', 'country_id');
     }
+    public static function joinedProduct($customerId){
+      $query = CustomersJoinSale::where(['customer_id' => $customerId])
+              ->pluck('product_id')->toArray();
+        return $query;
+    }
+
 }
