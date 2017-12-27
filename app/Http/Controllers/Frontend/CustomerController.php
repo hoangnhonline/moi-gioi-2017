@@ -11,7 +11,7 @@ use App\Models\OrderDetail;
 use App\Models\Customer;
 use App\Models\City;
 use App\Models\CustomerNotification;
-use App\Models\JoinSave;
+use App\Models\CustomersJoinSale;
 use Helper, File, Session, Auth, Hash, Validator;
 use Mail;
 
@@ -259,7 +259,7 @@ class CustomerController extends Controller
 
         var_dump($customerJoinSale);die;*/
 
-        JoinSave::create($data);
+        CustomersJoinSale::create($data);
         /*$customerJoinSale->customer_id = $customerId;
         $customerJoinSale->product_id = $productId;
         $customerJoinSale->type_sale = $params['typeSale'];
