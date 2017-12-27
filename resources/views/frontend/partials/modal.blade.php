@@ -147,6 +147,9 @@
                     <input type="hidden" value="" name="productId" id="productIdJoinSale">
                 </div>
                 <div class="modal-footer">
+                    <div class="col-xs-12 loading hide">
+                        <img style="margin-top: -20px;margin-bottom: -20px;height: 70px;" src="public/assets/images/loading.gif"/> Vui lòng đợi trong giây lát !!!
+                    </div>
                     <div id="collapseSuccess" class="hide">
                         <div class="alert alert-success" role="alert">Yêu cầu của bạn đã được gửi đi! </div>
                     </div>
