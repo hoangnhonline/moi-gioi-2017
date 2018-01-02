@@ -140,6 +140,7 @@ Route::group(['namespace' => 'Backend', 'prefix' => 'backend', 'middleware' => '
         Route::get('/export',   ['as' => 'customer.export', 'uses' => 'CustomerController@download']);
         Route::post('/update', ['as' => 'customer.update', 'uses' => 'CustomerController@update']);
         Route::get('{id}/destroy', ['as' => 'customer.destroy', 'uses' => 'CustomerController@destroy']);
+        Route::get('{id}/join-sale-list', ['as' => 'customer.join-sale-list', 'uses' => 'CustomerController@joinSaleList']);
     });
     Route::group(['prefix' => 'contact'], function () {
         Route::get('/', ['as' => 'contact.index', 'uses' => 'ContactController@index']);
@@ -239,6 +240,8 @@ Route::group(['namespace' => 'Backend', 'prefix' => 'backend', 'middleware' => '
         Route::post('/save-order-hot', ['as' => 'product.save-order-hot', 'uses' => 'ProductController@saveOrderHot']);       
         Route::get('{id}/destroy', ['as' => 'product.destroy', 'uses' => 'ProductController@destroy']);
         Route::get('/ajax-get-tien-ich', ['as' => 'product.ajax-get-tien-ich', 'uses' => 'ProductController@ajaxGetTienIch']);
+        Route::get('{id}/customer-join-sale', ['as' => 'product.customer-join-sale', 'uses' => 'ProductController@customerJoinSale']);
+        Route::post('ajax-update-customer-join-sale', ['as' => 'product.ajax-update-customer-join-sale', 'uses' => 'ProductController@ajaxUpdateCustomerJoinSale']);
 
     });
     Route::post('/tmp-upload', ['as' => 'image.tmp-upload', 'uses' => 'UploadController@tmpUpload']);

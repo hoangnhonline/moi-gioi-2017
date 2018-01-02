@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Backend;
 
+use App\Models\Customer;
+use App\Models\CustomersJoinSale;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -602,5 +604,54 @@ class ProductController extends Controller
         
         return redirect(URL::previous());//->route('product.short');
         
+    }
+
+    /**
+     * @param $id
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function customerJoinSale($id)
+    {
+        // Get detail product
+        $detailProduct = Product::find($id);
+
+        // Get list customer join sale by procduct_id
+        $customerJoinSaleList = CustomersJoinSale::where('product_id', $id)->get();
+
+        $totalCustomer = count($customerJoinSaleList);
+
+        // Get customer name
+        foreach ($customerJoinSaleList as $key => $customerJoin) {
+            $customerId = $customerJoin->customer_id;
+            $customerInfo = Customer::find($customerId);
+            $customerJoinSaleList[$key]['customer_name'] = $customerInfo->fullname;
+        }
+        return view('backend.product.customer-join-sale', compact( 'customerJoinSaleList', 'totalCustomer', 'detailProduct' ));
+    }
+
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function ajaxUpdateCustomerJoinSale(Request $request){
+        $params = $request->all();
+        $userUpdateId = Auth::user()->id;
+        $id = $params['id'];
+        $statusJoin = $params['statusJoin'];
+
+        if (empty($id || empty($statusJoin))) {
+            return response()->json(['error' => 'inValidParams']);
+        }
+
+        $data = [
+            'status_join' => $statusJoin,
+            'updated_user' => $userUpdateId,
+        ];
+        $model = CustomersJoinSale::find($id);
+        if (count($model) > 0) {
+            $model->update($data);
+        }
+
+        return response()->json(['error' => 0]);
     }
 }

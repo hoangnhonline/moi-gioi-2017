@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Backend;
 
+use App\Models\CustomersJoinSale;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -145,5 +146,17 @@ class CustomerController extends Controller
         // redirect
         Session::flash('message', 'Xóa newsletter thành công');
         return redirect()->route('customer.index');
+    }
+
+    public function joinSaleList($id)
+    {
+        // Get info customer
+        $customerInfo= Customer::find($id);
+
+        // Get list customer join sale
+        $customerJoinSaleList = CustomersJoinSale::where('customer_id', $id)->get();
+
+        $totalJoinSale = count($customerJoinSaleList);
+        return view('backend.customer.customer-join-sale', compact( 'customerJoinSaleList', 'totalJoinSale', 'customerInfo' ));
     }
 }

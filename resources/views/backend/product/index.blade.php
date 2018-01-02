@@ -158,6 +158,7 @@
                 <th width="100px">Hình ảnh</th>
                 <th style="text-align:center">Thông tin sản phẩm</th>
                 <th width="120px">Trạng thái</th>                              
+                <th width="120px">Danh sách user bán</th>
                 <th width="1%;white-space:nowrap">Thao tác</th>
               </tr>
               <tbody>
@@ -213,6 +214,9 @@
                     @else
                       {{ $item->cart_status == 1 ? "Còn trống" : "Đã thuê" }}
                     @endif
+                  </td>
+                  <td class="center">
+                    <a class="btn btn-primary btn-sm col-xs-12" href="{{ route('product.customer-join-sale', ['id' => $item]) }}" target="_blank"><i class="fa fa-users" aria-hidden="true"></i> </a>
                   </td>
                   <td style="white-space:nowrap; text-align:right">
                     <a class="btn btn-default btn-sm" href="{{ route('chi-tiet', [$item->slug_loai, $item->slug, $item->id] ) }}" target="_blank"><i class="fa fa-eye" aria-hidden="true"></i> Xem</a>
