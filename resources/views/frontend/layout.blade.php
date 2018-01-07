@@ -63,7 +63,7 @@
       <![endif]-->
       <script src="{{ URL::asset('public/assets/js/home.js') }}"></script>
       <script src="{{ URL::asset('public/assets/js/swal.min.js') }}"></script>
-
+       @yield('css_page')
    </head>
    <body>
    <div id="fb-root"></div>
@@ -223,15 +223,15 @@
            </div>
        </div>
        @endif
-        <div @if($routeName != "ky-gui") class="container" @endif>
+        <div @if($routeName != "ky-gui" || $routeName != "detail-project") class="container block-langding" @endif>
          <div class="clear"></div>
          <div class="center">
-          @if($routeName != "ky-gui")
+          @if($routeName != "ky-gui" || $routeName != "detail-project")
             <div class="right">
                @include('frontend.partials.right')
             </div>
             @endif
-            <div @if($routeName != "ky-gui") class="left" @endif >
+            <div @if($routeName != "ky-gui" || $routeName != "detail-project") class="left" @endif >
                @yield('content')               
             </div>
             <div class="clear"></div>

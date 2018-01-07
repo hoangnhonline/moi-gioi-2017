@@ -106,7 +106,7 @@
 	            </button>
 			</div>
 
-			@include('frontend.partials.home-menu')
+			{{--@include('frontend.partials.home-menu')--}}
         </div>
 	</nav><!-- /navigation -->
 	@yield('slider')	

@@ -74,7 +74,7 @@ class ProjectsController extends Controller
         $slug = $request->slug;        
         $detail = LandingProjects::where('slug', $slug)->first();
         $project_id = $detail->id;
-        $tabList = LandingProjects::getListTabProject($project_id); 
+        $tabList = LandingProjects::getListTabProject($project_id);
         $tabArr = [];
         $i = 0;
         foreach($tabList as $tmp) {
@@ -84,17 +84,23 @@ class ProjectsController extends Controller
             $tabArr[] = $tmp->id;
             $i++;
         }
-        $detailTab = Articles::where('project_id', $project_id)->where('tab_id', $tab_id)->first();
-           
+        //$detailTab = Articles::where('project_id', $project_id)->where('tab_id', $tab_id)->first();
+        $detailTab = Articles::where('project_id', $project_id)->get();
+
         $socialImage = $detail->image_url;
+        $seo = [];
         if( $detail->meta_id > 0){
-           $seo = MetaData::find( $detail->meta_id )->toArray();
-           $seo['title'] = $seo['title'] != '' ? $seo['title'] : $detail->name;
-           $seo['description'] = $seo['description'] != '' ? $seo['description'] : $detail->name;
-           $seo['keywords'] = $seo['keywords'] != '' ? $seo['keywords'] : $detail->name;
+           $seoObj = MetaData::find( $detail->meta_id );
+            if ($seoObj) {
+                $seo['title'] = $seoObj->title != '' ? $seoObj->title : $detail->name;
+                $seo['description'] = $seoObj->description != '' ? $seo->description : $detail->name;
+                $seo['keywords'] = $seoObj->keywords != '' ? $seoObj->keywords : $detail->name;
+            } else {
+                $seo['title'] = $seo['description'] = $seo['keywords'] = $detail->name;
+            }
         }else{
             $seo['title'] = $seo['description'] = $seo['keywords'] = $detail->name;
-        }  
+        }
         $tab_id = 1;
 		
 		$tmpArr = ProjectTab::where('project_id', $project_id)->get();
@@ -104,7 +110,6 @@ class ProjectsController extends Controller
                 $tabSelected[] = $value->tab_id;
             }
         }
-		
         return view('frontend.projects.detail', compact('seo', 'socialImage', 'detail', 'tabList', 'tabArr', 'detailTab', 'project_id', 'tab_id', 'tabSelected'));
     }
     public function tab(Request $request){
