@@ -27,11 +27,8 @@
       
       <div class="clear"></div>
    </div> 
-   @endforeach  
+   @endforeach     
    
-   <div class="phantrang">
-      <a href="#">Xem thêm</a>
-   </div>
    <div class="clear"></div>
 </div>
 @endif

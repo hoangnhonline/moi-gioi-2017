@@ -33,7 +33,7 @@
    @endforeach  
    
    <div class="phantrang">
-      <a href="#">Xem thêm</a>
+      <a href="{{ route('danh-muc', $pro->slug_loai ) }}">Xem thêm</a>
    </div>
    <div class="clear"></div>
 </div>
