@@ -5,8 +5,11 @@
         max-width: 100% !important;
         height: auto !important;
     }
+    .block-news-new-detail{
+        padding: 30px;
+    }
 </style>
-<section class="col-sm-12 col-xs-12 block-sitemain">
+<section class="row" style="padding: 10px">
 <article class="block-breadcrumb-page">
     <ul class="breadcrumb"> 
         <li><a href="{{ route('home') }}" title="Trở về trang chủ">Trang chủ</a></li>  
