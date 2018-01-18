@@ -1,6 +1,12 @@
 @include('frontend.partials.meta')
 @section('content')
-<section class="col-sm-8 col-xs-12 block-sitemain">
+<style type="text/css">
+    .block-news-new-content img {
+        max-width: 100% !important;
+        height: auto !important;
+    }
+</style>
+<section class="col-sm-12 col-xs-12 block-sitemain">
 <article class="block-breadcrumb-page">
     <ul class="breadcrumb"> 
         <li><a href="{{ route('home') }}" title="Trở về trang chủ">Trang chủ</a></li>  
