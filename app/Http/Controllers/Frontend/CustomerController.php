@@ -238,6 +238,7 @@ class CustomerController extends Controller
         $productId = $params['productId'];
 
         // Calculate commission product
+        //var_dump($productId);die;
         $productDetail = Product::where('id',$productId)->first();
         $priceProduct = $productDetail->price;
         $commissionProduct = $productDetail->hoa_hong;

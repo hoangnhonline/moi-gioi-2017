@@ -293,7 +293,10 @@ $(document).ready(function () {
         var productId = $(this).data('id');
         $('#productIdJoinSale').val(productId);
     });
-
+    $('.tham-gia-ban-detail').click(function () {
+        var productId = $(this).data('id');
+        $('#productIdJoinSale').val(productId);
+    });
     $('#btnSaveJoinSales').click(function(){
         var error = [];
         var typeSale = $('input[name=typeSales]:checked').val();
