@@ -151,10 +151,10 @@
                         <div class="alert alert-success" role="alert">Yêu cầu của bạn đã được gửi đi! </div>
                     </div>
                     <button id="btnSaveJoinSales" class="btn btn-primary" type="button" data-toggle="collapse"  aria-expanded="false" aria-controls="collapseSuccess">
-                        Save
+                        Gửi yêu cầu
                     </button>
 
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Hủy</button>
                 </div>
             </form>
         </div><!-- /.modal-content -->
