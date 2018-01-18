@@ -19,14 +19,6 @@
         <li class="active">{!! $detail->title !!}</li>
     </ul>
 </article>
-    <article class="block block-breadcrumb">
-        <div class="block-contents">
-            <ul>
-                <li class="active"><h2 class="title_sanpham"><a href="{{ route('news-list', $cateDetail->slug) }}">{!! $cateDetail->name !!}</a></h2></li>
-            </ul>
-        </div>
-    </article><!-- /block-breadcrumb -->
-
     <article class="block block-cate-news-detail block-news-new-detail">
         <h1 class="title-home">{!! $detail->title !!}</h1>
         <div class="nd-time">{!! date('d-m-Y H:i', strtotime($detail->created_at)) !!}</div>        
