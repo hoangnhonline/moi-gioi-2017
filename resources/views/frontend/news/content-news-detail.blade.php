@@ -6,7 +6,7 @@
         height: auto !important;
     }
     .block-news-new-detail{
-        padding: 30px;
+        padding: 5px;
     }
 </style>
 <section class="row" style="padding: 10px">
@@ -22,13 +22,13 @@
     <article class="block block-breadcrumb">
         <div class="block-contents">
             <ul>
-                <li class="active"><h2><a href="{{ route('news-list', $cateDetail->slug) }}">{!! $cateDetail->name !!}</a></h2></li>
+                <li class="active"><h2 class="title_sanpham"><a href="{{ route('news-list', $cateDetail->slug) }}">{!! $cateDetail->name !!}</a></h2></li>
             </ul>
         </div>
     </article><!-- /block-breadcrumb -->
 
     <article class="block block-cate-news-detail block-news-new-detail">
-        <h1>{!! $detail->title !!}</h1>
+        <h1 class="title-home">{!! $detail->title !!}</h1>
         <div class="nd-time">{!! date('d-m-Y H:i', strtotime($detail->created_at)) !!}</div>        
         <h2>{!! $detail->description !!}</h2>
         <div class="block-news-new-content">
