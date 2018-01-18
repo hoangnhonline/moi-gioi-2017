@@ -296,9 +296,9 @@ $(document).ready(function () {
 
     $('#btnSaveJoinSales').click(function(){
         var error = [];
-        var typeSale = $('#typeSale:checked').val();
+        var typeSale = $('input[name=typeSales]:checked').val();
         var productId = $('#productIdJoinSale').val();
-
+        console.log(typeSale);
         if(!typeSale) {
             error.push('typeSale');
         }
