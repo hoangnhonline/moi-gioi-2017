@@ -11,6 +11,7 @@ use App\Models\Tag;
 use App\Models\TagObjects;
 use App\Models\Articles;
 use App\Models\MetaData;
+use App\Models\Rating;
 
 use Helper, File, Session, Auth, Image;
 
@@ -22,12 +23,13 @@ class ArticlesController extends Controller
     * @return Response
     */
     public function index(Request $request)
-    {
-        $cate_id = isset($request->cate_id) ? $request->cate_id : 1;
+    {   
+        
+        $cate_id = isset($request->cate_id) ? $request->cate_id : null;
 
         $title = isset($request->title) && $request->title != '' ? $request->title : '';
         
-        $query = Articles::whereRaw('1');
+        $query = Articles::where('type', 1);
 
         if( $cate_id > 0){
             $query->where('cate_id', $cate_id);
@@ -40,9 +42,9 @@ class ArticlesController extends Controller
             $query->where('alias', 'LIKE', '%'.$title.'%');
         }
 
-        $items = $query->orderBy('id', 'desc')->paginate(20);
+        $items = $query->orderBy('is_hot', 'desc')->orderBy('id', 'desc')->paginate(20);
         
-        $cateArr = ArticlesCate::all();
+        $cateArr = ArticlesCate::where('type', 1)->get();
         
         return view('backend.articles.index', compact( 'items', 'cateArr' , 'title', 'cate_id' ));
     }
@@ -54,8 +56,8 @@ class ArticlesController extends Controller
     */
     public function create(Request $request)
     {
-
-        $cateArr = ArticlesCate::all();
+        
+        $cateArr = ArticlesCate::where('type', 1)->get();
         
         $cate_id = $request->cate_id;
 
@@ -86,64 +88,12 @@ class ArticlesController extends Controller
             'slug.unique' => 'Slug đã được sử dụng.'
         ]);       
         
-        $dataArr['alias'] = Helper::stripUnicode($dataArr['title']);
-        
-        if($dataArr['image_url'] && $dataArr['image_name']){
-            
-            $tmp = explode('/', $dataArr['image_url']);
-
-            if(!is_dir('uploads/'.date('Y/m/d'))){
-                mkdir('uploads/'.date('Y/m/d'), 0777, true);
-            }
-            if(!is_dir('uploads/thumbs/articles/'.date('Y/m/d'))){
-                mkdir('uploads/thumbs/articles/'.date('Y/m/d'), 0777, true);
-            }
-            if(!is_dir('uploads/thumbs/articles/325x200/'.date('Y/m/d'))){
-                mkdir('uploads/thumbs/articles/325x200/'.date('Y/m/d'), 0777, true);
-            }
-
-            $destionation = date('Y/m/d'). '/'. end($tmp);
-            
-            File::move(config('moigioi.upload_path').$dataArr['image_url'], config('moigioi.upload_path').$destionation);
-            $img = Image::make(config('moigioi.upload_path').$destionation);
-            $w_img = $img->width();
-            $h_img = $img->height();
-            $tile1 = 0.07697044;
-            $w_tile1 = $w_img/203;
-            $h_tile1 = $h_img/128;
-         
-            if($w_tile1- $h_tile1 <= $tile1){
-                Image::make(config('moigioi.upload_path').$destionation)->resize(203, null, function ($constraint) {
-                        $constraint->aspectRatio();
-                })->crop(203, 128)->save(config('moigioi.upload_thumbs_path_articles').$destionation);
-            }else{
-                Image::make(config('moigioi.upload_path').$destionation)->resize(null, 128, function ($constraint) {
-                        $constraint->aspectRatio();
-                })->crop(203, 128)->save(config('moigioi.upload_thumbs_path_articles').$destionation);
-            }
-
-            $tile2 = 0;
-            $w_tile2 = $w_img/325;
-            $h_tile2 = $h_img/200;
-           
-            if($w_tile2- $h_tile2 <= $tile2){
-                Image::make(config('moigioi.upload_path').$destionation)->resize(325, null, function ($constraint) {
-                        $constraint->aspectRatio();
-                })->crop(325, 200)->save(config('moigioi.upload_thumbs_path_articles').'325x200/'.$destionation);
-            }else{
-                dd('123');
-                Image::make(config('moigioi.upload_path').$destionation)->resize(null, 200, function ($constraint) {
-                        $constraint->aspectRatio();
-                })->crop(325, 200)->save(config('moigioi.upload_thumbs_path_articles').'325x200/'.$destionation);
-            }
-
-            $dataArr['image_url'] = $destionation;
-        }        
+        $dataArr['alias'] = Helper::stripUnicode($dataArr['title']);      
         
         $dataArr['created_user'] = Auth::user()->id;
 
         $dataArr['updated_user'] = Auth::user()->id;
-        
+        $dataArr['type'] = 1;
         $dataArr['is_hot'] = isset($dataArr['is_hot']) ? 1 : 0;  
 
         $rs = Articles::create($dataArr);
@@ -165,7 +115,13 @@ class ArticlesController extends Controller
             }
         }
 
-        Session::flash('message', 'Tạo mới tin tức thành công');
+        // store Rating
+        for($i = 1; $i <= 5 ; $i++ ){
+            $amount = $i == 5 ? 1 : 0;
+            Rating::create(['score' => $i, 'object_id' => $object_id, 'object_type' => 2, 'amount' => $amount]);
+        }
+
+        Session::flash('message', 'Tạo mới thành công');
 
         return redirect()->route('articles.index',['cate_id' => $dataArr['cate_id']]);
     }
@@ -204,15 +160,16 @@ class ArticlesController extends Controller
     */
     public function edit($id)
     {
+        
         $tagSelected = [];
 
         $detail = Articles::find($id);
         if( Auth::user()->role < 3 ){
             if($detail->created_user != Auth::user()->id){
-                return redirect()->route('dashboard.index');
+                return redirect()->route('courses.index');
             }
         }
-        $cateArr = ArticlesCate::all();        
+        $cateArr = ArticlesCate::where('type', 1)->get();    
 
         $tmpArr = TagObjects::where(['type' => 2, 'object_id' => $id])->get();
         
@@ -256,60 +213,10 @@ class ArticlesController extends Controller
         
         $dataArr['alias'] = Helper::stripUnicode($dataArr['title']);
         
-        if($dataArr['image_url'] && $dataArr['image_name']){
-            
-            $tmp = explode('/', $dataArr['image_url']);
-
-            if(!is_dir('uploads/'.date('Y/m/d'))){
-                mkdir('uploads/'.date('Y/m/d'), 0777, true);
-            }
-            if(!is_dir('uploads/thumbs/articles/'.date('Y/m/d'))){
-                mkdir('uploads/thumbs/articles/'.date('Y/m/d'), 0777, true);
-            }
-            if(!is_dir('uploads/thumbs/articles/325x200/'.date('Y/m/d'))){
-                mkdir('uploads/thumbs/articles/325x200/'.date('Y/m/d'), 0777, true);
-            }
-
-            $destionation = date('Y/m/d'). '/'. end($tmp);
-            
-            File::move(config('moigioi.upload_path').$dataArr['image_url'], config('moigioi.upload_path').$destionation);
-            
-            $img = Image::make(config('moigioi.upload_path').$destionation);
-            $w_img = $img->width();
-            $h_img = $img->height();
-            $tile1 = 0.07697044;
-            $w_tile1 = $w_img/203;
-            $h_tile1 = $h_img/128;
-         
-            if($w_tile1- $h_tile1 <= $tile1){
-                Image::make(config('moigioi.upload_path').$destionation)->resize(203, null, function ($constraint) {
-                        $constraint->aspectRatio();
-                })->crop(203, 128)->save(config('moigioi.upload_thumbs_path_articles').$destionation);
-            }else{
-                Image::make(config('moigioi.upload_path').$destionation)->resize(null, 128, function ($constraint) {
-                        $constraint->aspectRatio();
-                })->crop(203, 128)->save(config('moigioi.upload_thumbs_path_articles').$destionation);
-            }
-
-            $tile2 = 0;
-            $w_tile2 = $w_img/325;
-            $h_tile2 = $h_img/200;
-           
-            if($w_tile2- $h_tile2 <= $tile2){
-                Image::make(config('moigioi.upload_path').$destionation)->resize(325, null, function ($constraint) {
-                        $constraint->aspectRatio();
-                })->crop(325, 200)->save(config('moigioi.upload_thumbs_path_articles').'325x200/'.$destionation);
-            }else{                
-                Image::make(config('moigioi.upload_path').$destionation)->resize(null, 200, function ($constraint) {
-                        $constraint->aspectRatio();
-                })->crop(325, 200)->save(config('moigioi.upload_thumbs_path_articles').'325x200/'.$destionation);
-            }
-            $dataArr['image_url'] = $destionation;
-        }
-
+        $dataArr['type'] = 1;
         $dataArr['updated_user'] = Auth::user()->id;
         $dataArr['is_hot'] = isset($dataArr['is_hot']) ? 1 : 0;  
-        //$dataArr['status'] = isset($dataArr['status']) ? 1 : 0;  
+         
         $model = Articles::find($dataArr['id']);
 
         $model->update($dataArr);
@@ -328,7 +235,7 @@ class ArticlesController extends Controller
                 $modelTagObject->save();
             }
         }
-        Session::flash('message', 'Cập nhật tin tức thành công');        
+        Session::flash('message', 'Cập nhật thành công');        
 
         return redirect()->route('articles.edit', $dataArr['id']);
     }
@@ -346,7 +253,7 @@ class ArticlesController extends Controller
         $model->delete();
 
         // redirect
-        Session::flash('message', 'Xóa tin tức thành công');
+        Session::flash('message', 'Xóa thành công');
         return redirect()->route('articles.index');
     }
 }
