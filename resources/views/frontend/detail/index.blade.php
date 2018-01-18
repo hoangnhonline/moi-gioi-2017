@@ -7,7 +7,7 @@
 
 @include('frontend.partials.meta')
 @section('content')
-<section class="col-sm-8 col-xs-12 block-sitemain">
+<section class="col-sm-12 col-xs-12 block-sitemain">
 <article class="block-breadcrumb-page">
 	<ul class="breadcrumb">	
 		<li><a href="{{ route('home') }}" title="Trở về trang chủ">Trang chủ</a></li>
@@ -24,8 +24,8 @@
 		<!--<li class="active">{{ $detail->title }}</li>-->
 	</ul>
 </article>
-	<article class="block block-cate-news-detail">
-		<h1>{!! $detail->title !!}</h1>
+	<article class="block block-cate-news-detail col-md-12 row">
+		<h1 class="title-home">{!! $detail->title !!}</h1>
 		<div class="cate-news-detail-location">
 	        <i class="fa fa-map-marker"></i> Khu vực:
 	    	{!! Helper::getName($detail->district_id, 'district') !!} - {!! Helper::getName($detail->city_id, 'city') !!}
@@ -34,8 +34,9 @@
 			<li><p>Giá: <span>{{ $detail->price }} {!! Helper::getName($detail->price_unit_id, 'price_unit') !!}</span></p></li>
 			<li><p>Diện tích: <span>{!! $detail->area !!} m<sup>2</sup></span></p></li>
 	    </ul><!-- /cate-news-detail-price -->
+	    <a class="tham-gia-ban-detail" data-id="{{ $detail->id }}" href="javascript:;" data-toggle="modal" @if (!Session::get('login')) data-target="#login-modal" @else data-target="#join-sales-modal" @endif>Tham gia bán</a>
 	    <hr>
-	    <div class="cate-news-detail-desc">
+	    <div class="cate-news-detail-desc" style="margin-bottom: 20px">
 	    	<h3>Thông tin mô tả</h3>
 	    	<div class="cate-news-detail-desc-content">
 	    		<?php echo $detail->description; ?>
@@ -56,13 +57,7 @@
 							<li><img src="{{ Helper::showImage($hinh['image_url']) }}" alt="hinh anh nho" /></li>
                             @endforeach
 						</ul>
-						<ul id="bx-pager-detail">
-							<?php $i = 0; ?>
-							@foreach( $hinhArr as $hinh )							
-							<li><a data-slide-index="{{ $i }}" href=""><img src="{{ Helper::showImage($hinh['image_url']) }}" alt="hinh anh to" /></a></li>
-							<?php $i++; ?>
-							@endforeach
-						</ul>
+					
 					</div>
 				</div>
 				<div role="tabpanel" class="tab-pane" id="profile">
@@ -137,30 +132,7 @@
 	    			</tr>
 	    		</table>
 	    	</div>
-	    </div><!-- /block-detail-info -->	    
-	    <div class="block-utilities">
-	    	<h3>Tiện ích</h3>
-	    	<div class="table-responsive">
-		    	<table class="table table-bordered">
-	    			<tr>
-	    				<?php $i = 0; ?>
-			    		@foreach($tienIchLists as $value)
-			    		<?php $i++; ?>
-		    			
-		    				<td>{!! $value->name !!} 
-		    				@if(in_array($value->id, $tienIch)) 
-		    					<i class="fa fa-check success"></i>
-		    				@endif
-		    				</td>		    				
-		    		
-		    			@if($i%3 == 0)
-		    			</tr><tr>
-		    			@endif					    			
-		    			@endforeach
-	    			</tr>	    			
-	    		</table>
-	    	</div>
-	    </div>
+	    </div><!-- /block-detail-info -->	    	    
 	</article><!-- /block-cate-news-detail -->
 	@if(!empty((array)$tagSelected))
 	<?php $countTag = count($tagSelected);?>
@@ -215,7 +187,16 @@
 	</article><!-- /block-news-with-region -->
 	@endif
 </section><!-- /block-site-left -->
-
+<link href="{{ URL::asset('public/assets/vendor/bxslider/jquery.bxslider.min.css') }}" rel="stylesheet">
+<style type="text/css">
+	.tham-gia-ban-detail { 
+    background-color: #FF5E10;
+    color: #fff;
+    font-size: 13px;
+    padding: 5px 10px;
+    transition: all 0.5s;
+}
+</style>
 @endsection
 @section('javascript_page')
 <script>
@@ -256,6 +237,7 @@
     </script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAhxs7FQ3DcyDm8Mt7nCGD05BjUskp_k7w&libraries=places&callback=initAutocomplete"
          async defer></script>
+         <script src="{{ URL::asset('public/assets/vendor/bxslider/jquery.bxslider.min.js') }}"></script>
 <script type="text/javascript">
  $(document).ready(function () {
     $('.bxslider .item').each(function () {
