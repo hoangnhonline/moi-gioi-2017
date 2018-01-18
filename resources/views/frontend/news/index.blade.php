@@ -68,7 +68,7 @@
                     <a href="{{ route('news-detail', ['slug' => $articles->slug, 'id' => $articles->id]) }}"
                        title="{!! $articles->title !!}"><img
                                 class="img_hover img_trung img_trung_108"
-                                src="{{ Helper::showImageThumb($articles->image_url, 2) }}"
+                                src="{{ Helper::showImage($articles->image_url) }}"
                                 alt="{!! $articles->title !!}"
                                 style="width: 100%; height: 250.733px;"></a>
                 </div>
