@@ -6,6 +6,7 @@ var top = (screen.height/2)-((h-100)/2);
 function singleUpload(obj) {
     window.KCFinder = {};
     window.KCFinder.callBack = function(url) {
+      console.log($('#app_url').val());
        $('#' + obj.data('set')).val(url);
        $('#' + 'thumbnail_' + obj.data('set')).attr('src', $('#app_url').val() + url);
         window.KCFinder = null;
