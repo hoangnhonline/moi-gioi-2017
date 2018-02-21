@@ -41,6 +41,31 @@ class Helper
     public static function getNextOrder($table){
         return DB::table($table)->max('display_order') + 1;
     }
+    public static function getRole($id){
+        $role = "";
+        switch ($id) {
+            case 1:
+                $role = "Admin";
+                break;
+            case 2:
+                $role = "CSKH";
+                break;
+            case 3:
+                $role = "PR";
+                break;
+            case 4:
+                $role = "CS CTV";
+                break;
+            case 5:
+                $role = "CTV";
+                break;
+            
+            default:
+                $role = "Sản phẩm";
+                break;
+        }
+        return $role;
+    }
     public static function getPriceId($price, $price_unit_id, $type){
         $rs = Price::where('value_from', '<=', $price)
                     ->where('value_to', '>=', $price)

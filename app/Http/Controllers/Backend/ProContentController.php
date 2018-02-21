@@ -32,7 +32,7 @@ class ProContentController extends Controller
         $query = Articles::where(['cate_id' => $cate_id, 'project_id' => $project_id]);
         $projectDetail = LandingProjects::find($project_id);
         // check editor
-        if( Auth::user()->role == 1 ){
+        if( Auth::user()->role > 1 ){
             $query->where('created_user', Auth::user()->id);
         }
         
@@ -130,7 +130,7 @@ class ProContentController extends Controller
         $tagSelected = [];
 
         $detail = Articles::find($id);
-        if( Auth::user()->role == 1 ){
+        if( Auth::user()->role > 1 ){
             if($detail->created_user != Auth::user()->id){
                 return redirect()->route('dashboard.index');
             }

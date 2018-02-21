@@ -11,7 +11,7 @@
   <tbody>
     <tr>
       <td width="100px">Họ tên</td>
-      <td>{{ $dataArr['full_name'] }}</td>
+      <td>{{ $dataArr['ffull_name'] }}</td>
     </tr>
     <tr>
       <td>Điện thoại</td>

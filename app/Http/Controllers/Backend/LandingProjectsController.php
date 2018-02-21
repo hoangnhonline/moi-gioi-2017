@@ -29,7 +29,7 @@ class LandingProjectsController extends Controller
 
         
         // check editor
-        if( Auth::user()->role == 1 ){
+        if( Auth::user()->role > 1 ){
             $query->where('created_user', Auth::user()->id);
         }
         if( $name != ''){
@@ -189,7 +189,7 @@ class LandingProjectsController extends Controller
         $tabSelected = [];
 
         $detail = LandingProjects::find($id);
-        if( Auth::user()->role == 1 ){
+        if( Auth::user()->role > 1 ){
             if($detail->created_user != Auth::user()->id){
                 return redirect()->route('dashboard.index');
             }

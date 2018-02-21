@@ -42,3 +42,7 @@ h1,h2,h3,h4,h5,h6{font-weight:inherit;font-size:inherit;}
 @media screen and (max-width:400px){
 .left{width:98%;padding-left:6px;}
 }
+#error_login{
+	color:#b3292e;
+	font-style: italic;
+}

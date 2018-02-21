@@ -43,7 +43,7 @@ class UserWorkController extends Controller
             $query->whereRaw("work_date <= '".$dateToFormat."'");
         }
         $userList = (object) [];
-        if(Auth::user()->role == 1 ){
+        if(Auth::user()->role > 1 ){
             $query->where('user_work.created_user', Auth::user()->id);
         }elseif(Auth::user()->role == 2){
             $userIdArr = [];
@@ -163,7 +163,7 @@ class UserWorkController extends Controller
     public function update(Request $request)
     {
         $dataArr = $request->all();
-        if(Auth::user()->role == 1){
+        if(Auth::user()->role > 1){
             $this->validate($request,[     
                 'group_id' => 'required',       
                 'work_content' => 'required',

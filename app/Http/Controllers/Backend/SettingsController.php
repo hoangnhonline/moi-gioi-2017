@@ -15,7 +15,7 @@ class SettingsController  extends Controller
 {
     public function index(Request $request)
     {              
-        if(Auth::user()->role == 1){
+        if(Auth::user()->role > 1){
             return redirect()->route('dashboard.index');
         }
         $settingArr = Settings::whereRaw('1')->lists('value', 'name');
@@ -24,7 +24,7 @@ class SettingsController  extends Controller
     }
      public function noti(Request $request)
     {           
-        if(Auth::user()->role == 1){
+        if(Auth::user()->role > 1){
             return redirect()->route('dashboard.index');
         }   
         $settingArr = Settings::whereRaw('1')->lists('value', 'name');

@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Backend;
 
-use App\Models\CustomersJoinSale;
+use App\Models\CtvJoinSale;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -154,7 +154,7 @@ class CustomerController extends Controller
         $customerInfo= Customer::find($id);
 
         // Get list customer join sale
-        $customerJoinSaleList = CustomersJoinSale::where('customer_id', $id)->get();
+        $customerJoinSaleList = CtvJoinSale::where('customer_id', $id)->get();
 
         $totalJoinSale = count($customerJoinSaleList);
         return view('backend.customer.customer-join-sale', compact( 'customerJoinSaleList', 'totalJoinSale', 'customerInfo' ));

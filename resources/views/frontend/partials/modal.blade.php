@@ -138,13 +138,58 @@
             <form method="POST" id="join_sale_popup_form" action="{{ route('customer-join-sale') }}">
                 {{ csrf_field() }}
                 <div class="modal-body">
-                    <label class="radio-inline">
-                        <input type="radio" name="typeSales" value="1">Bán trực tiếp
-                    </label>
-                    <label class="radio-inline">
-                        <input type="radio" id="typeSale" name="typeSales" value="2">Để lại số điện thoại khách
-                    </label>
-                    <input type="hidden" value="" name="productId" id="productIdJoinSale">
+                    <div class="form-group">
+                      <label class="radio-inline salesDirect">
+                          <input type="radio" class="" name="typeSales" value="1">Bán trực tiếp
+                      </label>
+                      <label class="radio-inline salesPhone">
+                          <input type="radio" class="" name="typeSales" value="2">Để lại số điện thoại khách
+                      </label>
+                      <input type="hidden" value="" name="productId" id="productIdJoinSale">
+                    </div>
+                    <div id="div_phone" style="display:none">
+                      <div class="form-group">
+                        <label for="full_name">Họ tên khách</label>
+                        <input type="" id="full_name" name="full_name" class="form-control" />
+                      </div>
+                      <div class="form-group">
+                        <label for="cmnd">CMND</label>
+                        <input type="" id="cmnd" name="cmnd" class="form-control" />
+                      </div>
+                      <div class="form-group">
+                        <label for="phone">Số điện thoại</label>
+                        <input type="" id="phone" name="phone" class="form-control" />
+                      </div>
+                      <div class="form-group">
+                        <label for="address">Địa chỉ</label>
+                        <input type="" id="address" name="address" class="form-control" />
+                      </div>
+                      <div class="form-group">
+                        <label for="vung_quan_tam">Vùng quan tâm</label>
+                        <input type="" id="vung_quan_tam" name="vung_quan_tam" class="form-control" />
+                      </div>
+                      <div class="form-group">
+                        <label for="nhu_cau">Nhu cầu</label>
+                        <select name="nhu_cau" id="nhu_cau" class="form-control">
+                          <option value="">--Chọn--</option>
+                          <option value="1">Ở</option>
+                          <option value="2">Đầu tư ngắn hạn</option>
+                          <option value="3">Đầu tư trung hạn</option>
+                          <option value="4">Đầu tư dài hạn</option>
+                        </select>
+                      </div>
+                      <div class="form-group">
+                        <label for="loai_bds">Loại BĐS</label>
+                        <select name="loai_bds" id="loai_bds" class="form-control">
+                          <option value="">--Chọn--</option>
+                          <option value="1">Căn hộ</option>
+                          <option value="2">Đất nền</option>
+                          <option value="3">Biệt thự</option>
+                          <option value="4">Nhà lẻ</option>
+                          <option value="5">Khác</option>
+                        </select>
+                      </div>
+                    </div>
                 </div>
                 <div class="modal-footer">
                     <div id="collapseSuccess" class="hide">
@@ -155,8 +200,14 @@
                     </button>
 
                     <button type="button" class="btn btn-default" data-dismiss="modal">Hủy</button>
+                    <input type="reset" name="" id="btnReset" style="display:none;">
                 </div>
             </form>
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
 </div><!-- End join sales /.modal -->
+<style type="text/css">
+  #join_sale_popup_form .form-group{
+    margin-bottom: 3px !important;
+  }
+</style>

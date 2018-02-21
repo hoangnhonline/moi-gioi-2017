@@ -20,7 +20,7 @@ class AccountController extends Controller
     */
     public function index(Request $request)
     {         
-        if(Auth::user()->role == 1){
+        if(Auth::user()->role > 1){
             return redirect()->route('dashboard.index');
         }
         $role = $leader_id = 0;
@@ -49,12 +49,12 @@ class AccountController extends Controller
     }
     public function create()
     {        
-        if(Auth::user()->role == 1){
+        if(Auth::user()->role > 1){
             return redirect()->route('dashboard.index');
         }
-        $modList = Account::where(['role' => 2, 'status' => 1])->get();
+        $csctvList = Account::where(['role' => 4, 'status' => 1])->get();
         
-        return view('backend.account.create', compact('modList'));
+        return view('backend.account.create', compact('csctvList'));
     }
     public function changePass(){
         return view('backend.account.change-pass');   
@@ -95,7 +95,7 @@ class AccountController extends Controller
             'email' => 'required|unique:users,email',
         ],
         [
-            'name.required' => 'Bạn chưa nhập họ tên',
+            'full_name.required' => 'Bạn chưa nhập họ tên',
             'email.required' => 'Bạn chưa nhập email',
             'email.unique' => 'Email đã được sử dụng.'
         ]);       
@@ -130,7 +130,7 @@ class AccountController extends Controller
     }
     public function destroy($id)
     {
-        if(Auth::user()->role == 1){
+        if(Auth::user()->role > 1){
             return redirect()->route('dashboard.index');
         }
         // delete
@@ -143,22 +143,12 @@ class AccountController extends Controller
     }
     public function edit($id)
     {
-        if(Auth::user()->role == 1){
+        if(Auth::user()->role > 1){
             return redirect()->route('dashboard.index');
         }
         $detail = Account::find($id);
-        $modList = Account::where(['role' => 2, 'status' => 1])->get();
-        $modSelected = [];
-        if($detail->role == 1){
-            $tmp = UserMod::where('user_id', $id)->get();
-            
-            if($tmp){
-                foreach($tmp as $mod){
-                    $modSelected[] = $mod->mod_id;
-                }
-            }        
-        }
-        return view('backend.account.edit', compact( 'detail', 'modList', 'modSelected'));
+        $csctvList = Account::where(['role' => 4, 'status' => 1])->get();        
+        return view('backend.account.edit', compact( 'detail', 'csctvList'));
     }
     public function update(Request $request)
     {
@@ -168,7 +158,7 @@ class AccountController extends Controller
             'full_name' => 'required'            
         ],
         [
-            'name.required' => 'Bạn chưa nhập họ tên'           
+            'full_name.required' => 'Bạn chưa nhập họ tên'        
         ]);      
 
         $model = Account::find($dataArr['id']);
@@ -176,13 +166,6 @@ class AccountController extends Controller
         $dataArr['updated_user'] = Auth::user()->id;
 
         $model->update($dataArr);
-
-        UserMod::where('user_id', $dataArr['id'])->delete();
-        if(!empty($dataArr['mod_id'])){
-            foreach($dataArr['mod_id'] as $mod_id){
-                UserMod::create(['user_id' => $dataArr['id'], 'mod_id' => $mod_id]);
-            }
-        }
 
         Session::flash('message', 'Cập nhật tài khoản thành công');
 

@@ -15,7 +15,7 @@
     <!-- sidebar menu: : style can be found in sidebar.less -->
     <ul class="sidebar-menu">
       <li class="header">MAIN NAVIGATION</li>
-      @if(Auth::user()->role == 3)      
+      @if(Auth::user()->role == 1)      
       <li {{ \Request::route()->getName() == "settings.noti" ? "class=active" : "" }}>
         <a href="{{ route('settings.noti') }}">
           <i class="fa fa-pencil-square-o"></i> 
@@ -106,7 +106,7 @@
         <ul class="treeview-menu">
           <li {{ in_array(\Request::route()->getName(), ['articles.edit', 'articles.index']) ? "class=active" : "" }}><a href="{{ route('articles.index') }}"><i class="fa fa-circle-o"></i> Bài viết</a></li>
           <li {{ in_array(\Request::route()->getName(), ['articles.create']) ? "class=active" : "" }} ><a href="{{ route('articles.create', ['cate_id' => 1]) }}"><i class="fa fa-circle-o"></i> Thêm bài viết</a></li>
-          @if(Auth::user()->role == 3)
+          @if(Auth::user()->role == 1)
         <li {{ in_array(\Request::route()->getName(), ['articles-cate.create', 'articles-cate.index', 'articles-cate.edit']) ? "class=active" : "" }} ><a href="{{ route('articles-cate.index') }}"><i class="fa fa-circle-o"></i> Danh mục bài viết</a></li>      
         @endif    
         </ul>
@@ -119,7 +119,7 @@
           </a>       
         </li>
         
-      @if(Auth::user()->role == 3)
+      @if(Auth::user()->role == 1)
       <li {{ in_array(\Request::route()->getName(), ['newsletter.edit', 'newsletter.index']) ? "class=active" : "" }}>
         <a href="{{ route('newsletter.index') }}">
           <i class="fa fa-pencil-square-o"></i> 
@@ -134,7 +134,7 @@
         </a>       
       </li>
       @endif
-      @if(Auth::user()->role == 3)
+      @if(Auth::user()->role == 1)
       <li {{ in_array(\Request::route()->getName(), ['banner.list', 'banner.edit', 'banner.create']) ? "class=active" : "" }}>
         <a href="{{ route('banner.list') }}">
           <i class="fa fa-file-image-o"></i> 
@@ -142,7 +142,7 @@
         </a>       
       </li>      
       @endif
-      @if(Auth::user()->role > 1)
+      @if(Auth::user()->role == 1)
       <li class="treeview {{ in_array(\Request::route()->getName(), ['account.index', 'info-seo.index', 'settings.index', 'settings.noti', 'menu.index', 'video.index', 'video.edit', 'video.create']) || (in_array(\Request::route()->getName(), ['custom-link.edit', 'custom-link.index', 'custom-link.create']) && isset($block_id) && $block_id == 2 ) ? 'active' : '' }}">
         <a href="#">
           <i class="fa  fa-gears"></i>
@@ -152,7 +152,7 @@
           </span>
         </a>
         <ul class="treeview-menu">
-          @if(Auth::user()->role == 3)
+          @if(Auth::user()->role == 1)
         
           <li {{ \Request::route()->getName() == "settings.index" ? "class=active" : "" }}><a href="{{ route('settings.index') }}"><i class="fa fa-circle-o"></i> Thông tin CTY</a></li>
           <li {{ (in_array(\Request::route()->getName(), ['custom-link.edit', 'custom-link.index', 'custom-link.create']) && isset($block_id) && $block_id == 2 )? "class=active" : "" }}>

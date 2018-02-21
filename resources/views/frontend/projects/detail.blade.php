@@ -184,7 +184,7 @@
 								<input type="hidden" name="type" value="2">
 								<input type="hidden" name="return_url" value="{{ url()->current() }}">
 								<div class="form-group group">
-									<input type="text" name="full_name" >
+									<input type="text" name="ffull_name" >
 									<span class="highlight"></span>
 									<span class="bar"></span>
 									<label>Họ và Tên *</label>

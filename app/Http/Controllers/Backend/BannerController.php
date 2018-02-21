@@ -21,7 +21,7 @@ class BannerController extends Controller
     */
     public function index(Request $request)
     {
-        if(Auth::user()->role == 1){
+        if(Auth::user()->role > 1){
             return redirect()->route('dashboard.index');
         }
         $arrSearch['status'] = $status = isset($request->status) ? $request->status : null;

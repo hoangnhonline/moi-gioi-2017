@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Socialite;
-use App\Models\Customer;
+use App\Models\Account;
 use Helper, File, Session, Auth;
 use App;
 
@@ -28,7 +28,7 @@ class SocialAuthController extends Controller
         $providerUser = Socialite::driver('google')->user();
         $data['email'] = $providerUser->email;
 
-        $getCustomer = Customer::where('email', $data['email'])->first();
+        $getCustomer = Account::where('email', $data['email'])->first();
 
         if(is_null($getCustomer)) {
             Session::put('gg_id', $providerUser->user);
@@ -65,7 +65,7 @@ class SocialAuthController extends Controller
         $facebook['name']  = $facebook_user['name'];
         $facebook['avatar']= $facebook_user['picture']['url'];
 
-        $getCustomer = Customer::where('email', $facebook['email'])->first();
+        $getCustomer = Account::where('email', $facebook['email'])->first();
 
         if(is_null($getCustomer)) {
             Session::put('fb_id', $facebook['id']);
@@ -78,21 +78,32 @@ class SocialAuthController extends Controller
                 Session::put('fb_email',  $facebook['email']);
             }
 
-            $customer = new Customer;
-            $customer->fullname    =  $facebook['name'];
+            $customer = new Account;
+            $customer->full_name    =  $facebook['name'];
             $customer->email        =  $facebook['email'];
             $customer->facebook_id  =  $facebook['id'];
+            $customer->role  =  5; // ctv
             $customer->image_url    =  $facebook['avatar'];
             $customer->last_login    =  date('Y-m-d H:i:s');
-            $customer->type =  1;
-            $customer->score =  10;
+            $cs_min = null;
+            $listcs = Account::where(['status'=>1, 'role' => 4])->select(['id'])->get();              
+            $arr = [];
+            if($listcs->count() > 0){
+                foreach($listcs as $cs){
+                    $count = Account::where('leader_id', $cs->id)->get()->count();
+                    $arr[$cs->id] = $count;
+                }
+            }
+          
+            $cs_min = array_search(min($arr), $arr);
+            $customer->leader_id = $cs_min; 
             $customer->save();
 
             Session::flash('register', 'true');
             Session::put('login', true);
             Session::put('userId', $customer->id);
             Session::put('facebook_id', $customer->facebook_id);
-            Session::put('username', $customer->fullname);
+            Session::put('username', $customer->full_name);
             Session::put('avatar', $customer->image_url);
             Session::put('new-register', true);
             Session::flash('new-register-fb', 'true');
@@ -106,22 +117,37 @@ class SocialAuthController extends Controller
             if(!$getCustomer->image_url) {
                 $getCustomer->image_url = $facebook['avatar'];
                 //$getCustomer->last_login    =  date('Y-m-d H:i:s');
+                
+            }
+            $cs_min = null;
+            //update leader_id
+            if(!$getCustomer->leader_id){
+                $listcs = Account::where(['status'=>1, 'role' => 4])->select(['id'])->get();              
+                $arr = [];
+                if($listcs->count() > 0){
+                    foreach($listcs as $cs){
+                        $count = Account::where('leader_id', $cs->id)->get()->count();
+                        $arr[$cs->id] = $count;
+                    }
+                }
+              
+                $cs_min = array_search(min($arr), $arr);
+                $getCustomer->leader_id = $cs_min; 
                 $getCustomer->save();
             }
-
+           
             Session::put('login', true);
             Session::put('userId', $getCustomer->id);
             Session::put('facebook_id', $getCustomer->facebook_id);
-            Session::put('username', $getCustomer->fullname);
+            Session::put('username', $getCustomer->full_name);
             Session::put('avatar', $getCustomer->image_url);
             
+
+             
             return response()->json([
                 'success' => 0
             ]);
         }
-
-
-
 
         return response()->json(['fb_token' => $fb_token, 'fbUser' => $facebook]);
     }

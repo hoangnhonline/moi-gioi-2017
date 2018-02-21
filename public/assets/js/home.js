@@ -58,15 +58,8 @@ $(document).ready(function() {
           data : {
             token : token
           },
-          success : function(data){            
-            if(data.success == 1) { // new user              
-              swal('', '<p>Chào mừng thành viên mới.</p>', 'info').then(function(){
-                      location.reload();
-                    });
-            }else{
-              location.reload();
-            }
-            
+          success : function(data){
+            location.reload();
           }
         });
 
@@ -132,7 +125,7 @@ $(document).ready(function () {
                   $('#login-form #error_login').html('Email hoặc mật khẩu không đúng.')
                }
                else {
-                    location.reload();
+                    window.location.reload();
                }
               }
             });
@@ -224,6 +217,8 @@ $(document).ready(function () {
                if(data.error == 1)
                {
                   $('#login_popup_form #error_login').html('Email hoặc mật khẩu không đúng.')
+               }else{
+                location.reload();
                }
               }
             });
@@ -296,6 +291,14 @@ $(document).ready(function () {
     $('.tham-gia-ban-detail').click(function () {
         var productId = $(this).data('id');
         $('#productIdJoinSale').val(productId);
+    });    
+    $('.salesDirect').click(function(){
+      $('#div_phone').hide();
+      $('#btnReset').click();
+      $('.salesDirect').children().attr('checked', 'checked');
+    });
+    $('.salesPhone').click(function(){
+      $('#div_phone').show();
     });
     $('#btnSaveJoinSales').click(function(){
         var error = [];
@@ -312,23 +315,34 @@ $(document).ready(function () {
             }
             return false;
         }
-
+        if(typeSale == 2){
+          var err = 0;
+          $('#div_phone input, #div_phone select').each(function(){
+            if($(this).val() == "" || $(this).val() == 0){
+              err++;
+            }
+          });
+          if(err > 0){
+            alert('Vui lòng điền đầy đủ các thông tin trên.');
+            return false;
+          }
+        }
         if(!error.length)
         {
             $('#btnSaveJoinSales').prop('disabled', true);
             $.ajax({
                 url: $('#route-customer-join-sale-ajax').val(),
                 method: "POST",
-                data : {
-                    typeSale: typeSale,
-                    productId: productId
-                },
+                data : $('#join_sale_popup_form').serialize(),
                 success : function(data){
                     if (data.error == 0){
                         $('#collapseSuccess').removeClass('hide');
                         setTimeout(function(){
                             window.location.reload(1);
                         }, 3000);
+                    }else if(data.error == 'dup'){
+                      alert('Hệ thống phát hiện lỗi trùng khách.Quý vị có thể xác thực bằng cách gọi cho khách hàng.');
+                      $('#btnSaveJoinSales').prop('disabled', false);                      
                     }
                 }
             });

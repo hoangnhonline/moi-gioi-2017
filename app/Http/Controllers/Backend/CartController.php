@@ -58,7 +58,7 @@ class CartController extends Controller
     */
     public function create(Request $request)
     {
-        if(Auth::user()->role == 1){
+        if(Auth::user()->role > 1){
             return redirect()->route('dashboard.index');
         }
         $type = $request->type ? $request->type : 1;
@@ -131,7 +131,7 @@ class CartController extends Controller
     */
     public function edit($id)
     {
-        if(Auth::user()->role == 1){
+        if(Auth::user()->role > 1){
             if(Cart::checkUserAccess($id, Auth::user()->id) == false){
                 return redirect()->route('dashboard.index');
             }

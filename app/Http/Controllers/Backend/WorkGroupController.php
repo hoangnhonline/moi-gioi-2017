@@ -18,7 +18,7 @@ class WorkGroupController extends Controller
     */
     public function index(Request $request)
     {
-        if(Auth::user()->role == 1){
+        if(Auth::user()->role > 1){
             return redirect()->route('dashboard.index');
         }
         $items = WorkGroup::all()->sortBy('display_order');
@@ -32,7 +32,7 @@ class WorkGroupController extends Controller
     */
     public function create()
     {
-        if(Auth::user()->role == 1){
+        if(Auth::user()->role > 1){
             return redirect()->route('dashboard.index');
         }
         return view('backend.work-group.create');
@@ -85,7 +85,7 @@ class WorkGroupController extends Controller
     */
     public function edit($id)
     {
-        if(Auth::user()->role == 1){
+        if(Auth::user()->role > 1){
             return redirect()->route('dashboard.index');
         }
         $detail = WorkGroup::find($id);
@@ -130,7 +130,7 @@ class WorkGroupController extends Controller
     */
     public function destroy($id)
     {
-        if(Auth::user()->role == 1){
+        if(Auth::user()->role > 1){
             return redirect()->route('dashboard.index');
         }
         // delete

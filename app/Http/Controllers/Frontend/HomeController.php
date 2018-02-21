@@ -16,7 +16,7 @@ use App\Models\Street;
 use App\Models\Project;
 use App\Models\Articles;
 use App\Models\ArticlesCate;
-use App\Models\Customer;
+use App\Models\Account;
 use App\Models\Newsletter;
 use App\Models\PriceRange;
 use App\Models\Video;
@@ -124,7 +124,7 @@ class HomeController extends Controller
         }
         $joinedProductArrId = [];
         if(Session::get('userId') > 0){
-            $joinedProductArrId = Customer::joinedProduct(Session::get('userId'));       
+            $joinedProductArrId = [];//Account::joinedProduct(Session::get('userId'));       
         }
         return view('frontend.home.index', compact('bannerArr', 'articlesArr', 'socialImage', 'seo', 'countMess', 'hotProduct', 'tinThiTruong', 'luat', 'khonggiansong', 'phongthuy', 'tinRandom','hotProduct2', 'luat', 'tuvan', 'videoList', 'videoFirst', 'estateTypeList', 'productArr', 'joinedProductArrId'));
 
@@ -190,7 +190,7 @@ class HomeController extends Controller
         if(is_null($newsletter)) {
            $newsletter = new Newsletter;
            $newsletter->email = $email;
-           $newsletter->is_member = Customer::where('email', $email)->first() ? 1 : 0;
+           $newsletter->is_member = Account::where('email', $email)->first() ? 1 : 0;
            $newsletter->save();
            $register = 1;
         }

@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Models\Customer;
-use App\Models\CustomersJoinSale;
+use App\Models\CtvJoinSale;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -77,7 +77,7 @@ class ProductController extends Controller
         if( $project_id ){
             $query->where('product.project_id', $project_id);
         }
-        if(Auth::user()->role == 1){
+        if(Auth::user()->role > 1){
             $query->where('product.created_user', Auth::user()->id);
         }
         if( $name != ''){
@@ -145,7 +145,7 @@ class ProductController extends Controller
         if( $project_id ){
             $query->where('product.project_id', $project_id);
         }
-        if(Auth::user()->role == 1){
+        if(Auth::user()->role > 1){
             $query->where('product.created_user', Auth::user()->id);
         }
         if( $name != ''){
@@ -616,7 +616,7 @@ class ProductController extends Controller
         $detailProduct = Product::find($id);
 
         // Get list customer join sale by procduct_id
-        $customerJoinSaleList = CustomersJoinSale::where('product_id', $id)->get();
+        $customerJoinSaleList = CtvJoinSale::where('product_id', $id)->get();
 
         $totalCustomer = count($customerJoinSaleList);
 
@@ -624,7 +624,7 @@ class ProductController extends Controller
         foreach ($customerJoinSaleList as $key => $customerJoin) {
             $customerId = $customerJoin->customer_id;
             $customerInfo = Customer::find($customerId);
-            $customerJoinSaleList[$key]['customer_name'] = $customerInfo->fullname;
+            $customerJoinSaleList[$key]['customer_name'] = $customerInfo->full_name;
         }
         return view('backend.product.customer-join-sale', compact( 'customerJoinSaleList', 'totalCustomer', 'detailProduct' ));
     }
@@ -647,7 +647,7 @@ class ProductController extends Controller
             'status_join' => $statusJoin,
             'updated_user' => $userUpdateId,
         ];
-        $model = CustomersJoinSale::find($id);
+        $model = CtvJoinSale::find($id);
         if (count($model) > 0) {
             $model->update($data);
         }

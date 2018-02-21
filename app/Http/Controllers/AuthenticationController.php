@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
-use App\Models\Customer;
+use App\Models\Account;
 use Session;
 
 class AuthenticationController extends Controller
@@ -33,17 +33,15 @@ class AuthenticationController extends Controller
             'password' => $request->password,
         ];
 
-        $customer = Customer::where('email', $request->email)->first();
+        $customer = Account::where('email', $request->email)->where('role', 5)->first();
         if(is_null($customer) || !password_verify($request->password, $customer->password) ) {
             Session::flash('error', 'Email hoặc mật khẩu không đúng.');
         } else {
             Session::put('login', true);
             Session::put('userId', $customer->id);
             Session::put('facebook_id', $customer->facebook_id);
-            Session::put('username', $customer->fullname);
-            Session::put('avatar', $customer->image_url);
-            Session::forget('vanglai');
-            Session::forget('is_vanglai');
+            Session::put('username', $customer->full_name);
+            Session::put('avatar', $customer->image_url); 
         }
         return redirect()->back();
     }
@@ -52,7 +50,7 @@ class AuthenticationController extends Controller
     {
         $dataArr = $request->all();
 
-        $customer = Customer::where('email', $request->email)->first();
+        $customer = Account::where('email', $request->email)->where('role', 5)->first();
         if(is_null($customer) || !password_verify($request->password, $customer->password) ) {
             Session::flash('error', 'Email hoặc mật khẩu không đúng.');
             return response()->json(['error' => 1]);
@@ -60,7 +58,7 @@ class AuthenticationController extends Controller
             Session::put('login', true);
             Session::put('userId', $customer->id);
             Session::put('facebook_id', $customer->facebook_id);
-            Session::put('username', $customer->fullname);
+            Session::put('username', $customer->full_name);
             Session::put('avatar', $customer->image_url);
             return response()->json(['error' => 0]);         
         }
@@ -72,15 +70,7 @@ class AuthenticationController extends Controller
         Session::forget('userId');
         Session::forget('username');
         Session::forget('avatar');
-        Session::forget('facebook_id');
-        Session::forget('vanglai');
-        Session::put('products', []);
-        Session::put('order_id', '');
-        Session::forget('is_vanglai');        
-        Session::forget('service_fee');
-        Session::forget('totalServiceFee');
-        Session::forget('event_id');
-        Session::forget('order_id');
+        Session::forget('facebook_id');  
         Session::forget('new-register');
         return redirect()->route('home');
     }

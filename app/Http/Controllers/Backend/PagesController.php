@@ -26,7 +26,7 @@ class PagesController extends Controller
         $created_user = isset($request->created_user) ? $request->created_user : null;
         $userList = (object) [];
         $query = Pages::whereRaw('1');        
-        if(Auth::user()->role == 1 ){
+        if(Auth::user()->role > 1 ){
             $query->where('created_user', Auth::user()->id);
         }else{
             $userList = Account::where('role', 1)->get();            
@@ -128,7 +128,7 @@ class PagesController extends Controller
     {        
 
         $detail = Pages::find($id);
-        if(Auth::user()->role == 1){
+        if(Auth::user()->role > 1){
             if($detail->created_user != Auth::user()->id){        
                 return redirect()->route('dashboard.index');        
             }

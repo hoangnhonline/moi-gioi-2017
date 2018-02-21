@@ -9,9 +9,10 @@ use App\Http\Controllers\Controller;
 use App\Models\Orders;
 use App\Models\OrderDetail;
 use App\Models\Customer;
+use App\Models\Account;
 use App\Models\City;
 use App\Models\CustomerNotification;
-use App\Models\CustomersJoinSale;
+use App\Models\CtvJoinSale;
 use Helper, File, Session, Auth, Hash, Validator;
 use Mail;
 
@@ -54,7 +55,7 @@ class CustomerController extends Controller
         $email = $request->email;
 
         $customer = Customer::where('email', $email)->first();
-        $fullname = $request->fullname;
+        $full_name = $request->full_name;
         $password = $request->password;
 
         if(!is_null($customer)) {
@@ -69,7 +70,7 @@ class CustomerController extends Controller
         //set Session user for login here
         Session::put('login', true);
         Session::put('userId', $customer->id);
-        Session::put('username', $customer->fullname);
+        Session::put('username', $customer->full_name);
         Session::put('new-register', true);
         Session::forget('vanglai');
         Session::forget('is_vanglai');
@@ -129,7 +130,7 @@ class CustomerController extends Controller
         Session::put('login', true);
         Session::put('userId', $customer->id);
         Session::put('new-register', true);
-        Session::put('username', $customer->fullname);
+        Session::put('username', $customer->full_name);
         Session::forget('vanglai');
         Session::forget('is_vanglai');
         return response()->json(['error' => 0]);
@@ -246,17 +247,31 @@ class CustomerController extends Controller
         if (empty($customerId) || empty($productDetail)) {
             return response()->json(['error' => 'inValidParams']);
         }
+        //check trung cmnd
+        if($params['typeSales'] == 2 && $params['cmnd'] != ''){
+            $check = CtvJoinSale::where('product_id', $productId)->where('cmnd', $params['cmnd'])->count();
+            if($check > 0){
+                return response()->json(['error' => 'dup']);       
+            }
+        }
         $data = [
-            'customer_id' => $customerId,
+            'ctv_id' => $customerId,
             'product_id' => $productId,
-            'type_sale' => $params['typeSale'],
+            'type_sale' => $params['typeSales'],
+            'full_name' => $params['full_name'] ? $params['full_name'] : null,
+            'phone' => $params['phone'] ? $params['phone'] : null,
+            'address' => $params['address'] ? $params['address'] : null,
+            'nhu_cau' => $params['nhu_cau'] ? $params['nhu_cau'] : null,
+            'loai_bds' => $params['loai_bds'] ? $params['loai_bds'] : null,
+            'vung_quan_tam' => $params['vung_quan_tam'] ? $params['vung_quan_tam'] : null,
+            'cmnd' => $params['cmnd'] ? $params['cmnd'] : null,
             'status_join' => 1,
             'status_sale' => 0,
             'commission_start' => $commissionStart,
             'commission_end' => $commissionStart
         ];
 
-        CustomersJoinSale::create($data);
+        CtvJoinSale::create($data);
 
         return response()->json(['error' => 0]);
 
