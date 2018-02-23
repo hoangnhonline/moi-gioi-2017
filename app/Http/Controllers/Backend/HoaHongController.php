@@ -42,6 +42,30 @@ class HoaHongController extends Controller
         $prList = Account::where(['role' =>3, 'status' => 1])->get();
         return view('backend.hh.index', compact( 'items', 'type_sale', 'cskh_status', 'ctvList', 'prList', 'arrSearch', 'pr_status','detailProduct', 'product_id', 'role'));
     }
+    public function csctv(Request $request){
+
+        $csctvList = Account::where(['role' => 4, 'status' => 1])->get();
+        return view('backend.hh.cs', compact( 'csctvList'));
+    }
+     public function updateCs(Request $request)
+    {
+        $dataArr = $request->all();
+        
+        $this->validate($request,[
+            'leader_id' => 'required'            
+        ],
+        [
+            'leader_id.required' => 'Bạn chưa chọn CS CTV'        
+        ]);      
+
+        $model = Account::find(Auth::user()->id);
+
+        $model->update($dataArr);
+
+        Session::flash('message', 'Cập nhật CS CTV thành công');
+
+        return redirect()->route('change-csctv');
+    }
 
     /**
     * Show the form for creating a new resource.

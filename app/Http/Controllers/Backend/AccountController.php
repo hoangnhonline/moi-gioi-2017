@@ -171,6 +171,7 @@ class AccountController extends Controller
 
         return redirect()->route('account.index');
     }
+   
     public function updateStatus(Request $request)
     {       
 

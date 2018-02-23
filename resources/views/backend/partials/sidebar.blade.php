@@ -39,6 +39,14 @@
           </a>       
         </li>
       @endif
+      @if(Auth::user()->role == 5)
+      <li {{ in_array(\Request::route()->getName(), ['change-csctv']) ? "class=active" : "" }}>
+        <a href="{{ route('change-csctv') }}">
+          <i class="fa fa-pencil-square-o"></i> 
+          <span>Chăm sóc CTV</span>          
+        </a>       
+      </li>
+      @endif
       @if(!in_array(Auth::user()->role, [2,3,4,5]))
       <li class="treeview {{ in_array(\Request::route()->getName(), ['product.index', 'product.create', 'product.edit', 'estate-type.index', 'estate-type.edit', 'estate-type.create', 'cate.index', 'cate.edit', 'cate.create']) ? 'active' : '' }}">
         <a href="#">

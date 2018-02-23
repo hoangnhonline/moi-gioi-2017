@@ -21,13 +21,16 @@ class SalesController extends Controller
     */
     public function index(Request $request)
     {
-        $arrSearch['type_sale'] = $type_sale = isset($request->type_sale) ? $request->type_sale : 2; 
+        $arrSearch['type_sale'] = $type_sale = isset($request->type_sale) ? $request->type_sale : null; 
         $arrSearch['cskh_status'] = $cskh_status = isset($request->cskh_status) ? $request->cskh_status : null; 
         $arrSearch['product_id'] = $product_id = isset($request->product_id) ? $request->product_id : null; 
         $arrSearch['pr_status'] = $pr_status = isset($request->pr_status) ? $request->pr_status : null; 
         $arrSearch['pr_id'] = $pr_id = isset($request->pr_id) ? $request->pr_id : null; 
         $arrSearch['ctv_id'] = $ctv_id = isset($request->ctv_id) ? $request->ctv_id : null;  
-        $query = CtvJoinSale::where('type_sale', $type_sale);
+        $query = CtvJoinSale::whereRaw(1);
+        if($type_sale){
+            $query->where('type_sale', $type_sale);
+        }
         if($cskh_status){
             $query->where('cskh_status', $cskh_status);
         }

@@ -23,22 +23,22 @@
                 <p class="alert alert-info" >{{ Session::get('message') }}</p>
                 @endif
                 <!--<a href="{{ route('sales.create') }}" class="btn btn-info btn-sm" style="margin-bottom:5px">Tạo mới</a>-->
-                @if(Auth::user()->role < 5)
+                @if(Auth::user()->role <= 5)
                 <div class="panel panel-default">
                       <div class="panel-heading">
                         <h3 class="panel-title">Bộ lọc</h3>
                       </div>
                       <div class="panel-body">
                         <form class="form-inline" id="searchForm" role="form" method="GET" action="{{ route('sales.index') }}">   
-                            @if(Auth::user()->role <= 2)
+                            
                             <div class="form-group">              
                               <select class="form-control" name="type_sale" id="type_sale">
-                                  <option value="">--Loại--</option>
+                                  <option value="">--Hình thức bán--</option>
                                   <option value="1" {{ $type_sale == 1 ? "selected" : "" }}>Bán trực tiếp</option>
                                   <option value="2" {{ $type_sale == 2 ? "selected" : "" }}>Để lại số điện thoại</option>
                               </select>
                             </div>  
-
+                            @if(Auth::user()->role <= 2)
                             <div class="form-group">              
                               <select class="form-control" name="cskh_status" id="cskh_status">
                                   <option value="">--Trạng thái--</option>
@@ -47,7 +47,7 @@
                                   <option value="3" {{ $cskh_status == 3 ? "selected" : "" }}>Đã lọc</option>
                               </select>
                             </div>  
-
+                             @if(Auth::user()->role < 5)
                             @if($prList->count() > 0)
                             <div class="form-group">              
                               <select class="form-control" name="pr_id" id="pr_id">
@@ -59,6 +59,7 @@
                             </div> 
                             @endif
                             @endif
+                           
                             @if(Auth::user()->role == 3)
                             <div class="form-group">              
                               <select class="form-control" name="pr_status" id="pr_status">
@@ -79,7 +80,9 @@
                                   @endforeach
                               </select>
                             </div> 
-                            @endif                            
+                            @endif  
+                             @endif 
+                             <!-- check lon hon CTV-->                          
                             <button style="margin-top:-5px;" type="submit" class="btn btn-primary btn-sm">Lọc</button>
                         </form>
                         </div></div>
@@ -102,7 +105,9 @@
                                 <th>Số điện thoại</th>
                                 @endif
                                 <th>Sản phẩm</th>
+                                @if(Auth::user()->role < 5)
                                 <th>CTV</th>
+                                @endif
                                 @if($type_sale == 2 && Auth::user()->role < 3)
                                 <th>PR</th>
                                 @endif
@@ -133,7 +138,7 @@
                                     @endif
                                     </td>
                                     @endif
-                                    <td>
+                                    <td>{{ $item->product->title }}
                                     @if($item->status_sales == 1)
                                     <span class="label label-success">Chưa bán</span>
                                     @elseif($item->status_sales == 2)
@@ -142,9 +147,11 @@
                                     <span class="label label-warning">Đã cọc</span>
                                     @endif
                                     </td>
+                                    @if(Auth::user()->role < 5)
                                     <td>
                                          <a href="{{ route( 'sales.edit', [ 'id' => $item->id ]) }}">{{ $item->ctv->full_name }}</a>
                                     </td>
+                                    @endif
                                     @if($type_sale == 2 && Auth::user()->role < 3)
                                     <td>
                                         @if($item->pr)

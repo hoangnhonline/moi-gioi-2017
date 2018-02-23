@@ -11,6 +11,8 @@ Route::group(['namespace' => 'Backend', 'prefix' => 'backend', 'middleware' => '
     });
     Route::group(['prefix' => 'hoa-hong'], function () {
         Route::get('/', ['as' => 'hh.index', 'uses' => 'HoaHongController@index']);
+        Route::get('/change-csctv', ['as' => 'change-csctv', 'uses' => 'HoaHongController@csctv']);
+        Route::post('/update-csctv', ['as' => 'update-cs', 'uses' => 'HoaHongController@updateCs']);
     });
     Route::group(['prefix' => 'settings'], function () {
         Route::get('/', ['as' => 'settings.index', 'uses' => 'SettingsController@index']);
