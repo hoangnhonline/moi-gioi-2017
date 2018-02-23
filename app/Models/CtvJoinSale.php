@@ -43,7 +43,7 @@ class CtvJoinSale extends Model  {
       'loai_bds',
       'cskh_status',
       'pr_status',
-      'cskh_id',
+      'csctv_id',
       'pr_id',
       'is_close',
       'is_success'

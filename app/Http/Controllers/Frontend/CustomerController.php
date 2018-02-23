@@ -216,6 +216,7 @@ class CustomerController extends Controller
     public function joinSale(Request $request){
         $params = $request->all();
         $customerId = Session::get('userId');
+        $detailCustomer = Account::find($customerId);
         $productId = $params['productId'];
 
         // Calculate commission product
@@ -247,6 +248,7 @@ class CustomerController extends Controller
             'cmnd' => $params['cmnd'] ? $params['cmnd'] : null,
             'status_join' => $params['typeSales'] == 2 ? 0 : 1, // neu de lai so dt thi ko can duyet
             'status_sales' => 1,
+            'csctv_id' => $detailCustomer->leader_id
            // 'commission_start' => $commissionStart,
             //'commission_end' => $commissionStart
         ];
