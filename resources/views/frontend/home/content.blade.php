@@ -22,10 +22,10 @@
       <a class="tensp" href="{{ route('chi-tiet', [$pro->slug_loai, $pro->slug, $pro->id]) }}">{!! $pro->title !!}</a>        
       
          <p class="giagoc">Giá: <span
-            style="color:#1060EB;">{!! number_format($pro->price) !!} {!! Helper::getName($pro->price_unit_id, 'price_unit') !!}</span></p>     
+            style="color:#1060EB;">{!! $pro->price_text !!}</span></p>     
       
          <p class="size_chatlieu">Hoa hồng :
-            <span style="color:#1060EB;">{{ $pro->hoa_hong }}%</span>
+            <span style="color:#1060EB;">{{ $pro->hoa_hong_ctv }}%</span>
          </p>
       
       <div class="clear"></div>
