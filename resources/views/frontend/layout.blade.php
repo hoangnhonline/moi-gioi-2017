@@ -242,9 +242,9 @@
          <!-- End footer -->
          <div class="clear"></div>
          <div class="fix_tel">
-            <a href="tel:0908.842.039">
+            <a href="tel:0919.356.178">
                <div class="tel">
-                  <p class="fone"><i class="fa fa-phone" aria-hidden="true"></i>0908.842.039</p>
+                  <p class="fone"><i class="fa fa-phone" aria-hidden="true"></i>0919.356.178</p>
                   <div class="bor-left"></div>
                   <div class="bor-top"></div>
                   <div class="bor-right"></div>

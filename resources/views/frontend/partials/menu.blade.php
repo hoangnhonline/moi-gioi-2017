@@ -44,9 +44,9 @@
          <div class="clear"></div>
       </div>
       <div class="div_hotline2">
-         <div class="hotline2">0822.363.589</div>
+         <div class="hotline2">0919.356.178</div>
          <p class="mxh2">
-            <a href="#0908.842.039" target="_blank"><img src="{{ URL::asset('public/assets/files/zalo.png') }}" width="35" height="35"
+            <a href="#0919.356.178" target="_blank"><img src="{{ URL::asset('public/assets/files/zalo.png') }}" width="35" height="35"
                alt="dat cu chi"
                style="vertical-align:middle;margin-top:5px;"></a>&nbsp;&nbsp;
             <a href="#" target="_blank"><img src="{{ URL::asset('public/assets/files/vber.png') }}" width="35" height="35" alt="dat cu chi"
