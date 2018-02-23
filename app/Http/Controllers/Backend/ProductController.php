@@ -24,7 +24,6 @@ use App\Models\TagObjects;
 use App\Models\Direction;
 use App\Models\Area;
 use App\Models\Price;
-
 use Helper, File, Session, Auth, Hash, URL, Image;
 
 class ProductController extends Controller
@@ -539,12 +538,25 @@ class ProductController extends Controller
         $model->update($dataArr);
         
         $product_id = $dataArr['id'];
+
+        //update CTV sales
+        $rsJoin = CtvJoinSale::where('product_id', $product_id)->get();
+        if($rsJoin->count() > 0){
+            foreach($rsJoin as $join){
+                $newJoin = CtvJoinSale::find($join->id);
+                $newJoin->status_sales = $dataArr['cart_status'];
+                if($dataArr['cart_status'] == 2){ // da ban
+                    $newJoin->is_close = 1;
+                }
+                $newJoin->save();
+            }
+        }
         
         $this->storeMeta( $product_id, $dataArr['meta_id'], $dataArr);
         $this->storeImage( $product_id, $dataArr);
         $this->processRelation($dataArr, $product_id, 'edit');
 
-        Session::flash('message', 'Chỉnh sửa thành công');
+        Session::flash('message', 'Chỉnh sửa `thành công');
 
         return redirect()->route('product.edit', $product_id);
         

@@ -23,15 +23,23 @@
         </a>       
       </li>
       @endif
-      
+      @if(Auth::user()->role < 6)
       <li {{ in_array(\Request::route()->getName(), ['sales.edit', 'sales.detail', 'sales.index']) ? "class=active" : "" }}>
         <a href="{{ route('sales.index') }}">
           <i class="fa fa-pencil-square-o"></i> 
           <span>Tham gia bán</span>         
         </a>       
       </li>
-      
-      @if(Auth::user()->role != 2 && Auth::user()->role != 3)
+      @endif
+      @if(in_array(Auth::user()->role, [3,4,5]))
+        <li {{ in_array(\Request::route()->getName(), ['hh.index']) ? "class=active" : "" }}>
+          <a href="{{ route('hh.index') }}">
+            <i class="fa fa-pencil-square-o"></i> 
+            <span>Hoa hồng</span>         
+          </a>       
+        </li>
+      @endif
+      @if(!in_array(Auth::user()->role, [2,3,4,5]))
       <li class="treeview {{ in_array(\Request::route()->getName(), ['product.index', 'product.create', 'product.edit', 'estate-type.index', 'estate-type.edit', 'estate-type.create', 'cate.index', 'cate.edit', 'cate.create']) ? 'active' : '' }}">
         <a href="#">
           <i class="fa fa-opencart"></i> 
@@ -65,7 +73,7 @@
           <i class="fa fa-pencil-square-o"></i> 
           <span>Giỏ hàng</span>         
         </a>       
-      </li>       
+      </li>      
       <li class="treeview {{ in_array(\Request::route()->getName(), ['work-group.create', 'work-group.edit', 'work-group.index', 'user-work.create', 'user-work.edit', 'user-work.index']) ? 'active' : '' }}">
         <a href="#">
           <i class="fa fa-twitch"></i> 

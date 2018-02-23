@@ -23,13 +23,14 @@
                 <p class="alert alert-info" >{{ Session::get('message') }}</p>
                 @endif
                 <!--<a href="{{ route('sales.create') }}" class="btn btn-info btn-sm" style="margin-bottom:5px">Tạo mới</a>-->
+                @if(Auth::user()->role < 5)
                 <div class="panel panel-default">
                       <div class="panel-heading">
                         <h3 class="panel-title">Bộ lọc</h3>
                       </div>
                       <div class="panel-body">
                         <form class="form-inline" id="searchForm" role="form" method="GET" action="{{ route('sales.index') }}">   
-                            @if(Auth::user()->role == 2)
+                            @if(Auth::user()->role <= 2)
                             <div class="form-group">              
                               <select class="form-control" name="type_sale" id="type_sale">
                                   <option value="">--Loại--</option>
@@ -78,10 +79,12 @@
                                   @endforeach
                               </select>
                             </div> 
-                            @endif
+                            @endif                            
                             <button style="margin-top:-5px;" type="submit" class="btn btn-primary btn-sm">Lọc</button>
                         </form>
                         </div></div>
+
+                        @endif
                 <div class="box">
                     <div class="box-header with-border">
                         <h3 class="box-title">Danh sách ( {{ $items->total() }} )</h3>
@@ -104,7 +107,8 @@
                                 <th>PR</th>
                                 @endif
                                 <th width="180px">Trạng thái</th>
-                                
+                                <th width="">Trạng thái GD</th>
+                                <th width="120px">Ngày tham gia</th>
                                 <th width="1%;white-space:nowrap">Thao tác</th>
                                 
                             </tr>
@@ -129,9 +133,9 @@
                                     @endif
                                     </td>
                                     @endif
-                                    <td>{{ $item->product->title }}
+                                    <td>
                                     @if($item->status_sales == 1)
-                                    <span class="label label-default">Chưa bán</span>
+                                    <span class="label label-success">Chưa bán</span>
                                     @elseif($item->status_sales == 2)
                                     <span class="label label-danger">Đã bán</span>
                                     @elseif($item->status_sales == 3)
@@ -165,11 +169,32 @@
                                     </select>
                                     @endif
                                     </td>                                   
-                                    
+                                    <td>
+                                        @if($item->is_close == 0)
+                                            <span class="label label-info">Đang mở</span>
+                                            <br>
+                                        @else
+                                            @if($item->is_success == 0)
+                                            <span class="label label-danger">Đã đóng</span>
+                                            <br>
+                                            @endif
+                                        @endif
+                                        
+                                        @if($item->is_success == 1)
+                                            <span class="label label-success">GD thành công</span>
+                                        @endif
+                                    </td>
+                                    <td>
+                                        {{ date('d-m-Y', strtotime($item->created_at)) }}
+                                    </td>
                                     <td style="white-space:nowrap; text-align:right">
                                     
                                         <a href="{{ route( 'sales.detail', [ 'id' => $item->id ]) }}" class="btn-sm btn btn-info">Chi tiết</a>
-                                    
+                                        @if(Auth::user()->role == 1 || Auth::user()->role == 6)
+                                            @if($item->is_close == 1)
+                                            <button data-table="ctv_join_sale" data-col="is_success" data-id="{{ $item->id }}" class="btn-sm btn btn-success btnSuccess">GD thành công</button>
+                                            @endif
+                                        @endif
                                         @if(Auth::user()->role ==2)
                                             
                                         <a href="{{ route( 'sales.edit', [ 'id' => $item->id ]) }}" class="btn-sm btn btn-warning"><span class="glyphicon glyphicon-pencil"></span></a>
@@ -296,6 +321,28 @@
                       window.location.reload();                     
                   }
               });
+      });
+      $('.btnSuccess').click(function(){
+            if(confirm('Bạn có chắc chắn không?')){
+                var col = $(this).data('col');
+                var table = $(this).data('table');
+                var id = $(this).data('id');
+                var status = 1;
+                $.ajax({
+                      url: "{{ route('update-status') }}",
+                      type: "POST",
+                      async: false,
+                      data: {          
+                          col : col,
+                          table : table,
+                          id : id,
+                          status : status
+                      },
+                      success: function(data){
+                          //window.location.reload();                     
+                      }
+                  });
+            }
       });
       $('.btnSaveHen').click(function(){
         if($('#ngay_hen').val()== ''){

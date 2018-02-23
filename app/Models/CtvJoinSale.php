@@ -30,8 +30,9 @@ class CtvJoinSale extends Model  {
       'type_sale',
       'status_join',
       'status_sales',
-      'commission_start',
-      'commission_end',
+      'hh_pr',
+      'hh_ctv',
+      'hh_cs',
       'updated_user',
       'full_name',
       'cmnd',
@@ -43,7 +44,9 @@ class CtvJoinSale extends Model  {
       'cskh_status',
       'pr_status',
       'cskh_id',
-      'pr_id'
+      'pr_id',
+      'is_close',
+      'is_success'
     ];
     public function ctv()
     {

@@ -12,6 +12,7 @@ use App\Models\ArticlesCate;
 use App\Models\Pages;
 use App\Models\Menu;
 use App\Models\Account;
+use App\Models\Product;
 use App\Models\CtvJoinSale;
 
 use DB, Session, Auth;
@@ -63,6 +64,34 @@ class GeneralController extends Controller
                 $sales->updated_user = Auth::user()->id;
                 $sales->save();
             }
+            // set giao dich thanh cong
+            if($column == "is_success" && $status == 1){
+                $sales = CtvJoinSale::find($id);
+                $product_id = $sales->product_id;
+                $detailProduct = Product::find($product_id);
+                if($sales->type_sales == 2){ // de lai so dien thoai
+                    $sales->hh_ctv = $detailProduct->hoa_hong_ctv*$detailProduct->price/100;
+                    $sales->hh_pr = $detailProduct->hoa_hong_pr*$detailProduct->price/100;
+                    $sales->hh_cs = $detailProduct->hoa_hong_cs*$detailProduct->price/100;
+                }else{
+                    $sales->hh_ctv = $detailProduct->hoa_hong_ctv*$detailProduct->price/100;
+                    $sales->hh_pr = 0;
+                    $sales->hh_cs = ($detailProduct->hoa_hong_cs+$detailProduct->hoa_hong_pr)*$detailProduct->price/100;
+                }
+                $sales->save();
+
+                 //update CTV sales
+                $rsJoin = CtvJoinSale::where('product_id', $product_id)->get();
+                if($rsJoin->count() > 0){
+                    foreach($rsJoin as $join){
+                        $newJoin = CtvJoinSale::find($join->id);                        
+                        $newJoin->is_close = 2;                       
+                        $newJoin->save();
+                    }
+                }
+                
+            }
+
         }        
     }
     

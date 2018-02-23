@@ -12,7 +12,7 @@ use App\Models\CtvJoinSale;
 
 use Helper, File, Session, Auth, Image;
 
-class SalesController extends Controller
+class HoaHongController extends Controller
 {
     /**
     * Display a listing of the resource.
@@ -27,35 +27,20 @@ class SalesController extends Controller
         $arrSearch['pr_status'] = $pr_status = isset($request->pr_status) ? $request->pr_status : null; 
         $arrSearch['pr_id'] = $pr_id = isset($request->pr_id) ? $request->pr_id : null; 
         $arrSearch['ctv_id'] = $ctv_id = isset($request->ctv_id) ? $request->ctv_id : null;  
-        $query = CtvJoinSale::where('type_sale', $type_sale);
-        if($cskh_status){
-            $query->where('cskh_status', $cskh_status);
-        }
-        $detailProduct = [];
-        if($product_id){
-            $query->where('product_id', $product_id);
-            $detailProduct = Product::find($product_id);
-        }
-        if($pr_status){
-            $query->where('pr_status', $pr_status);
-        }
-        if($pr_id){
-            $query->where('pr_id', $pr_id);
-        }
-        if(Auth::user()->role == 3){ // pr
-            $query->where('pr_id', Auth::user()->id );   
-        }
-        
-        if($ctv_id){
-            $query->where('ctv_id', $ctv_id);
-        }
-        if(Auth::user()->role == 5){ // pr
-            $query->where('ctv_id', Auth::user()->id );   
+        $query = CtvJoinSale::where('is_success', 1);
+        $role = Auth::user()->role;
+        $user_id = Auth::user()->id;
+        if($role == 3){//pr
+            $query->where('pr_id', $user_id);
+        }elseif($role == 4){
+            $query->where('csctv_id', $user_id);
+        }elseif($role == 5){
+            $query->where('ctv_id', $user_id);
         }
         $items = $query->orderBy('id', 'desc')->paginate(100);
         $ctvList = Account::where(['role' =>5, 'status' => 1])->get();
         $prList = Account::where(['role' =>3, 'status' => 1])->get();
-        return view('backend.sales.index', compact( 'items', 'type_sale', 'cskh_status', 'ctvList', 'prList', 'pr_id', 'ctv_id', 'arrSearch', 'pr_status','detailProduct', 'product_id'));
+        return view('backend.hh.index', compact( 'items', 'type_sale', 'cskh_status', 'ctvList', 'prList', 'arrSearch', 'pr_status','detailProduct', 'product_id', 'role'));
     }
 
     /**

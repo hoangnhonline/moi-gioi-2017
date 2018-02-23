@@ -203,16 +203,18 @@
                    <p style="margin-top:10px">
                       
                       <b style="color:red">                  
-                      {{ ($item->price) }} {{ Helper::getName($item->price_unit_id, 'price_unit') }}
+                      {{ (number_format($item->price)) }} ({{ $item->price_text }})
                      </b>                    
                     </p>
                     
                   </td>
                   <td>                
-                    @if($item->type == 1)
-                      {{ $item->cart_status == 1 ? "Chưa bán" : "Đã bán" }}                  
-                    @else
-                      {{ $item->cart_status == 1 ? "Còn trống" : "Đã thuê" }}
+                   @if($item->cart_status == 1)
+                    <span class="label label-success">Chưa bán</span>
+                    @elseif($item->cart_status == 2)
+                    <span class="label label-danger">Đã bán</span>
+                    @elseif($item->cart_status == 3)
+                    <span class="label label-warning">Đã cọc</span>
                     @endif
                   </td>
                   <td class="center">
