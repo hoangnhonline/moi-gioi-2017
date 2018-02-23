@@ -273,7 +273,7 @@ class ProductController extends Controller
             'title' => 'required',
             'slug' => 'required',
             'price' => 'required|numeric',
-            'price_unit_id' => 'required',
+            
             'area' => 'required|numeric',
             'contact_name' => 'required',
             'contact_mobile' => 'required'
@@ -285,8 +285,7 @@ class ProductController extends Controller
             'title.required' => 'Bạn chưa nhập tiêu đề',
             'slug.required' => 'Bạn chưa nhập slug',
             'price.required' => 'Bạn chưa nhập giá',
-            'price.numeric' => 'Bạn nhập giá không hợp lệ',
-            'price_unit_id.required' => 'Bạn chưa chọn đơn vị giá',            
+            'price.numeric' => 'Bạn nhập giá không hợp lệ',            
             'area.required' => 'Bạn chưa nhập diện tích',
             'contact_name.required' => 'Bạn chưa nhập tên liên hệ',            
             'contact_mobile.required' => 'Bạn chưa nhập số di động liên hệ'
@@ -300,14 +299,6 @@ class ProductController extends Controller
         $dataArr['status'] = 1;
         $dataArr['created_user'] = Auth::user()->id;
         $dataArr['updated_user'] = Auth::user()->id;              
-        
-        if($dataArr['price_id'] == ''){
-            $dataArr['price_id'] = Helper::getPriceId($dataArr['price'], $dataArr['price_unit_id'], $dataArr['type']);
-        }
-
-        if($dataArr['area_id'] == ''){
-            $dataArr['area_id'] = Helper::getAreaId($dataArr['area']);   
-        }
         $rs = Product::create($dataArr);
 
         $product_id = $rs->id;
@@ -518,8 +509,7 @@ class ProductController extends Controller
             'ward_id' => 'required',            
             'title' => 'required',
             'slug' => 'required',
-            'price' => 'required|numeric',
-            'price_unit_id' => 'required',
+            'price' => 'required|numeric',            
             'area' => 'required|numeric',
             'contact_name' => 'required',
             'contact_mobile' => 'required'
@@ -531,8 +521,7 @@ class ProductController extends Controller
             'title.required' => 'Bạn chưa nhập tiêu đề',
             'slug.required' => 'Bạn chưa nhập slug',
             'price.required' => 'Bạn chưa nhập giá',
-            'price.numeric' => 'Bạn nhập giá không hợp lệ',
-            'price_unit_id.required' => 'Bạn chưa chọn đơn vị giá',            
+            'price.numeric' => 'Bạn nhập giá không hợp lệ',            
             'area.required' => 'Bạn chưa nhập diện tích',
             'contact_name.required' => 'Bạn chưa nhập tên liên hệ',            
             'contact_mobile.required' => 'Bạn chưa nhập số di động liên hệ'
@@ -544,14 +533,7 @@ class ProductController extends Controller
         $dataArr['alias'] = Helper::stripUnicode($dataArr['title']);        
         $dataArr['is_hot'] = isset($dataArr['is_hot']) ? 1 : 0;  
         
-        if($dataArr['price_id'] == ''){
-            $dataArr['price_id'] = Helper::getPriceId($dataArr['price'], $dataArr['price_unit_id'], $dataArr['type']);
-            //var_dump($dataArr['price_id']);die;
-        }
-
-        if($dataArr['area_id'] == ''){
-            $dataArr['area_id'] = Helper::getAreaId($dataArr['area']);   
-        }
+       
         $model = Product::find($dataArr['id']);
 
         $model->update($dataArr);
@@ -562,7 +544,7 @@ class ProductController extends Controller
         $this->storeImage( $product_id, $dataArr);
         $this->processRelation($dataArr, $product_id, 'edit');
 
-        Session::flash('message', 'Chỉnh sửa tin thành công');
+        Session::flash('message', 'Chỉnh sửa thành công');
 
         return redirect()->route('product.edit', $product_id);
         
