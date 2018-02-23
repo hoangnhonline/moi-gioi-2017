@@ -17,7 +17,7 @@ h1,h2,h3,h4,h5,h6{font-weight:inherit;font-size:inherit;}
 .noidung iframe{max-width:100% !important;height:auto;}
 .container{}
 .center{max-width:1200px;height:auto;margin:0 auto;margin-top:20px;}
-.left{width:74.5%;height:auto;float:left;}
+.left{width:74.5%;height:auto;float:left;padding-right: 10px !important}
 .right{width:290px;height:auto;float:right;}
 @media screen and (max-width:1160px){
 .left{width:73%;padding-left:5px;}
@@ -45,4 +45,8 @@ h1,h2,h3,h4,h5,h6{font-weight:inherit;font-size:inherit;}
 #error_login{
 	color:#b3292e;
 	font-style: italic;
+}
+.breadcrumb{
+	background-color: #FFF !important;
+	max-width: 95%;
 }

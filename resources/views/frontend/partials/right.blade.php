@@ -79,56 +79,37 @@
    <div class="clear"></div>
    <div class="tinnoibat">
       <ul class="scroller1">
+         <?php 
+         $rsAr = DB::table('articles')->where('status', 1)->orderBy('is_hot', 'desc')->orderBy('id', 'desc')->limit(3)->get();
+         //dd($rsAr);
+         ?>
+         @if(!empty($rsAr) > 0)
+         @foreach($rsAr as $articles)
          <li style="border-bottom:1px solid #ECECEC;margin-bottom:10px;">
             <div class="div_img_tt">
-               <a href="#tin-tuc/sieu-do-thi-moi-cu-chi-va-ly-trinh-dai-lo-ven-song-sai-gon/109.html"><img
-                  class="img_ttnb" src="{{ URL::asset('public/assets/files/sieu-do-thi-moi-cu-chi-1488096283.jpg') }}"
+               <a href="{{ route('news-detail', ['slug' => $articles->slug, 'id' => $articles->id]) }}" title="{!! $articles->title !!}"><img
+                  class="img_ttnb" src="{{ Helper::showImage($articles->image_url) }}"
                   width="90" height="90"
-                  alt="siêu đô thị mới củ chi và lý trình đại lộ ven sông sài gòn"></a>
+                  alt="{!! $articles->title !!}"></a>
                <div class="clear"></div>
             </div>
             <div class="div_tt_tt">
-               <h4><a class="ten_ttnb"
-                  href="#tin-tuc/sieu-do-thi-moi-cu-chi-va-ly-trinh-dai-lo-ven-song-sai-gon/109.html">siêu
-                  đô thị mới củ chi...</a>
+               <h4 style="margin-top:0px"><a class="ten_ttnb"
+                  href="{{ route('news-detail', ['slug' => $articles->slug, 'id' => $articles->id]) }}">{!! $articles->title !!}</a>
                </h4>
                <div class="clear"></div>
-               <p class="mota_tt">Sau khi Vingroup tiết lộ vị trí các dự án nhà ở giá rẻ ở TP.HCM thì
-                  Tập đoàn Tuần Châu cũng lên...
+               <p class="mota_tt" style="height:50px; overflow:hidden">
+               {{ $articles->description }}
                </p>
                <a class="xemtiep_tt"
-                  href="#tin-tuc/sieu-do-thi-moi-cu-chi-va-ly-trinh-dai-lo-ven-song-sai-gon/109.html">Xem
+                  href="{{ route('news-detail', ['slug' => $articles->slug, 'id' => $articles->id]) }}">Xem
                tiếp...</a>
                <div class="clear"></div>
             </div>
             <div class="clear"></div>
          </li>
-         <div class="clear"></div>
-         <li style="border-bottom:1px solid #ECECEC;margin-bottom:10px;">
-            <div class="div_img_tt">
-               <a href="#tin-tuc/bang-gia-dat-o-huyen-cu-chi-tphcm-20152019/108.html"><img
-                  class="img_ttnb"
-                  src="{{ URL::asset('public/assets/files/bang-gia-dat-o-huyen-cu-chi-tphcm-20152019-1478348748.jpg') }}"
-                  width="90" height="90"
-                  alt="BẢNG GIÁ ĐẤT Ở HUYỆN CỦ CHI TP.HCM 2015-2019"></a>
-               <div class="clear"></div>
-            </div>
-            <div class="div_tt_tt">
-               <h4><a class="ten_ttnb"
-                  href="#tin-tuc/bang-gia-dat-o-huyen-cu-chi-tphcm-20152019/108.html">BẢNG GIÁ ĐẤT
-                  Ở HUYỆN...</a>
-               </h4>
-               <div class="clear"></div>
-               <p class="mota_tt">BẢNG GIÁ ĐẤT Ở HUYỆN CỦ CHI
-                  (Ban hành kèm theo Quyết định số 51/2014/QĐ-UBND
-                  ngày 31 tháng 12 năm...
-               </p>
-               <a class="xemtiep_tt"
-                  href="#tin-tuc/bang-gia-dat-o-huyen-cu-chi-tphcm-20152019/108.html">Xem tiếp...</a>
-               <div class="clear"></div>
-            </div>
-            <div class="clear"></div>
-         </li>
+         @endforeach
+         @endif
          <div class="clear"></div>
       </ul>
       <div class="clear"></div>
