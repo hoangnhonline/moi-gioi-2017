@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Backend;
 
-use App\Models\Customer;
+use App\Models\Account;
 use App\Models\CtvJoinSale;
 use Illuminate\Http\Request;
 
@@ -622,8 +622,8 @@ class ProductController extends Controller
 
         // Get customer name
         foreach ($customerJoinSaleList as $key => $customerJoin) {
-            $customerId = $customerJoin->customer_id;
-            $customerInfo = Customer::find($customerId);
+            $customerId = $customerJoin->ctv_id;
+            $customerInfo = Account::find($customerId);
             $customerJoinSaleList[$key]['customer_name'] = $customerInfo->full_name;
         }
         return view('backend.product.customer-join-sale', compact( 'customerJoinSaleList', 'totalCustomer', 'detailProduct' ));

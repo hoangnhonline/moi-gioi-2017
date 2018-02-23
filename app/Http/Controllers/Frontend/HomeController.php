@@ -34,42 +34,24 @@ class HomeController extends Controller
     public function __construct(){       
 
 
-    }
-    public function getChild(Request $request){
-        $module = $request->mod;
-        $id = $request->id;
-        $column = $request->col;
-        return Helper::getChild($module, $column, $id);
-    }
-    /**
-    * Display a listing of the resource.
-    *
-    * @return Response
-    */
-    public function showLink(Request $request){
-        $site_id = $request->site_id;
-        $all = LinkSite::where('site_id', $site_id)->get();
-        $i = 0;
-        foreach($all as $data){
-            $i++;
-            echo $i."-"."<strong>".$data->link."</strong><br>";
-            if($data->images->count()){
-                foreach ($data->images as $value) {
-                    echo "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;".$value->image_url;
-                    echo "<br>";
-                }
-            }
-            echo "<hr>";
-        }
-        die;
-
-
-    }
-    public function loadSlider(){
-        return view('frontend.home.ajax-slider');
-    }
+    }    
     public function index(Request $request)
     {         
+        if(Session::get('userId')){
+            $userId = Session::get('userId');
+            $detail = Account::find($userId);
+            
+            if($detail->full_name == null || 
+                $detail->phone == null || 
+                $detail->cmnd == null || 
+                $detail->address == null || 
+                $detail->nghe_nghiep == null || 
+                $detail->bank_info == null
+                ){                                
+                return redirect()->route('xem-thong-tin');
+            }
+        }
+
         $productArr = [];
         $hoverInfo = [];
         $loaiSp = EstateType::where('status', 1)->get();

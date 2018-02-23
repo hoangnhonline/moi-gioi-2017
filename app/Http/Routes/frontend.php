@@ -40,11 +40,13 @@ Route::group(['namespace' => 'Frontend'], function()
     Route::get('/nha-dat-ban', ['as' => 'ban', 'uses' => 'ProductController@ban']);
     Route::get('/nha-dat-cho-thue', ['as' => 'cho-thue', 'uses' => 'ProductController@choThue']);
     Route::post('/project-contact', ['as' => 'project-contact', 'uses' => 'ProjectsController@contact']);
-    Route::get('/tin-tuc/dat-nen-long-an-mieng-moi-beo-bo-cua-gioi-dau-tu-p63.html', function(){ 
-        return Redirect::to('/nha-dat-long-an.html', 301);         
-    });
+    
     Route::get('/du-an', ['as' => 'du-an', 'uses' => 'ProjectsController@index']);    
     Route::post('/send-contact', ['as' => 'send-contact', 'uses' => 'ContactController@store']);
+    Route::get('/tai-khoan/khoa-hoc-cua-toi', ['as' => 'khoa-hoc-cua-toi', 'uses' => 'CustomerController@courses']);
+    Route::get('/tai-khoan/xem-thong-tin', ['as' => 'xem-thong-tin', 'uses' => 'CustomerController@accountInfo']); 
+    Route::get('thong-tin-tai-khoan', ['as' => 'account-info', 'uses' => 'CustomerController@accountInfo']);
+    Route::get('doi-mat-khau', ['as' => 'change-password', 'uses' => 'CustomerController@changePassword']);
     Route::get('du-an/{slug}', ['as' => 'detail-project', 'uses' => 'ProjectsController@detail']);
     Route::get('du-an/{slug}/{slugtab}', ['as' => 'tab', 'uses' => 'ProjectsController@tab']);
     Route::post('/tmp-upload-multiple-fe', ['as' => 'image.tmp-upload-multiple-fe', 'uses' => 'UploadController@tmpUploadMultipleFE']);
@@ -68,8 +70,7 @@ Route::group(['namespace' => 'Frontend'], function()
     Route::get('so-sanh.html', ['as' => 'so-sanh', 'uses' => 'CompareController@index']);
     Route::get('lien-he.html', ['as' => 'contact', 'uses' => 'HomeController@contact']);
     Route::get('{slug}.html', ['as' => 'danh-muc', 'uses' => 'ProductController@cate']);
-    Route::get('/tai-khoan/khoa-hoc-cua-toi', ['as' => 'khoa-hoc-cua-toi', 'uses' => 'CustomerController@courses']);
-    Route::get('/tai-khoan/xem-thong-tin', ['as' => 'xem-thong-tin', 'uses' => 'CustomerController@info']); 
+    
     Route::get('{slugCateParent}/{slugCateChild}', ['as' => 'cate', 'uses' => 'CateController@cateChild']);
     
     Route::post('/customer/update', ['as' => 'update-customer', 'uses' => 'CustomerController@update']);

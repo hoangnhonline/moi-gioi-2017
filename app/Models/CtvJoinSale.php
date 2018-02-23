@@ -1,8 +1,8 @@
 <?php namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-
-
+use App\Models\LichHen;
+use Auth;
 class CtvJoinSale extends Model  {
 
   /**
@@ -39,6 +39,26 @@ class CtvJoinSale extends Model  {
       'address',
       'vung_quan_tam',
       'nhu_cau',
-      'loai_bds'
+      'loai_bds',
+      'cskh_status',
+      'pr_status',
+      'cskh_id',
+      'pr_id'
     ];
+    public function ctv()
+    {
+        return $this->hasOne('App\Models\Account', 'id', 'ctv_id');
+    }
+    public function pr()
+    {
+        return $this->hasOne('App\Models\Account', 'id', 'pr_id');
+    }
+    public function hen($join_id)
+    {
+        return $rs = LichHen::where('join_id', $join_id)->where('user_id', Auth::user()->id)->get();
+    }
+    public function product()
+    {
+        return $this->hasOne('App\Models\Product', 'id', 'product_id');
+    }
 }

@@ -27,6 +27,24 @@ Route::group(['namespace' => 'Backend', 'prefix' => 'backend', 'middleware' => '
         Route::get('{id}/destroy', ['as' => 'video.destroy', 'uses' => 'VideoController@destroy']);
         Route::post('/update', ['as' => 'video.update', 'uses' => 'VideoController@update']);
     });
+    Route::group(['prefix' => 'sales'], function () {
+        Route::get('/', ['as' => 'sales.index', 'uses' => 'SalesController@index']);
+        Route::get('/create', ['as' => 'sales.create', 'uses' => 'SalesController@create']);
+        Route::post('/store', ['as' => 'sales.store', 'uses' => 'SalesController@store']);
+        Route::get('{id}/edit',   ['as' => 'sales.edit', 'uses' => 'SalesController@edit']);     
+        Route::get('{id}/detail',   ['as' => 'sales.detail', 'uses' => 'SalesController@detail']);       
+        Route::get('{id}/destroy', ['as' => 'sales.destroy', 'uses' => 'SalesController@destroy']);
+        Route::post('/update', ['as' => 'sales.update', 'uses' => 'SalesController@update']);
+    });
+     Route::group(['prefix' => 'hen'], function () {
+        Route::get('/', ['as' => 'hen.index', 'uses' => 'HenController@index']);
+        Route::get('/ajax-list', ['as' => 'hen.ajax-list', 'uses' => 'HenController@ajaxList']);
+        Route::get('/create', ['as' => 'hen.create', 'uses' => 'HenController@create']);
+        Route::post('/store', ['as' => 'hen.store', 'uses' => 'HenController@store']);
+        Route::get('{id}/edit',   ['as' => 'hen.edit', 'uses' => 'HenController@edit']);       
+        Route::get('{id}/destroy', ['as' => 'hen.destroy', 'uses' => 'HenController@destroy']);
+        Route::post('/update', ['as' => 'hen.update', 'uses' => 'HenController@update']);
+    });
     Route::group(['prefix' => 'menu'], function () {
         Route::get('/', ['as' => 'menu.index', 'uses' => 'GeneralController@setupMenu']);
         Route::get('/create', ['as' => 'menu.create', 'uses' => 'GeneralController@create']);
@@ -245,9 +263,11 @@ Route::group(['namespace' => 'Backend', 'prefix' => 'backend', 'middleware' => '
 
     });
     Route::post('/tmp-upload', ['as' => 'image.tmp-upload', 'uses' => 'UploadController@tmpUpload']);
+
     Route::post('/tmp-upload-multiple', ['as' => 'image.tmp-upload-multiple', 'uses' => 'UploadController@tmpUploadMultiple']);
         
     Route::post('/update-order', ['as' => 'update-order', 'uses' => 'GeneralController@updateOrder']);
+    Route::post('/update-status', ['as' => 'update-status', 'uses' => 'GeneralController@updateStatus']);
     Route::post('/ck-upload', ['as' => 'ck-upload', 'uses' => 'UploadController@ckUpload']);
     Route::post('/get-slug', ['as' => 'get-slug', 'uses' => 'GeneralController@getSlug']);
 

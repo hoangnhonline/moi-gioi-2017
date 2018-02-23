@@ -40,12 +40,12 @@ class Account extends Model  {
                     'last_login',
                     'changed_password',
                     'created_user',
-                    'updated_user'
+                    'updated_user',
+                    'bank_info',
+                    'nghe_nghiep',
+                    'cmnd'
                     ];
-
-    public function mod(){
-        return $this->hasMany('App\Models\UserMod', 'cart_id');
-    }
+    
     public static function joinedProduct($ctvId){
       $query = CtvJoinSale::where(['ctv_id' => $ctvId])
               ->pluck('product_id')->toArray();

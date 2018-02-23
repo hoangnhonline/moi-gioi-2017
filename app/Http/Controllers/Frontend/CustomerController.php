@@ -23,27 +23,8 @@ class CustomerController extends Controller
         $data = $request->all();
 
         $customer_id = Session::get('userId');
-        if(isset($request->vang_lai) && $request->vang_lai == 1){
-            Session::set('vanglai', $data);
-        }else{
-            $customer = Customer::find($customer_id)->update($data);
-        }
-
-        if(Session::has('new-register')) {
-          Session::forget('new-register');
-        }
-
-        if(Session::has('fb_name')) {
-          Session::forget('fb_name');
-        }
-
-        if(Session::has('fb_email')) {
-          Session::forget('fb_email');
-        }
-
-        if(Session::has('fb_id')) {
-          Session::forget('fb_id');
-        }
+       
+        $customer = Account::find($customer_id)->update($data);       
 
         return 'sucess';
     }
@@ -155,15 +136,14 @@ class CustomerController extends Controller
 
         return view('frontend.account.notification', compact('notiSale', 'notiOrder', 'seo'));
     }
-    public function accountInfo(){
+    public function accountInfo(){     
         if(!Session::get('userId')){
             return redirect()->route('home');
         }
         $seo['title'] = $seo['description'] = $seo['keywords'] = "Thông tin tài khoản";     
         $customer_id = Session::get('userId');
-        $customer = Customer::find($customer_id);
-        $listCity = City::orderBy('display_order')->get();
-        return view('frontend.account.update-info', compact('seo', 'customer', 'listCity'));
+        $customer = Account::find($customer_id);        
+        return view('frontend.account.update-info', compact('seo', 'customer'));
     }
     public function changePassword(Request $request){
         if(!Session::get('userId')){
@@ -265,10 +245,10 @@ class CustomerController extends Controller
             'loai_bds' => $params['loai_bds'] ? $params['loai_bds'] : null,
             'vung_quan_tam' => $params['vung_quan_tam'] ? $params['vung_quan_tam'] : null,
             'cmnd' => $params['cmnd'] ? $params['cmnd'] : null,
-            'status_join' => 1,
-            'status_sale' => 0,
-            'commission_start' => $commissionStart,
-            'commission_end' => $commissionStart
+            'status_join' => $params['typeSales'] == 2 ? 0 : 1, // neu de lai so dt thi ko can duyet
+            'status_sales' => 1,
+           // 'commission_start' => $commissionStart,
+            //'commission_end' => $commissionStart
         ];
 
         CtvJoinSale::create($data);

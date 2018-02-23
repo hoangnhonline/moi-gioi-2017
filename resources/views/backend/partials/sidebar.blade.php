@@ -23,6 +23,15 @@
         </a>       
       </li>
       @endif
+      
+      <li {{ in_array(\Request::route()->getName(), ['sales.edit', 'sales.detail', 'sales.index']) ? "class=active" : "" }}>
+        <a href="{{ route('sales.index') }}">
+          <i class="fa fa-pencil-square-o"></i> 
+          <span>Tham gia bán</span>         
+        </a>       
+      </li>
+      
+      @if(Auth::user()->role != 2 && Auth::user()->role != 3)
       <li class="treeview {{ in_array(\Request::route()->getName(), ['product.index', 'product.create', 'product.edit', 'estate-type.index', 'estate-type.edit', 'estate-type.create', 'cate.index', 'cate.edit', 'cate.create']) ? 'active' : '' }}">
         <a href="#">
           <i class="fa fa-opencart"></i> 
@@ -34,7 +43,7 @@
         <ul class="treeview-menu">
           <li {{ in_array(\Request::route()->getName(), ['product.index', 'product.edit']) ? "class=active" : "" }}><a href="{{ route('product.index') }}"><i class="fa fa-circle-o"></i> Danh sách</a></li>
           <li {{ \Request::route()->getName() == "product.create" ? "class=active" : "" }}><a href="{{ route('product.create') }}"><i class="fa fa-circle-o"></i> Thêm BĐS</a></li>         
-          @if(Auth::user()->role > 1)
+          @if(Auth::user()->role == 1)
           <li {{ in_array(\Request::route()->getName(), ['estate-type.index', 'estate-type.edit', 'estate-type.create']) ? "class=active" : "" }}><a href="{{ route('estate-type.index') }}"><i class="fa fa-circle-o"></i> Danh mục</a></li>
           @endif
         </ul>
@@ -118,7 +127,7 @@
             <span>Tags / Tiện ích</span>          
           </a>       
         </li>
-        
+      @endif  
       @if(Auth::user()->role == 1)
       <li {{ in_array(\Request::route()->getName(), ['newsletter.edit', 'newsletter.index']) ? "class=active" : "" }}>
         <a href="{{ route('newsletter.index') }}">

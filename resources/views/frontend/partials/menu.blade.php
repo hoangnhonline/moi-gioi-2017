@@ -6,7 +6,7 @@
             <div class="khung_menu12">
                <ul>
                   <li>
-                     <a href="{{ route('du-an') }}">Dự án bán</a>
+                     <a href="{{ route('danh-muc', "du-an-ban" ) }}">Dự án bán</a>
                      <ul>
                      </ul>
                   </li>
@@ -16,7 +16,7 @@
                      </ul>
                   </li>
                   <li>
-                     <a href="{{ route('danh-muc', "nha-cho-thue" ) }}">Nhà cho thuê</a>
+                     <a href="{{ route('danh-muc', "dat-ban" ) }}">Đất bán</a>
                      <ul>
                      </ul>
                   </li>

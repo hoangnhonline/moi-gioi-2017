@@ -54,7 +54,9 @@ class UserController extends Controller
         if (Auth::validate($dataArr)) {
 
             if (Auth::attempt($dataArr)) {
-              
+                if(Auth::user()->role == 2 || Auth::user()->role ==3){
+                    return redirect()->route('sales.index');    
+                }
                 return redirect()->route('dashboard.index');
               
             }

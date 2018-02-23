@@ -36,7 +36,7 @@ class Product extends Model  {
                             'street_id', 
                             'project_id', 
                             'price',
-                            'price_unit_id', 
+                            'price_text', 
                             'area', 
                             'full_address', 
                             'front_face', 
@@ -66,7 +66,10 @@ class Product extends Model  {
                             'display_order',
                             'created_user',
                             'updated_user',
-                            'hoa_hong'
+                            'hoa_hong_cs',
+                            'hoa_hong_pr',
+                            'hoa_hong_ctv'
+
                         ];
 
     public static function productTag( $id )

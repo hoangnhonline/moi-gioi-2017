@@ -146,21 +146,12 @@
                           <input type="text" class="form-control" name="slug" id="slug" value="{{ old('slug') }}">
                         </div>
                         <div class="form-group col-md-6 none-padding" >                  
-                            <label>Giá<span class="red-star">*</span></label>
+                            <label>Giá bằng số<span class="red-star">*</span></label>
                             <input type="text" class="form-control" name="price" id="price" value="{{ old('price') }}">
-                        </div>
-                        
-                        <div class="form-group col-md-6 none-padding pleft-5" >                  
-                            <label>Đơn vị giá<span class="red-star">*</span></label>
-                            <select class="form-control" name="price_unit_id" id="price_unit_id">
-                              <option value="">--Chọn--</option>
-                              @foreach( $priceUnitList as $value )
-                              <option value="{{ $value->id }}"
-                              {{ old('price_unit_id') == $value->id ? "selected" : "" }}                           
-
-                              >{{ $value->name }}</option>
-                              @endforeach
-                            </select>
+                        </div>                       
+                        <div class="form-group col-md-6" >                  
+                            <label>Giá bằng chữ<span class="red-star">*</span></label>
+                            <input type="text" class="form-control" name="price_text" id="price_text" value="{{ old('price_text') }}">
                         </div>
                         <div class="form-group col-md-6  pleft-5">
                           <label for="email">Khoảng giá<span class="red-star">*</span></label>
@@ -184,10 +175,23 @@
                             @endforeach
                           </select>
                         </div>
-                        <div class="form-group" >                  
-                            <label>Hoa hồng<span class="red-star">*</span></label>
-                            <input type="text" class="form-control" name="hoa_hong" id="hoa_hong" value="{{ old('hoa_hong') }}" placeholder="%"> 
+                        <hr>
+                        <u style="font-size:20px; font-weight:bold">HOA HỒNG</u>
+                        <div class="clearfix"></div>
+                        <div class="form-group col-md-4" >                  
+                            <label>PR<span class="red-star">*</span></label>
+                            <input type="text" class="form-control" name="hoa_hong_pr" id="hoa_hong_pr" value="{{ old('hoa_hong_pr') }}" placeholder="%"> 
                         </div>
+                        <div class="form-group col-md-4" >                  
+                            <label>Chăm sóc CTV<span class="red-star">*</span></label>
+                            <input type="text" class="form-control" name="hoa_hong_cs" id="hoa_hong_cs" value="{{ old('hoa_hong_cs') }}" placeholder="%"> 
+                        </div>
+                        <div class="form-group col-md-4" >                  
+                            <label>CTV<span class="red-star">*</span></label>
+                            <input type="text" class="form-control" name="hoa_hong_ctv" id="hoa_hong_ctv" value="{{ old('hoa_hong_ctv') }}" placeholder="%"> 
+                        </div>
+                        <hr>
+                        <div class="clearfix"></div>
                         <div class="form-group col-md-12 none-padding">
                             <label>Địa chỉ</label>
                              <input type="text" class="form-control" name="full_address" id="full_address" value="{{ old('full_address') }}">  

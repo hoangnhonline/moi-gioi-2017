@@ -38,6 +38,20 @@ class CateController extends Controller
     */
     public function index(Request $request)
     {   
+        if(Session::get('userId')){
+            $userId = Session::get('userId');
+            $detail = Account::find($userId);
+            
+            if($detail->full_name == null || 
+                $detail->phone == null || 
+                $detail->cmnd == null || 
+                $detail->address == null || 
+                $detail->nghe_nghiep == null || 
+                $detail->bank_info == null
+                ){                                
+                return redirect()->route('xem-thong-tin');
+            }
+        }
         $productArr = [];
         $slug = $request->slug;
         $rs = EstateType::where('slug', $slug)->first();

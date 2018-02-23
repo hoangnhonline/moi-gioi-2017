@@ -56,14 +56,9 @@
                   <!-- Tab panes -->
                   <div class="tab-content">
                     <div role="tabpanel" class="tab-pane active" id="home">
-                      <div class="form-group col-md-4  pleft-5">
-                          <label for="email">Loại <span class="red-star">*</span></label>
-                            <select class="form-control" name="type" id="type">
-                                <option value="1" {{ old('type', $detail->type) == 1 ? "selected" : "" }}>Bán</option>
-                                <option value="2" {{ old('type', $detail->type) == 2 ? "selected" : "" }}>Cho thuê</option>
-                            </select>
-                        </div>
-                        <div class="form-group col-md-4 none-padding">
+                      
+                        <input type="hidden" name="type" value="{{ $detail->type }}">
+                        <div class="form-group col-md-12">
                           <label for="email">Danh mục<span class="red-star">*</span></label>
                           <select class="form-control" name="estate_type_id" id="estate_type_id">
                             <option value="">--Chọn--</option>
@@ -75,25 +70,7 @@
                             @endforeach
                           </select>
                         </div>
-                        <div class="form-group col-md-4">
-                          <label for="email">Danh mục con</label>
-                          <?php 
-                          $cateList = (object) [];
-                          $estate_type_id = old('estate_type_id', $detail->estate_type_id);
-                          if($estate_type_id > 0){
-                            $cateList = DB::table('cate')->where('estate_type_id', $estate_type_id)->get();
-                          }
-                          ?>
-                          <select class="form-control" name="cate_id" id="cate_id">
-                            <option value="">--Chọn--</option>
-                            @foreach( $cateList as $value )
-                            <option value="{{ $value->id }}"
-                            {{ old('cate_id', $detail->cate_id) == $value->id ? "selected" : "" }}                           
-
-                            >{{ $value->name }}</option>
-                            @endforeach
-                          </select>
-                        </div>
+                        
                         <div class="form-group col-md-4  pleft-5">
                           <label for="email">Tỉnh/TP <span class="red-star">*</span></label>
                             <select class="form-control" name="city_id" id="city_id">
@@ -176,22 +153,14 @@
                         </div>
 
                         <div class="form-group col-md-6  pleft-5" >                  
-                            <label>Giá<span class="red-star">*</span></label>
+                            <label>Giá bằng số<span class="red-star">*</span></label>
                             <input type="text" class="form-control" name="price" id="price" value="{{ old('price', $detail->price) }}">
                         </div>
-                        
-                        <div class="form-group col-md-6 none-padding" >                  
-                            <label>Đơn vị giá<span class="red-star">*</span></label>
-                            <select class="form-control" name="price_unit_id" id="price_unit_id">
-                              <option value="">--Chọn--</option>
-                              @foreach( $priceUnitList as $value )
-                              <option value="{{ $value->id }}"
-                              {{ old('price_unit_id', $detail->price_unit_id) == $value->id ? "selected" : "" }}                           
-
-                              >{{ $value->name }}</option>
-                              @endforeach
-                            </select>
+                        <div class="form-group col-md-6  none-padding" >                  
+                            <label>Giá bằng chữ<span class="red-star">*</span></label>
+                            <input type="text" class="form-control" name="price_text" id="price_text" value="{{ old('price_text', $detail->price_text) }}">
                         </div>
+                        
                         <div class="form-group col-md-6  pleft-5">
                           <label for="email">Khoảng giá<span class="red-star">*</span></label>
                             <select class="form-control" name="price_id" id="price_id">
@@ -214,10 +183,23 @@
                             @endforeach
                           </select>
                         </div>
-                        <div class="form-group" >                  
-                            <label>Hoa hồng<span class="red-star">*</span></label>
-                            <input type="text" class="form-control" name="hoa_hong" id="hoa_hong" value="{{ old('hoa_hong', $detail->hoa_hong) }}" placeholder="%"> 
+                        <hr>
+                        <u style="font-size:20px; font-weight:bold">HOA HỒNG</u>
+                        <div class="clearfix"></div>
+                        <div class="form-group col-md-4" >                  
+                            <label>PR<span class="red-star">*</span></label>
+                            <input type="text" class="form-control" name="hoa_hong_pr" id="hoa_hong_pr" value="{{ old('hoa_hong_pr', $detail->hoa_hong_pr) }}" placeholder="%"> 
                         </div>
+                        <div class="form-group col-md-4" >                  
+                            <label>Chăm sóc CTV<span class="red-star">*</span></label>
+                            <input type="text" class="form-control" name="hoa_hong_cs" id="hoa_hong_cs" value="{{ old('hoa_hong_cs', $detail->hoa_hong_cs) }}" placeholder="%"> 
+                        </div>
+                        <div class="form-group col-md-4" >                  
+                            <label>CTV<span class="red-star">*</span></label>
+                            <input type="text" class="form-control" name="hoa_hong_ctv" id="hoa_hong_ctv" value="{{ old('hoa_hong_ctv', $detail->hoa_hong_ctv) }}" placeholder="%"> 
+                        </div>
+                        <hr>
+                        <div class="clearfix"></div>
                         <div class="form-group col-md-12 none-padding">
                             <label>Địa chỉ</label>
                              <input type="text" class="form-control" name="full_address" id="full_address" value="{{ old('full_address', $detail->full_address) }}">  

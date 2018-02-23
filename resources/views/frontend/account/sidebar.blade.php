@@ -10,12 +10,7 @@
                           <li {{ \Request::route()->getName() == "account-info" ? "class=active" : "" }}>
                               <a href="{{ route('account-info') }}" title="Cập nhật thông tin"> Cập nhật thông tin</a>
                           </li>
-                          <li {{ \Request::route()->getName() == "order-history" || \Request::route()->getName() == "order-detail" ? "class=active" : "" }}>
-                              <a href="{{ route('order-history') }}" title="Đơn hàng của tôi"> Đơn hàng của tôi</a>
-                          </li>
-                          <li {{ \Request::route()->getName() == "notification" ? "class=active" : "" }}>
-                              <a href="{{ route('notification') }}" title="Thông báo của tôi"> Thông báo của tôi</a>
-                          </li>
+                          
                           @if(Session::get('facebook_id') == null)
                           <li {{ \Request::route()->getName() == "change-password" ? "class=active" : "" }}>
                               <a href="{{ route('change-password') }}" title="Đổi mật khẩu"> Đổi mật khẩu</a>
@@ -31,7 +26,6 @@
           </div>
       </div>
       <!-- ./block category  -->
-      <!-- Banner silebar -->
-      @include('frontend.partials.banner-slidebar')
+      <!-- Banner silebar -->    
       <!-- ./Banner silebar -->
 </div> 

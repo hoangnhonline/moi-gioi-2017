@@ -17,6 +17,7 @@ use App\Models\Area;
 use App\Models\Menu;
 use App\Models\City;
 use App\Models\Direction;
+use Session;
 
 class ViewComposerServiceProvider extends ServiceProvider
 {
@@ -49,6 +50,7 @@ class ViewComposerServiceProvider extends ServiceProvider
 	{
 		
 		view()->composer( '*' , function( $view ){		
+			
 			$banList = $thueList = [];	
 			$tmp = EstateType::where('status', 1)->get();
 			foreach($tmp as $est){

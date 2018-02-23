@@ -1,12 +1,10 @@
 <?php
 namespace App\Helpers;
 use App\Helpers\simple_html_dom;
-use App\Models\City;
-use App\Models\Price;
-use App\Models\Area;
+use App\Models\Account;
 use App\Models\CounterValues;
 use App\Models\CounterIps;
-use DB, Image;
+use DB, Image, Session;
 
 class Helper
 {
@@ -16,6 +14,7 @@ class Helper
     {
         return strtoupper($string);
     }
+    
     public static function getChild($table, $column, $parent_id){
         $listData = DB::table($table)->where($column, $parent_id)->get();
         if($table == 'ward'){

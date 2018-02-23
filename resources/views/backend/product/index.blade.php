@@ -216,7 +216,7 @@
                     @endif
                   </td>
                   <td class="center">
-                    <a class="btn btn-primary btn-sm col-xs-12" href="{{ route('product.customer-join-sale', ['id' => $item]) }}" target="_blank"><i class="fa fa-users" aria-hidden="true"></i> </a>
+                    <a class="btn btn-primary btn-sm col-xs-12" href="{{ route('sales.index', ['product_id' => $item->id]) }}" target="_blank"><i class="fa fa-users" aria-hidden="true"></i> </a>
                   </td>
                   <td style="white-space:nowrap; text-align:right">
                     <a class="btn btn-default btn-sm" href="{{ route('chi-tiet', [$item->slug_loai, $item->slug, $item->id] ) }}" target="_blank"><i class="fa fa-eye" aria-hidden="true"></i> Xem</a>
