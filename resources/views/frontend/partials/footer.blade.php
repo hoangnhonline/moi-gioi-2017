@@ -2,7 +2,7 @@
    <div class="thongtin">
       <p class="title_thongtin">thông tin</p>
       <div class="clear"></div>
-      <p style="text-transform: uppercase;color: #fff;font-size: 16px;display: block;padding-bottom: 7px;">
+      <p style="text-transform: uppercase;color: #fff;font-size: 13px;display: block;padding-bottom: 7px;">
          CÔNG TY TNHH DỊCH VỤ TƯ VẤN BẤT ĐỘNG SẢN THANH PHÚ THỊNH LAND
       </p>
       <p style="display: block;padding: 2px 0px;color: #fff;font-size: 13px;"><img src="{{ URL::asset('public/assets/files/diachi.png') }}"
