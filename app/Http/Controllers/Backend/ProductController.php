@@ -547,6 +547,7 @@ class ProductController extends Controller
                 $newJoin->status_sales = $dataArr['cart_status'];
                 if($dataArr['cart_status'] == 2){ // da ban
                     $newJoin->is_close = 1;
+                    $newJoin->is_success = 0;
                 }
                 $newJoin->save();
             }

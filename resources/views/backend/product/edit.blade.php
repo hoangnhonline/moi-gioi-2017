@@ -17,15 +17,22 @@
   <section class="content">
     <a class="btn btn-default btn-sm" href="{{ route('product.index', ['estate_type_id' => $detail->estate_type_id, 'cate_id' => $detail->cate_id]) }}" style="margin-bottom:5px">Quay lại</a>
     <a class="btn btn-primary btn-sm" href="{{ route('chi-tiet', [$detailEstate->slug, $detail->slug, $detail->id] ) }}" target="_blank" style="margin-top:-6px"><i class="fa fa-eye" aria-hidden="true"></i> Xem</a>
+   @if($detail->cart_status != 2)
     <form role="form" method="POST" action="{{ route('product.update') }}" id="dataForm">
-    <div class="row">
+    @endif
+    <div class="row" id="row_all">
       <!-- left column -->
       <input type="hidden" name="id" value="{{ $detail->id }}">
       <div class="col-md-8">
         <!-- general form elements -->
         <div class="box box-primary">
           <div class="box-header with-border">
-            Chỉnh sửa
+            
+            @if($detail->cart_status == 2)
+            <h3 style="color:red">ĐÃ BÁN</h3>
+            @else
+            Chỉnh sửa 
+            @endif
           </div>
           <!-- /.box-header -->               
             {!! csrf_field() !!}          
@@ -394,6 +401,7 @@
                 </div>
                   
             </div>
+            @if($detail->cart_status != 2)
             <div class="box-footer">
               <input type="hidden" name="latt" id="latt" value="{{ old('latt', $detail->latt) }}" />
               <input type="hidden" name="longt" id="longt" value="{{ old('longt', $detail->longt) }}" />
@@ -401,6 +409,7 @@
               <button type="submit" class="btn btn-primary btn-sm" id="btnSave">Lưu</button>
               <a class="btn btn-default btn-sm" class="btn btn-primary btn-sm" href="{{ route('product.index', ['estate_type_id' => $detail->estate_type_id])}}">Hủy</a>
             </div>
+            @endif
             
         </div>
         <!-- /.box -->     
@@ -440,8 +449,9 @@
       </div>
       <!--/.col (left) -->      
     </div>
-
+    @if($detail->cart_status != 2)
     </form>
+    @endif
     <!-- /.row -->
   </section>
   <!-- /.content -->
@@ -695,6 +705,10 @@
 
 
 $(document).ready(function(){
+  @if($detail->cart_status == 2)
+  $('#row_all input, #row_all textarea, #row_all select').attr('disabled', 'disbaled');
+
+  @endif
   $('#type, #estate_type_id').change(function(){
 
         var url ="{{ route('product.edit', [$detail->id]) }}?type=" + $('#type').val();
