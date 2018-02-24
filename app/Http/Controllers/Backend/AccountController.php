@@ -92,11 +92,12 @@ class AccountController extends Controller
          
         $this->validate($request,[
             'full_name' => 'required',
-            'email' => 'required|unique:users,email',
+            'email' => 'required|email|unique:users,email',
         ],
         [
             'full_name.required' => 'Bạn chưa nhập họ tên',
             'email.required' => 'Bạn chưa nhập email',
+            'email.email' => 'Sai định dạng email',
             'email.unique' => 'Email đã được sử dụng.'
         ]);       
         
