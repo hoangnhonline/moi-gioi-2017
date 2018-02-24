@@ -47,7 +47,6 @@
                   <ul class="nav nav-tabs" role="tablist">
                     <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Thông tin chi tiết</a></li>
                     <li role="presentation"><a href="#lien-he" aria-controls="tien-ich" role="tab" data-toggle="tab">Thông tin liên hệ</a></li>
-                    <li role="presentation"><a href="#tien-ich" aria-controls="tien-ich" role="tab" data-toggle="tab">Tiện ích</a></li>
                     <li role="presentation"><a href="#settings" aria-controls="settings" role="tab" data-toggle="tab">Hình ảnh</a></li>                    
                   </ul>
 
@@ -261,22 +260,7 @@
                                 Đã cọc
                               </label>
                             </div>
-                        </div>
-                        <div class="input-group">
-                          <label>Tags</label>
-                          <select class="form-control select2" name="tags[]" id="tags" multiple="multiple">                  
-                            @if( $tagArr->count() > 0)
-                              @foreach( $tagArr as $value )
-                              <option value="{{ $value->id }}" {{ (old('tags') && in_array($value->id, old('tags'))) ? "selected" : "" }}>{{ $value->name }}</option>
-                              @endforeach
-                            @endif
-                          </select>
-                          <span class="input-group-btn">
-                            <button style="margin-top:24px" class="btn btn-primary btn-sm" id="btnAddTag" type="button" data-value="3">
-                              Tạo mới
-                            </button>
-                          </span>
-                        </div>
+                        </div>                        
                         <div class="form-group form-group col-md-12 none-padding" style="margin-top:10px">
                             <label>Mô tả</label>
                             <textarea class="form-control" rows="4" name="description" id="description">{{ old('description') }}</textarea>
@@ -292,44 +276,24 @@
                     <div role="tabpanel" class="tab-pane" id="lien-he">
                         <div class="form-group col-md-6 " >                  
                             <label>Họ tên <span class="red-star">*</span></label>
-                            <input type="text" class="form-control" name="contact_name" id="contact_name" value="{{ old('contact_name') }}">
+                            <input type="text" class="form-control" name="contact_name" id="contact_name" value="{{ old('contact_name', 'Thanh Phú Thịnh Land') }}">
                         </div>
                         <div class="form-group col-md-6 none-padding pleft-5" >                  
                             <label>Địa chỉ</label>
-                            <input type="text" class="form-control" name="contact_address" id="contact_address" value="{{ old('contact_address') }}">
+                            <input type="text" class="form-control" name="contact_address" id="contact_address" value="{{ old('contact_address', '34 Trần Hưng Đạo, P.Tân Thành, Q.Tân Phú') }}">
                         </div>                        
                         <div class="form-group col-md-6 " >                  
                             <label>Điện thoại</label>
-                            <input type="text" class="form-control" name="contact_phone" id="contact_phone" value="{{ old('contact_phone') }}">
+                            <input type="text" class="form-control" name="contact_phone" id="contact_phone" value="{{ old('contact_phone', '0919.356.178') }}">
                         </div>
-                        <div class="form-group col-md-6 none-padding pleft-5" >                  
-                            <label>Di động <span class="red-star">*</span></label>
-                            <input type="text" class="form-control" name="contact_mobile" id="contact_mobile" value="{{ old('contact_mobile') }}">
-                        </div>
-                        <div class="form-group col-md-12 " >                  
-                            <label>Email</label>
-                            <input type="text" class="form-control" name="contact_email" id="contact_email" value="{{ old('contact_email') }}">
-                        </div>
+                 
+                            <input type="hidden" class="form-control" name="contact_mobile" id="contact_mobile" value="{{ old('contact_mobile') }}">
+                        
+                       
+                            <input type="hidden" class="form-control" name="contact_email" id="contact_email" value="{{ old('contact_email') }}">
+                       
                         <div class="clearfix"></div>
-                     </div><!--end lien he -->                  
-                     <div role="tabpanel" class="tab-pane" id="tien-ich">
-                        <div class="form-group" style="margin-top:10px;margin-bottom:10px" id="load-tien-ich"> 
-                              @if($tienIchLists)
-                                <?php $i_ti = 0; ?>
-                                @foreach($tienIchLists as $ti)
-                                <?php $i_ti++; ?>
-                                <div class="col-md-4">
-                                  <input type="checkbox" value="{{ $ti->id }}" name="tien_ich[]" id="tien_ich_{{ $i_ti }}"> 
-                                  <label style="cursor:poiter;text-transform:uppercase; font-weight:normal" for="tien_ich_{{ $i_ti }}">{{ $ti->name }}</label>
-                                </div>
-                                @endforeach 
-                              @else
-                              <p>Chưa có tiện ích nào.</p>
-                              @endif
-                              <div class="clearfix"></div>
-                        </div>
-
-                     </div><!--end tien ich--> 
+                     </div><!--end lien he -->                                      
                      <div role="tabpanel" class="tab-pane" id="settings">
                         <div class="form-group" style="margin-top:10px;margin-bottom:10px">  
                          
@@ -401,39 +365,7 @@
   </section>
   <!-- /.content -->
 </div>
-<!-- Modal -->
-<div id="tagModal" class="modal fade" role="dialog">
-  <div class="modal-dialog modal-lg">
 
-    <!-- Modal content-->
-    <div class="modal-content">
-    <form method="POST" action="{{ route('tag.ajax-save') }}" id="formAjaxTag">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">Tạo mới tag</h4>
-      </div>
-      <div class="modal-body" id="contentTag">
-          <input type="hidden" name="type" value="1">
-           <!-- text input -->
-          <div class="col-md-12">
-            <div class="form-group">
-              <label>Tags<span class="red-star">*</span></label>
-              <textarea class="form-control" name="str_tag" id="str_tag" rows="4" >{{ old('str_tag') }}</textarea>
-            </div>
-            
-          </div>
-          <div classs="clearfix"></div>
-      </div>
-      <div style="clear:both"></div>
-      <div class="modal-footer" style="text-align:center">
-        <button type="button" class="btn btn-primary btn-sm" id="btnSaveTagAjax"> Save</button>
-        <button type="button" class="btn btn-default btn-sm" data-dismiss="modal" id="btnCloseModalTag">Close</button>
-      </div>
-      </form>
-    </div>
-
-  </div>
-</div>
 <input type="hidden" id="route_upload_tmp_image_multiple" value="{{ route('image.tmp-upload-multiple') }}">
 <input type="hidden" id="route_upload_tmp_image" value="{{ route('image.tmp-upload') }}">
 <input type="hidden" id="route_get_tien_ich" value="{{ route('product.ajax-get-tien-ich') }}">
@@ -616,67 +548,11 @@ $(document).ready(function(){
 $('#pac-input').on('keypress', function(e) {
     return e.which !== 13;
 });
-  $('#btnAddTag').click(function(){
-      $('#tagModal').modal('show');
-  });
-});
 $(document).on('click', '.remove-image', function(){
   if( confirm ("Bạn có chắc chắn không ?")){
     $(this).parents('.col-md-3').remove();
   }
 });
-$(document).on('click', '#btnSaveTagAjax', function(){
-    $.ajax({
-      url : $('#formAjaxTag').attr('action'),
-      data: $('#formAjaxTag').serialize(),
-      type : "post", 
-      success : function(str_id){          
-        $('#btnCloseModalTag').click();
-        $.ajax({
-          url : "{{ route('tag.ajax-list') }}",
-          data: { 
-            type : 1 ,
-            tagSelected : $('#tags').val(),
-            str_id : str_id
-          },
-          type : "get", 
-          success : function(data){
-              $('#tags').html(data);
-              $('#tags').select2('refresh');
-              
-          }
-        });
-      }
-    });
- }); 
- $('#contentTag #name').change(function(){
-       var name = $.trim( $(this).val() );
-       if( name != '' && $('#contentTag #slug').val() == ''){
-          $.ajax({
-            url: $('#route_get_slug').val(),
-            type: "POST",
-            async: false,      
-            data: {
-              str : name
-            },              
-            success: function (response) {
-              if( response.str ){                  
-                $('#contentTag #slug').val( response.str );
-              }                
-            },
-            error: function(response){                             
-                var errors = response.responseJSON;
-                for (var key in errors) {
-                  
-                }
-                //$('#btnLoading').hide();
-                //$('#btnSave').show();
-            }
-          });
-       }
-    });
-
-
 
     $(document).ready(function(){
      

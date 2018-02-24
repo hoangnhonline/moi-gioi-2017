@@ -5719,10 +5719,11 @@ ul.tabs li a {
     font-size: 14px;
     display: block;
     padding: 2px;
-    text-align: center;
+    text-align: left;
     color: #868383;
-    width: 50%;
-    float: left
+    width: 35%;
+    float: left;
+    padding-left: 10px;
 }
 
 .thamgiaban {

@@ -75,8 +75,7 @@ class DetailController extends Controller
                     ->where('product.id', '<>', $detail->id)                                     
                     ->orderBy('product.cart_status', 'asc')
                     ->orderBy('product.id', 'desc')->limit(6)->get();
-
-        $tagSelected = Product::getListTag($detail->id); 
+     
         $type = $detail->type;
         $estate_type_id = $detail->estate_type_id;
         $street_id = $detail->street_id;
@@ -91,7 +90,7 @@ class DetailController extends Controller
         $tienIch = Product::productTienIch($detail->id);
         
         $tienIchLists = Tag::where('type', 3)->get();
-        return view('frontend.detail.index', compact('detail', 'rsLoai', 'hinhArr', 'productArr', 'seo', 'socialImage', 'otherList', 'tagSelected',
+        return view('frontend.detail.index', compact('detail', 'rsLoai', 'hinhArr', 'productArr', 'seo', 'socialImage', 'otherList',
             'type',
             'estate_type_id',
             'street_id',

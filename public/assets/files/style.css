@@ -37,7 +37,6 @@ h1,h2,h3,h4,h5,h6{font-weight:inherit;font-size:inherit;}
 .title_sanpham{font-size:16px !important;}
 .right{display:block; float:none; margin:0 auto}
 .an_mb { display:none}
-
 }
 @media screen and (max-width:400px){
 .left{width:98%;padding-left:6px;}

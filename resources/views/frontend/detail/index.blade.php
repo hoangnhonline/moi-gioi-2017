@@ -95,20 +95,7 @@
 	    			<tr>
 	    				<td><b>Số toilet</b></td>
 	    				<td>{{ $detail->no_wc }}</td>
-	    			</tr>
-	    			@if(!empty($tienIch))
-	    			<?php $countTag = count($tienIch); ?>
-	    			<tr>
-	    				<td><b>Tiện ích xung quanh</b></td>
-	    				<td>
-	    					<?php $i = 0; ?>
-							@foreach($tienIch as $tag)							
-							<?php $i++; ?>
-							<a href="{{ route('tag', $tag['slug']) }}" title="{!! $tag['name'] !!}">{!! $tag['name'] !!}</a>@if($i< $countTag), @endif
-							@endforeach		
-	    				</td>
-	    			</tr>
-	    			@endif
+	    			</tr>	    			
 	    		</table>
 	    	</div>
 	    	<div class="col-sm-6">
@@ -125,27 +112,14 @@
 	    			<tr>
 	    				<td><b>Di động</b></td>
 	    				<td>{{ $detail->contact_mobile }}</td>
-	    			</tr>
-	    			<tr>
-	    				<td><b>Email</b></td>
-	    				<td>{!! $detail->contact_email !!}</td>
-	    			</tr>
+	    			</tr>	    			
 	    		</table>
 	    	</div>
 	    </div><!-- /block-detail-info -->	    	    
-	</article><!-- /block-cate-news-detail -->
-	@if(!empty((array)$tagSelected))
-	<?php $countTag = count($tagSelected);?>
-	<article class="block block-news-with-region">
-		<u>Tags</u>:
-		<?php $i = 0; ?>
-		@foreach($tagSelected as $tag)
-		<?php $i++; ?>
-		<a href="{{ route('tag', $tag->slug) }}" title="{!! $tag['name'] !!}">{!! $tag['name'] !!}</a>@if($i< $countTag), @endif
-		@endforeach		
-	</article>
-	@endif
-	@if($otherList)
+	</article><!-- /block-cate-news-detail -->	
+
+	@if($otherList->count() > 0)
+	<div class="clearfix"></div>
 	<article class="block block-news-with-region">
 		<div class="block-title block-title-common">
 			<h3><span class="icon-tile"><i class="fa fa-th-list"></i></span> TIN RAO CÙNG KHU VỰC</h3>

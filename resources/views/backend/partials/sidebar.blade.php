@@ -63,19 +63,7 @@
           <li {{ in_array(\Request::route()->getName(), ['estate-type.index', 'estate-type.edit', 'estate-type.create']) ? "class=active" : "" }}><a href="{{ route('estate-type.index') }}"><i class="fa fa-circle-o"></i> Danh mục</a></li>
           @endif
         </ul>
-      </li>
-      <li {{ in_array(\Request::route()->getName(), ['pro-content.index', 'pro-content.create', 'pro-content.edit', 'landing-projects.index', 'landing-projects.create', 'landing-projects.edit']) ? "class=active" : "" }}>
-        <a href="{{ route('landing-projects.index') }}">
-          <i class="fa fa-pencil-square-o"></i> 
-          <span>Dự án (Landing page)</span>         
-        </a>       
-      </li>
-      <li {{ in_array(\Request::route()->getName(), ['product.kygui']) ? "class=active" : "" }}>
-        <a href="{{ route('product.kygui') }}">
-          <i class="fa fa-pencil-square-o"></i> 
-          <span>Tin ký gửi</span>         
-        </a>       
-      </li>
+      </li>     
       <li {{ in_array(\Request::route()->getName(), ['cart.create', 'cart.edit', 'cart.index','cart-product.create', 'cart-product.edit', 'cart-product.index']) ? "class=active" : "" }}>
         <a href="{{ route('cart.index') }}">
           <i class="fa fa-pencil-square-o"></i> 
@@ -136,13 +124,7 @@
         @endif    
         </ul>
        
-      </li>      
-        <li {{ in_array(\Request::route()->getName(), ['tag.edit', 'tag.index']) ? "class=active" : "" }}>
-          <a href="{{ route('tag.index') }}">
-            <i class="fa fa-pencil-square-o"></i> 
-            <span>Tags / Tiện ích</span>          
-          </a>       
-        </li>
+      </li>              
       @endif  
       @if(Auth::user()->role == 1)
       <li {{ in_array(\Request::route()->getName(), ['newsletter.edit', 'newsletter.index']) ? "class=active" : "" }}>

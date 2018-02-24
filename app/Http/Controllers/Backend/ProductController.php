@@ -225,7 +225,7 @@ class ProductController extends Controller
     */
     public function create(Request $request)
     {
-        $tagArr = Tag::where('type', 1)->get();
+
         $directionArr = Direction::all();
         $estate_type_id = $request->estate_type_id ? $request->estate_type_id : null;
         $type = $request->type ? $request->type : 1;    
@@ -246,11 +246,9 @@ class ProductController extends Controller
         $wardList = Ward::where('district_id', $district_id)->get();
         $streetList = Street::where('district_id', $district_id)->get();
         $projectList = Project::where('district_id', $district_id)->get();
-
-        $tienIchLists = Tag::where(['type' => 3])->get();
         $areaList = Area::all();
 
-        return view('backend.product.create', compact('estateTypeArr',   'estate_type_id', 'type', 'district_id', 'districtList', 'wardList', 'streetList', 'projectList', 'priceUnitList', 'tagArr', 'tienIchLists', 'directionArr', 'priceList', 'areaList', 'city_id'));
+        return view('backend.product.create', compact('estateTypeArr',   'estate_type_id', 'type', 'district_id', 'districtList', 'wardList', 'streetList', 'projectList', 'priceUnitList', 'directionArr', 'priceList', 'areaList', 'city_id'));
     }
 
     /**
@@ -305,32 +303,14 @@ class ProductController extends Controller
 
         $this->storeImage( $product_id, $dataArr);
         $this->storeMeta($product_id, 0, $dataArr);
-        $this->processRelation($dataArr, $product_id);
+        //$this->processRelation($dataArr, $product_id);
         Session::flash('message', 'Tạo mới tin thành công');
 
         return redirect()->route('product.index', ['estate_type_id' => $dataArr['estate_type_id'], 'type' => $dataArr['type'], 'city_id' => $dataArr['city_id']]);
     }
     private function processRelation($dataArr, $object_id, $type = 'add'){
     
-        if( $type == 'edit'){
-          
-            TagObjects::deleteTags( $object_id, 1);
-            TagObjects::deleteTags( $object_id, 3);
-
-        }
-        // xu ly tags
-        if( !empty( $dataArr['tags'] ) && $object_id ){
-            foreach ($dataArr['tags'] as $tag_id) {
-                TagObjects::create(['object_id' => $object_id, 'tag_id' => $tag_id, 'type' => 1]);
-            }
-        }
-
-        // xu ly tien ich
-        if( !empty( $dataArr['tien_ich'] ) && $object_id ){
-            foreach ($dataArr['tien_ich'] as $tag_id) {
-                TagObjects::create(['object_id' => $object_id, 'tag_id' => $tag_id, 'type' => 3]);
-            }
-        }
+       
       
     }
     public function storeMeta( $id, $meta_id, $dataArr ){
@@ -454,7 +434,7 @@ class ProductController extends Controller
     */
     public function edit($id)
     {        
-        $tagArr = Tag::where('type', 1)->get();
+        
         $hinhArr = (object) [];
         $detail = Product::find($id);
        // var_dump($detail->type);die;
@@ -473,15 +453,10 @@ class ProductController extends Controller
        // var_dump($detail->district_id);die;
         $wardList = Ward::where('district_id', $detail->district_id)->get();
         $streetList = Street::where('district_id', $detail->district_id)->get();
-        $projectList = Project::where('district_id', $detail->district_id)->get();
-
-        $tagSelected = Product::productTag($id);
-        $tienIchSelected = Product::productTienIch($id);
-        
-        $tienIchLists = Tag::where(['type' => 3])->get();
+        $projectList = Project::where('district_id', $detail->district_id)->get();       
         $directionArr = Direction::all();
         $areaList = Area::all();
-        return view('backend.product.edit', compact( 'detail', 'hinhArr', 'estateTypeArr',  'meta', 'priceUnitList', 'districtList', 'wardList', 'streetList','projectList', 'detailEstate', 'tagSelected', 'tagArr', 'tienIchLists', 'tienIchSelected', 'directionArr', 'areaList', 'priceList'));
+        return view('backend.product.edit', compact( 'detail', 'hinhArr', 'estateTypeArr',  'meta', 'priceUnitList', 'districtList', 'wardList', 'streetList','projectList', 'detailEstate', 'directionArr', 'areaList', 'priceList'));
     }
     public function ajaxDetail(Request $request)
     {       
@@ -555,7 +530,7 @@ class ProductController extends Controller
         
         $this->storeMeta( $product_id, $dataArr['meta_id'], $dataArr);
         $this->storeImage( $product_id, $dataArr);
-        $this->processRelation($dataArr, $product_id, 'edit');
+        //$this->processRelation($dataArr, $product_id, 'edit');
 
         Session::flash('message', 'Chỉnh sửa `thành công');
 
