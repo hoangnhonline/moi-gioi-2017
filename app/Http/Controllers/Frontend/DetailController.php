@@ -19,8 +19,7 @@ use App\Models\TagObjects;
 use App\Models\Direction;
 use App\Models\PriceUnit;
 use App\Models\Articles;
-
-
+use App\Models\Account;
 use Helper, File, Session, Auth, Image;
 
 class DetailController extends Controller
@@ -67,6 +66,7 @@ class DetailController extends Controller
 
         $otherList = Product::where('product.slug', '<>', '')
                     ->where('product.type', $detail->type)
+                    ->where('product.cart_status', 1)
                     ->where('product.district_id', $detail->district_id)
                     ->leftJoin('product_img', 'product_img.id', '=','product.thumbnail_id')            
                     ->join('estate_type', 'estate_type.id', '=','product.estate_type_id')      
@@ -86,10 +86,11 @@ class DetailController extends Controller
         $price_id = $detail->price_id;
         $no_room = $detail->no_room;
         $project_id = $detail->project_id;
-        $direction_id = $detail->direction_id;        
-        $tienIch = Product::productTienIch($detail->id);
-        
-        $tienIchLists = Tag::where('type', 3)->get();
+        $direction_id = $detail->direction_id;                
+        $joinedProductArrId = [];
+        if(Session::get('userId') > 0){
+            $joinedProductArrId = Account::joinedProduct(Session::get('userId'));       
+        }
         return view('frontend.detail.index', compact('detail', 'rsLoai', 'hinhArr', 'productArr', 'seo', 'socialImage', 'otherList',
             'type',
             'estate_type_id',
@@ -101,9 +102,8 @@ class DetailController extends Controller
             'direction_id',
             'area_id',
             'project_id',
-            'price_id',
-            'tienIch', 
-            'tienIchLists'        
+            'price_id',            
+            'joinedProductArrId'        
             ));
     }
     public function tagDetail(Request $request){

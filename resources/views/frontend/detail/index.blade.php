@@ -34,7 +34,9 @@
 			<li><p>Giá: <span>{{ $detail->price }} {!! Helper::getName($detail->price_unit_id, 'price_unit') !!}</span></p></li>
 			<li><p>Diện tích: <span>{!! $detail->area !!} m<sup>2</sup></span></p></li>
 	    </ul><!-- /cate-news-detail-price -->
+	    @if(!in_array($detail->id, $joinedProductArrId))
 	    <a class="tham-gia-ban-detail" data-id="{{ $detail->id }}" href="javascript:;" data-toggle="modal" @if (!Session::get('login')) data-target="#login-modal" @else data-target="#join-sales-modal" @endif>Tham gia bán</a>
+	    @endif
 	    <hr>
 	    <div class="cate-news-detail-desc" style="margin-bottom: 20px">
 	    	<h3>Thông tin mô tả</h3>
