@@ -70,7 +70,7 @@ class GeneralController extends Controller
                 $product_id = $sales->product_id;
                 $detailProduct = Product::find($product_id);
                 if($sales->type_sale == 2){ // de lai so dien thoai
-                    $sales->hh_ctv = $detailProduct->hoa_hong_ctv*$detailProduct->price/100;
+                    $sales->hh_ctv = ($detailProduct->hoa_hong_ctv*$detailProduct->price/100)/2;
                     $sales->hh_pr = $detailProduct->hoa_hong_pr*$detailProduct->price/100;
                     $sales->hh_cs = $detailProduct->hoa_hong_cs*$detailProduct->price/100;
                 }else{

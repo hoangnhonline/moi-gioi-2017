@@ -111,7 +111,7 @@
                                 @if($type_sale == 2 && Auth::user()->role < 3)
                                 <th>PR</th>
                                 @endif
-                                <th width="180px">Trạng thái</th>
+                                <th width="180px" class="text-center">Trạng thái</th>
                                 <th width="">Trạng thái GD</th>
                                 <th width="120px">Ngày tham gia</th>
                                 @if(Auth::user()->role == 5)
@@ -147,7 +147,7 @@
                                     @endif
                                     <td>{{ $item->product->title }}
                                     @if($item->status_sales == 1)
-                                    <span class="label label-success">Chưa bán</span>
+                                    <span class="label label-info">Chưa bán</span>
                                     @elseif($item->status_sales == 2)
                                     <span class="label label-danger">Đã bán</span>
                                     @elseif($item->status_sales == 3)
@@ -166,7 +166,7 @@
                                         @endif
                                     </td>
                                     @endif
-                                    <td>
+                                    <td class="text-center">
                                     @if(Auth::user()->role == 2)
                                     <select class="change-status form-control" data-table="ctv_join_sale" data-col="cskh_status" data-id="{{ $item->id }}">
                                         <option value="1" {{ $item->cskh_status == 1 ? "selected" : "" }}>Chưa gọi</option>
@@ -181,6 +181,20 @@
                                         <option value="3" {{ $item->pr_status == 3 ? "selected" : "" }}>Giao dịch thành công</option>
                                         <option value="4" {{ $item->pr_status == 4 ? "selected" : "" }}>Không thành công</option>
                                     </select>
+                                    @endif
+
+                                    @if(Auth::user()->role == 4 && $item->type_sale == 1)
+                                    <select class="change-status form-control" data-table="ctv_join_sale" data-col="status_join" data-id="{{ $item->id }}">
+                                        <option value="1" {{ $item->status_join == 1 ? "selected" : "" }}>Chưa duyệt</option>
+                                        <option value="2" {{ $item->status_join == 2 ? "selected" : "" }}>Đã duyệt</option>   
+                                    </select>
+                                    @endif
+                                    @if(Auth::user()->role == 5 && $item->type_sale == 1)
+                                    @if($item->status_join == 1)
+                                    <span class="label label-danger">Chưa duyệt</span>
+                                    @else
+                                    <span class="label label-success">Đã duyệt</span>
+                                    @endif
                                     @endif
                                     </td>                                   
                                     <td>
@@ -204,7 +218,11 @@
                                     @if(Auth::user()->role == 5)
                                     <td class="text-right" style="font-weight:bold;">
                                       @if($item->is_success == 0)
-                                      {{ number_format($item->product->hoa_hong_ctv*$item->product->price/100) }}
+                                        @if($item->type_sale == 1)
+                                        {{ number_format($item->product->hoa_hong_ctv*$item->product->price/100) }}
+                                        @else
+                                        {{ number_format(($item->product->hoa_hong_ctv*$item->product->price/100)/2) }}
+                                        @endif
                                       @else
                                       {{ number_format($item->hh_ctv) }}
                                       @endif

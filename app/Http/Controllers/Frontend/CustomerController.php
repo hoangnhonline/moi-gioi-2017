@@ -246,7 +246,7 @@ class CustomerController extends Controller
             'loai_bds' => $params['loai_bds'] ? $params['loai_bds'] : null,
             'vung_quan_tam' => $params['vung_quan_tam'] ? $params['vung_quan_tam'] : null,
             'cmnd' => $params['cmnd'] ? $params['cmnd'] : null,
-            'status_join' => $params['typeSales'] == 2 ? 0 : 1, // neu de lai so dt thi ko can duyet
+            'status_join' => $params['typeSales'] == 2 ? 2 : 1, // neu de lai so dt thi ko can duyet
             'status_sales' => 1,
             'csctv_id' => $detailCustomer->leader_id
            // 'commission_start' => $commissionStart,
