@@ -114,6 +114,9 @@
                                 <th width="180px">Trạng thái</th>
                                 <th width="">Trạng thái GD</th>
                                 <th width="120px">Ngày tham gia</th>
+                                @if(Auth::user()->role == 5)
+                                <th class="text-right">Hoa hồng</th>
+                                @endif
                                 <th width="1%;white-space:nowrap">Thao tác</th>
                                 
                             </tr>
@@ -198,9 +201,16 @@
                                     <td>
                                         {{ date('d-m-Y', strtotime($item->created_at)) }}
                                     </td>
+                                    @if(Auth::user()->role == 5)
+                                    <td class="text-right" style="font-weight:bold;">
+                                      {{ number_format($item->product->hoa_hong_ctv*$item->product->price/100) }}
+
+                                    </td>
+                                    @endif
                                     <td style="white-space:nowrap; text-align:right">
-                                    
+                                        @if($type_sale == 2)
                                         <a href="{{ route( 'sales.detail', [ 'id' => $item->id ]) }}" class="btn-sm btn btn-info">Chi tiết</a>
+                                        @endif
                                         @if(Auth::user()->role == 1 || Auth::user()->role == 6)
                                             @if($item->is_close == 1)
                                             <button data-table="ctv_join_sale" data-col="is_success" data-id="{{ $item->id }}" class="btn-sm btn btn-success btnSuccess">GD thành công</button>
