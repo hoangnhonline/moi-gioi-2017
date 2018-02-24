@@ -76,7 +76,7 @@ class ProductController extends Controller
         if( $project_id ){
             $query->where('product.project_id', $project_id);
         }
-        if(Auth::user()->role > 1){
+        if(Auth::user()->role != 1 && Auth::user()->role != 6  ){
             $query->where('product.created_user', Auth::user()->id);
         }
         if( $name != ''){
