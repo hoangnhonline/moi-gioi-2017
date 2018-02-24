@@ -111,7 +111,7 @@ class HomeController extends Controller
             $productArr[$estate_type->id] = Product::where('estate_type_id', $estate_type->id)->where('product.cart_status', 1)->leftJoin('product_img', 'product_img.id', '=','product.thumbnail_id')        
                      ->join('estate_type', 'estate_type.id', '=','product.estate_type_id')                  
                     ->select('product_img.image_url as image_url', 'product.*', 'estate_type.slug as slug_loai')->orderBy('is_hot', 'desc')->orderBy('id', 'desc')->limit('9')->get();
-        }
+        }        
         $joinedProductArrId = [];
         if(Session::get('userId') > 0){
             $joinedProductArrId = Account::joinedProduct(Session::get('userId'));       

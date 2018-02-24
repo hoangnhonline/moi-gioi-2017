@@ -47,7 +47,7 @@ class Account extends Model  {
                     ];
     
     public static function joinedProduct($ctvId){
-      $query = CtvJoinSale::where(['ctv_id' => $ctvId, 'type' => 1])
+      $query = CtvJoinSale::where(['ctv_id' => $ctvId, 'type_sale' => 1])
               ->pluck('product_id')->toArray();
         return $query;
     }

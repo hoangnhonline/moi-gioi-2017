@@ -3,7 +3,10 @@
 @foreach($estateTypeList as $et)
 <p class="title-home"><a>{!! $et->name !!}</a></p>
 <div class="clear"></div>
-@if(!empty($productArr[$et->id]))
+<?php 
+//dd($productArr[$et->id]);
+?>
+@if($productArr[$et->id]->count() > 0)
 <div>
    
    @foreach($productArr[$et->id] as $pro)
