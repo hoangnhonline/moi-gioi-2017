@@ -127,15 +127,18 @@
                                     @if($type_sale == 2)
                                     <td>{{ $item->full_name }}</td>
                                     <td>{{ $item->phone }}
+                                    @if($item->pr_status != 3)
                                     @if(Auth::user()->role == 2 || Auth::user()->role == 3)
                                     @if($item->cskh_status < 3)
                                     
                                     <button type="button" class="btn btn-info tao-lich-hen btn-sm"  title="Tạo lịch hẹn" data-value="{{ $item->id }}" data-toggle="modal" data-target="#lichModal">Lịch hẹn <span class="badge">({{ $item->hen($item->id)->count() }})</span></button>
-                                    @endif
+                                    @endif <!--item->cskh_status < 3-->
                                     @if($item->cskh_status == 3 && $item->pr_status < 3)
                                     <button type="button" class="btn btn-info tao-lich-hen btn-sm"  title="Tạo lịch hẹn" data-value="{{ $item->id }}" data-toggle="modal" data-target="#lichModal">Lịch hẹn <span class="badge">({{ $item->hen($item->id)->count() }})</span></button>
                                     @endif
                                     @endif
+                                    @endif 
+                                    <!--if pr status != 3-->
                                     </td>
                                     @endif
                                     <td>{{ $item->product->title }}
