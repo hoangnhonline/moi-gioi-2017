@@ -203,8 +203,11 @@
                                     </td>
                                     @if(Auth::user()->role == 5)
                                     <td class="text-right" style="font-weight:bold;">
+                                      @if($item->is_success == 0)
                                       {{ number_format($item->product->hoa_hong_ctv*$item->product->price/100) }}
-
+                                      @else
+                                      {{ number_format($item->hh_ctv) }}
+                                      @endif
                                     </td>
                                     @endif
                                     <td style="white-space:nowrap; text-align:right">
