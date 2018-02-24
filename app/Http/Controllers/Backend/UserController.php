@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Models\Backend\Users;
+use App\Models\Account;
+
 use Helper, File, Session, Hash, Auth;
 
 class UserController extends Controller
@@ -54,9 +56,16 @@ class UserController extends Controller
         if (Auth::validate($dataArr)) {
 
             if (Auth::attempt($dataArr)) {
+                $customer = Account::find(Auth::user()->id);
+                Session::put('login', true);
+                Session::put('userId', $customer->id);
+                Session::put('facebook_id', $customer->facebook_id);
+                Session::put('username', $customer->full_name);
+                Session::put('avatar', $customer->image_url);
                 if(in_array(Auth::user()->role, [2,3,4,5])){
                     return redirect()->route('sales.index');    
                 }
+
                 return redirect()->route('dashboard.index');
               
             }
