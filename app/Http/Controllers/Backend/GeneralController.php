@@ -85,7 +85,7 @@ class GeneralController extends Controller
                 if($rsJoin->count() > 0){
                     foreach($rsJoin as $join){
                         $newJoin = CtvJoinSale::find($join->id);                        
-                        $newJoin->is_close = 2;                       
+                        $newJoin->is_close = 2;                 
                         $newJoin->save();
                     }
                 }

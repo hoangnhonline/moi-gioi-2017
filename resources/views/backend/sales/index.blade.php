@@ -215,7 +215,7 @@
                                         <a href="{{ route( 'sales.detail', [ 'id' => $item->id ]) }}" class="btn-sm btn btn-info">Chi tiết</a>
                                         @endif
                                         @if(Auth::user()->role == 1 || Auth::user()->role == 6)
-                                            @if($item->is_close == 1)
+                                            @if($item->is_close == 1 && $item->is_success == 0)
                                             <button data-table="ctv_join_sale" data-col="is_success" data-id="{{ $item->id }}" class="btn-sm btn btn-success btnSuccess">GD thành công</button>
                                             @endif
                                         @endif
