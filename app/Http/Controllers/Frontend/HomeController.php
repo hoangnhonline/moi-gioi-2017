@@ -114,7 +114,7 @@ class HomeController extends Controller
         }
         $joinedProductArrId = [];
         if(Session::get('userId') > 0){
-            $joinedProductArrId = [];//Account::joinedProduct(Session::get('userId'));       
+            $joinedProductArrId = Account::joinedProduct(Session::get('userId'));       
         }
         return view('frontend.home.index', compact('bannerArr', 'articlesArr', 'socialImage', 'seo', 'countMess', 'hotProduct', 'tinThiTruong', 'luat', 'khonggiansong', 'phongthuy', 'tinRandom','hotProduct2', 'luat', 'tuvan', 'videoList', 'videoFirst', 'estateTypeList', 'productArr', 'joinedProductArrId'));
 
