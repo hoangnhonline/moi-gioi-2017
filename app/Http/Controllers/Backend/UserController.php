@@ -57,11 +57,14 @@ class UserController extends Controller
 
             if (Auth::attempt($dataArr)) {
                 $customer = Account::find(Auth::user()->id);
-                Session::put('login', true);
-                Session::put('userId', $customer->id);
-                Session::put('facebook_id', $customer->facebook_id);
-                Session::put('username', $customer->full_name);
-                Session::put('avatar', $customer->image_url);
+                if(Auth::user()->role == 5){
+                    Session::put('login', true);
+                    Session::put('userId', $customer->id);
+                    Session::put('facebook_id', $customer->facebook_id);
+                    Session::put('username', $customer->full_name);
+                    Session::put('avatar', $customer->image_url);
+                }
+                
                 if(in_array(Auth::user()->role, [2,3,4,5])){
                     return redirect()->route('sales.index');    
                 }
