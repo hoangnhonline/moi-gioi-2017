@@ -49,3 +49,6 @@ h1,h2,h3,h4,h5,h6{font-weight:inherit;font-size:inherit;}
 	background-color: #FFF !important;
 	max-width: 95%;
 }
+.carousel-inner>.item img {
+	margin: 0 auto !important;
+}
