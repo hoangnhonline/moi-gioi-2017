@@ -4,11 +4,11 @@
   <!-- Content Header (Page header) -->
   <section class="content-header">
     <h1>
-      Tham gia bán  
+      Khách hàng  
     </h1>
     <ol class="breadcrumb">
       <li><a href="#"><i class="fa fa-dashboard"></i> Dashboard</a></li>
-      <li><a href="{{ route('sales.index') }}">Tham gia bán</a></li>
+      <li><a href="{{ route('sales.index') }}">Khách hàng</a></li>
       <li class="active">Chi tiết </li>
     </ol>
   </section>

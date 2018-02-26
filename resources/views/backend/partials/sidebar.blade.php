@@ -27,7 +27,7 @@
       <li {{ in_array(\Request::route()->getName(), ['sales.edit', 'sales.detail', 'sales.index']) ? "class=active" : "" }}>
         <a href="{{ route('sales.index') }}">
           <i class="fa fa-pencil-square-o"></i> 
-          <span>Tham gia bán</span>         
+          <span>Danh sách khách hàng</span>         
         </a>       
       </li>
       @endif
