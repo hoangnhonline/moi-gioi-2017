@@ -47,6 +47,21 @@ class AccountController extends Controller
         $modList = Account::where(['role' => 2, 'status' => 1])->get();
         return view('backend.account.index', compact('items', 'role', 'leader_id', 'modList'));
     }
+    public function ctv(Request $request)
+    {         
+        if(!in_array(Auth::user()->role, [1, 4])){
+            return redirect()->route('dashboard.index');
+        }
+        $query = Account::where('status', '>', 0);
+    
+        $query->where('role', 5);
+         
+        if(Auth::user()->role == 4){
+            $query->where('leader_id', Auth::user()->id);
+        }        
+        $items = $query->orderBy('id', 'desc')->get();        
+        return view('backend.account.ctv', compact('items'));
+    }
     public function create()
     {        
         if(Auth::user()->role > 1){

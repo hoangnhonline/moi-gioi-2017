@@ -66,7 +66,12 @@ class SalesController extends Controller
             $query->where('ctv_id', Auth::user()->id );   
         }
         $items = $query->orderBy('id', 'desc')->paginate(100);
-        $ctvList = Account::where(['role' =>5, 'status' => 1])->get();
+        
+        if(Auth::user()->role == 4){
+             $ctvList = Account::where('leader_id', Auth::user()->id)->where('role' , 5)->get();
+        }else{
+            $ctvList = Account::where(['role' =>5, 'status' => 1])->get();    
+        }
         $prList = Account::where(['role' =>3, 'status' => 1])->get();
         return view('backend.sales.index', compact( 'items', 'type_sale', 'cskh_status', 'ctvList', 'prList', 'pr_id', 'ctv_id', 'arrSearch', 'pr_status','detailProduct', 'product_id'));
     }

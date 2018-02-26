@@ -70,7 +70,9 @@
                                   <option value="4" {{ $pr_status == 4 ? "selected" : "" }}>Không thành công</option>
                               </select>
                             </div>  
+                            @endif <!--Auth::user()->role == 3-->
                             @endif
+                            @if(in_array(Auth::user()->role, [1,2,4]))
                             @if($ctvList->count() > 0)
                             <div class="form-group">              
                               <select class="form-control" name="ctv_id" id="ctv_id">
@@ -80,8 +82,8 @@
                                   @endforeach
                               </select>
                             </div> 
-                            @endif  
-                             @endif 
+                            @endif   <!--$ctvList->count() > 0-->
+                              @endif
                              <!-- check lon hon CTV-->                          
                             <button style="margin-top:-5px;" type="submit" class="btn btn-primary btn-sm">Lọc</button>
                         </form>

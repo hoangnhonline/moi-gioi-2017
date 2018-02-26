@@ -303,6 +303,7 @@ Route::group(['namespace' => 'Backend', 'prefix' => 'backend', 'middleware' => '
     });
     Route::group(['prefix' => 'account'], function () {
         Route::get('/', ['as' => 'account.index', 'uses' => 'AccountController@index']);
+        Route::get('/ctv', ['as' => 'account.ctv', 'uses' => 'AccountController@ctv']);
         Route::get('/change-password', ['as' => 'account.change-pass', 'uses' => 'AccountController@changePass']);
         Route::post('/store-password', ['as' => 'account.store-pass', 'uses' => 'AccountController@storeNewPass']);
         Route::get('/update-status/{status}/{id}', ['as' => 'account.update-status', 'uses' => 'AccountController@updateStatus']);
