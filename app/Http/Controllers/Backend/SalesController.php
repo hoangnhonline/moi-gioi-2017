@@ -65,6 +65,7 @@ class SalesController extends Controller
         if(Auth::user()->role == 5){ // pr
             $query->where('ctv_id', Auth::user()->id );   
         }
+        $query->orderBy('co_hen', 'desc');
         $items = $query->orderBy('id', 'desc')->paginate(100);
         
         if(Auth::user()->role == 4){
