@@ -48,6 +48,16 @@ class SalesController extends Controller
         if(Auth::user()->role == 3){ // pr
             $query->where('pr_id', Auth::user()->id );   
         }
+        if(Auth::user()->role == 4){ // cs ctv
+            $arrId = [];
+            $listCtv = Account::where('leader_id', Auth::user()->id)->pluck('id');
+            if($listCtv->count() > 0){
+                foreach($listCtv as $ctv){                    
+                    $arrId[] = $ctv;
+                }
+            }            
+            $query->whereIn('ctv_id', $arrId );   
+        }
         
         if($ctv_id){
             $query->where('ctv_id', $ctv_id);
