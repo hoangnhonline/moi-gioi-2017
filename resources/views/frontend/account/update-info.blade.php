@@ -108,7 +108,8 @@
         });       
 
         if(error > 0) {
-          alert('Vui lòng nhập đầy đủ thông tin');
+          
+          swal({ title: '', text: 'Vui lòng nhập đầy đủ thông tin', type: 'error' });
           $('#btnUpdate').removeAttr('disabled');
           return false;
         } else {
