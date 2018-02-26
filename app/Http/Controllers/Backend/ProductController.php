@@ -272,8 +272,7 @@ class ProductController extends Controller
             'price' => 'required|numeric',
             
             'area' => 'required|numeric',
-            'contact_name' => 'required',
-            'contact_mobile' => 'required'
+            'contact_name' => 'required'            
         ],
         [            
             'estate_type_id.required' => 'Bạn chưa chọn loại bất động sản',
@@ -284,8 +283,7 @@ class ProductController extends Controller
             'price.required' => 'Bạn chưa nhập giá',
             'price.numeric' => 'Bạn nhập giá không hợp lệ',            
             'area.required' => 'Bạn chưa nhập diện tích',
-            'contact_name.required' => 'Bạn chưa nhập tên liên hệ',            
-            'contact_mobile.required' => 'Bạn chưa nhập số di động liên hệ'
+            'contact_name.required' => 'Bạn chưa nhập tên liên hệ'            
         ]);
            
         $dataArr['slug'] = str_replace(".", "-", $dataArr['slug']);
@@ -485,8 +483,7 @@ class ProductController extends Controller
             'slug' => 'required',
             'price' => 'required|numeric',            
             'area' => 'required|numeric',
-            'contact_name' => 'required',
-            'contact_mobile' => 'required'
+            'contact_name' => 'required'            
         ],
         [            
             'estate_type_id.required' => 'Bạn chưa chọn loại bất động sản',
@@ -497,8 +494,7 @@ class ProductController extends Controller
             'price.required' => 'Bạn chưa nhập giá',
             'price.numeric' => 'Bạn nhập giá không hợp lệ',            
             'area.required' => 'Bạn chưa nhập diện tích',
-            'contact_name.required' => 'Bạn chưa nhập tên liên hệ',            
-            'contact_mobile.required' => 'Bạn chưa nhập số di động liên hệ'
+            'contact_name.required' => 'Bạn chưa nhập tên liên hệ'            
         ]);
                   
         $dataArr['slug'] = str_replace(".", "-", $dataArr['slug']);
