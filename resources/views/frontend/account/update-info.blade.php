@@ -17,41 +17,44 @@
                     <div class="panel panel-default">
                       
                       <div class="panel-body">
+                        
+                        <p class="required">Vui lòng nhập đầy đủ các thông tin bên dưới cho lần đầu tiên đăng nhập.</p>
+                        
                         <form class="form-horizontal bv-form" role="form" id="address-info" novalidate>
                           <button type="submit" class="bv-hidden-submit" style="width: 0px; height: 0px;"></button>
                           <div class="form-group row">
-                            <label for="full_name" class="col-lg-3 control-label visible-lg-block">Họ tên </label>
+                            <label for="full_name" class="col-lg-3 control-label visible-lg-block">Họ tên <span class="required">*</span> </label>
                             <div class="col-lg-9 input-wrap has-feedback">
                                 <input type="text" name="full_name" class="form-control address" id="full_name" value="{{$customer->full_name}}" placeholder="Nhập họ tên">
                                
                            </div>
                           </div>
                           <div class="form-group row">
-                            <label for="telephone" class="col-lg-3 control-label visible-lg-block">Điện thoại di động</label>
+                            <label for="telephone" class="col-lg-3 control-label visible-lg-block">Điện thoại di động <span class="required">*</span></label>
                             <div class="col-lg-9 input-wrap has-feedback">
                               <input type="tel" name="phone" class="form-control address" id="phone" value="{{$customer->phone}}" placeholder="Nhập số điện thoại">
                               </div>
                           </div>
                           <div class="form-group row">
-                            <label for="cmnd" class="col-lg-3 control-label visible-lg-block">CMND</label>
+                            <label for="cmnd" class="col-lg-3 control-label visible-lg-block">CMND <span class="required">*</span></label>
                             <div class="col-lg-9 input-wrap has-feedback">
                               <input type="text" name="cmnd" class="form-control address" id="cmnd" value="{{$customer->cmnd}}" placeholder="Nhập số CMND">
                               </div>
                           </div>
                           <div class="form-group row">
-                            <label for="nghe_nghiep" class="col-lg-3 control-label visible-lg-block">Nghề nghiệp</label>
+                            <label for="nghe_nghiep" class="col-lg-3 control-label visible-lg-block">Nghề nghiệp <span class="required">*</span></label>
                             <div class="col-lg-9 input-wrap has-feedback">
                               <input type="text" name="nghe_nghiep" class="form-control address" id="nghe_nghiep" value="{{$customer->nghe_nghiep}}" placeholder="">
                               </div>
                           </div>  
                           <div class="form-group row">
-                            <label for="address" class="col-lg-3 control-label visible-lg-block">Địa chỉ</label>
+                            <label for="address" class="col-lg-3 control-label visible-lg-block">Địa chỉ <span class="required">*</span></label>
                             <div class="col-lg-9 input-wrap has-feedback">
                               <input type="text" name="address" class="form-control address" id="address" value="{{$customer->address}}" placeholder="">
                               </div>
                           </div>                           
                           <div class="form-group row">
-                            <label for="bank_info" class="col-lg-3 control-label visible-lg-block">Tài khoản ngân hàng</label>
+                            <label for="bank_info" class="col-lg-3 control-label visible-lg-block">Tài khoản ngân hàng <span class="required">*</span></label>
                             <div class="col-lg-9 input-wrap has-feedback">
                               <textarea name="bank_info" class="form-control address" id="bank_info" placeholder="Tên ngân hàng - Chủ tài khoản - Số TK - Chi nhánh" style="height:100px">{{ $customer->bank_info }}</textarea>
                               </div>
@@ -75,6 +78,12 @@
     </div>
 </div>
 <div class="clearfix"></div>
+<style type="text/css">
+  .required {
+    font-weight: bold;
+    color:red;
+  }
+</style>
 @endsection
 
 
