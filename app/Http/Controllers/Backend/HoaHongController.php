@@ -45,7 +45,8 @@ class HoaHongController extends Controller
     public function csctv(Request $request){
 
         $csctvList = Account::where(['role' => 4, 'status' => 1])->get();
-        return view('backend.hh.cs', compact( 'csctvList'));
+        $detailCS = Account::find(Auth::user()->leader_id);
+        return view('backend.hh.cs', compact( 'csctvList', 'detailCS'));
     }
      public function updateCs(Request $request)
     {

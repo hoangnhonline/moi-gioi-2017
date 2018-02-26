@@ -47,6 +47,14 @@
         </a>       
       </li>
       @endif
+      @if(Auth::user()->role == 4)
+      <li {{ in_array(\Request::route()->getName(), ['account.edit']) ? "class=active" : "" }}>
+        <a href="{{ route( 'account.edit', [ 'id' => Auth::user()->id ]) }}">
+          <i class="fa fa-pencil-square-o"></i> 
+          <span>Cập nhật thông tin</span>          
+        </a>       
+      </li>
+      @endif
       @if(!in_array(Auth::user()->role, [2,3,4,5]))
       <li class="treeview {{ in_array(\Request::route()->getName(), ['product.index', 'product.create', 'product.edit', 'estate-type.index', 'estate-type.edit', 'estate-type.create', 'cate.index', 'cate.edit', 'cate.create']) ? 'active' : '' }}">
         <a href="#">

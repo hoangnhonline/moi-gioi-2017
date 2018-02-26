@@ -23,8 +23,7 @@
       <div class="col-md-7">
         <!-- general form elements -->
         <div class="box box-primary">
-          <div class="box-header with-border">
-            <h3 class="box-title">Cập nhật</h3>
+          <div class="box-header with-border">            
           </div>
           <!-- /.box-header -->               
             {!! csrf_field() !!}
@@ -42,6 +41,27 @@
                @if(Session::has('message'))
                 <p class="alert alert-info" >{{ Session::get('message') }}</p>
                 @endif     
+              <div class="col-md-12">
+                <h4>Thông tin chăm sóc CTV</h4>
+                <table class="table table-bordered">
+                  <tr>
+                    <td width="130px">Mã CSCTV</td>
+                    <td>CS{{ $detailCS->id }}</td>
+                  </tr>
+                  <tr>
+                    <td>Họ tên</td>
+                    <td>{{ $detailCS->full_name }}</td>
+                  </tr>
+                  <tr>
+                    <td>Số điện thoại</td>
+                    <td>{{ $detailCS->phone }}</td>
+                  </tr>
+                  <tr>
+                    <td>Email</td>
+                    <td>{{ $detailCS->email }}</td>
+                  </tr>
+                </table>
+              </div>
               <p class="panel-info panel" style="color:red;padding:10px">Nếu bạn không hài lòng với chăm sóc CTV hiện tại bạn có thể chọn CS CTV khác theo danh dách bên dưới.</p>             
                 <div class="form-group" id="div_cs">
                   <label>Chăm sóc CTV</label>

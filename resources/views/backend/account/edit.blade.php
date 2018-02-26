@@ -49,7 +49,23 @@
                   <label>Email <span class="red-star">*</span></label>
                   <input type="text" class="form-control" readonly="true" name="email" id="email" value="{{ $detail->email }}">
                 </div>                                        
-                
+                <div class="form-group">
+                  <label>CMND <span class="red-star">*</span></label>
+                  <input type="text" class="form-control" name="cmnd" id="cmnd" value="{{ old('cmnd',$detail->cmnd) }}">
+                </div>
+                <div class="form-group">
+                  <label>Số điện thoại <span class="red-star">*</span></label>
+                  <input type="text" class="form-control" name="phone" id="phone" value="{{ old('phone',$detail->phone) }}">
+                </div>
+                <div class="form-group">
+                  <label>Địa chỉ <span class="red-star">*</span></label>
+                  <input type="text" class="form-control" name="address" id="address" value="{{ old('address',$detail->address) }}">
+                </div>
+                <div class="form-group">
+                  <label>Thông tin ngân hàng <span class="red-star">*</span></label>
+                  <textarea class="form-control" name="bank_info" id="bank_info">{{ old('bank_info',$detail->bank_info) }}</textarea>
+                </div>
+                @if(Auth::user()->role == 1)
                 <div class="form-group">
                   <label>Role</label>
                   <select class="form-control" name="role" id="role">      
@@ -80,6 +96,7 @@
                     <option value="2" {{ $detail->status == 2 ? "selected" : "" }}>Khóa</option>                    
                   </select>
                 </div>
+                @endif
             </div>
             <div class="box-footer">
               <button type="button" class="btn btn-default btn-sm" id="btnLoading" style="display:none"><i class="fa fa-spin fa-spinner"></i></button>

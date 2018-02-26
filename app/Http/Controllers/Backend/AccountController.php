@@ -144,8 +144,13 @@ class AccountController extends Controller
     }
     public function edit($id)
     {
-        if(Auth::user()->role > 1){
+        if(Auth::user()->role != 1 && Auth::user()->role != 4){
             return redirect()->route('dashboard.index');
+        }
+        if(Auth::user()->role == 4){
+            if($id != Auth::user()->id){
+                return redirect()->route('dashboard.index');       
+            }
         }
         $detail = Account::find($id);
         $csctvList = Account::where(['role' => 4, 'status' => 1])->get();        

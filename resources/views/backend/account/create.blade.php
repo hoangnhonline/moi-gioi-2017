@@ -50,6 +50,22 @@
                   <input type="text" class="form-control" name="email" id="email" value="{{ old('email') }}">
                 </div>
                 <div class="form-group">
+                  <label>CMND <span class="red-star">*</span></label>
+                  <input type="text" class="form-control" name="cmnd" id="cmnd" value="{{ old('cmnd') }}">
+                </div>
+                <div class="form-group">
+                  <label>Số điện thoại <span class="red-star">*</span></label>
+                  <input type="text" class="form-control" name="phone" id="phone" value="{{ old('phone') }}">
+                </div>
+                <div class="form-group">
+                  <label>Địa chỉ <span class="red-star">*</span></label>
+                  <input type="text" class="form-control" name="address" id="address" value="{{ old('address') }}">
+                </div>
+                <div class="form-group">
+                  <label>Thông tin ngân hàng <span class="red-star">*</span></label>
+                  <textarea class="form-control" name="bank_info" id="bank_info">{{ old('bank_info') }}</textarea>
+                </div>
+                <div class="form-group">
                   <label>Role</label>
                   <select class="form-control" name="role" id="role">      
                     <option value="" >--Chọn role--</option>                       
