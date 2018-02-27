@@ -96,7 +96,12 @@
                   <option value="5" {{ $detail->loai_bds == 5 ? "selected" : "" }}>Khác</option>
                 </select>
               </div>
-            </div>         
+              <div class="form-group">
+              <label>Ghi chú</label>
+              <textarea rows="5" name="notes" id="notes" disabled="disabled" class="form-control">{{ old('notes', $detail->notes) }}</textarea>
+            </div>  
+            </div>   
+                 
             <!-- /.box-body -->    
           
             

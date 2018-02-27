@@ -47,7 +47,8 @@ class CtvJoinSale extends Model  {
       'pr_id',
       'is_close',
       'is_success',
-      'co_hen'
+      'co_hen',
+      'notes'
     ];
     public function ctv()
     {
@@ -60,6 +61,10 @@ class CtvJoinSale extends Model  {
     public function hen($join_id)
     {
         return $rs = LichHen::where('join_id', $join_id)->where('user_id', Auth::user()->id)->get();
+    }
+    public static function userHen(){
+      $dateCurr = date('Y-m-d');
+      return LichHen::where('ngay_hen', $dateCurr)->where('user_id', Auth::user()->id)->get(); 
     }
     public function product()
     {

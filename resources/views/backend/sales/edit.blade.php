@@ -43,14 +43,7 @@
                       </ul>
                   </div>
               @endif              
-                <div class="form-group">
-                  <label for="email">Trạng thái <span class="red-star">*</span></label>
-                  <select class="form-control" data-table="ctv_join_sale" data-col="cskh_status" data-id="{{ $detail->id }}">
-                      <option value="1" {{ $detail->cskh_status == 1 ? "selected" : "" }}>Chưa gọi</option>
-                      <option value="2" {{ $detail->cskh_status == 2 ? "selected" : "" }}>Đang gọi</option>
-                      <option value="3" {{ $detail->cskh_status == 3 ? "selected" : "" }}>Đã lọc</option>
-                  </select>
-                </div>                
+                                
                <!-- text input -->
               <div class="form-group">
                 <label>Họ tên khách<span class="red-star">*</span></label>
@@ -93,7 +86,20 @@
                   <option value="5" {{ $detail->loai_bds == 5 ? "selected" : "" }}>Khác</option>
                 </select>
               </div>
-            </div>         
+              <div class="form-group">
+              <label>Ghi chú</label>
+              <textarea rows="5" name="notes" id="notes" class="form-control">{{ old('notes', $detail->notes) }}</textarea>
+            </div> 
+            <div class="form-group">
+                  <label for="email">Trạng thái <span class="red-star">*</span></label>
+                  <select class="form-control" data-table="ctv_join_sale" data-col="cskh_status" data-id="{{ $detail->id }}">
+                      <option value="1" {{ $detail->cskh_status == 1 ? "selected" : "" }}>Chưa gọi</option>
+                      <option value="2" {{ $detail->cskh_status == 2 ? "selected" : "" }}>Đang gọi</option>
+                      <option value="3" {{ $detail->cskh_status == 3 ? "selected" : "" }}>Đã lọc</option>
+                  </select>
+                </div>
+            </div>  
+                  
             <!-- /.box-body -->    
             <div class="box-footer">
               <button type="submit" class="btn btn-primary btn-sm">Lưu</button>

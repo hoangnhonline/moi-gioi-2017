@@ -74,7 +74,8 @@ class SalesController extends Controller
             $ctvList = Account::where(['role' =>5, 'status' => 1])->get();    
         }
         $prList = Account::where(['role' =>3, 'status' => 1])->get();
-        return view('backend.sales.index', compact( 'items', 'type_sale', 'cskh_status', 'ctvList', 'prList', 'pr_id', 'ctv_id', 'arrSearch', 'pr_status','detailProduct', 'product_id'));
+        $henList = CtvJoinSale::userHen();        
+        return view('backend.sales.index', compact( 'items', 'type_sale', 'cskh_status', 'ctvList', 'prList', 'pr_id', 'ctv_id', 'arrSearch', 'pr_status','detailProduct', 'product_id', 'henList'));
     }
 
     /**

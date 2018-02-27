@@ -30,7 +30,7 @@
                       </div>
                       <div class="panel-body">
                         <form class="form-inline" id="searchForm" role="form" method="GET" action="{{ route('sales.index') }}">   
-                            
+                            @if(Auth::user()->role != 2 && Auth::user()->role != 3)
                             <div class="form-group">              
                               <select class="form-control" name="type_sale" id="type_sale">
                                   <option value="">--Hình thức bán--</option>
@@ -38,7 +38,10 @@
                                   <option value="2" {{ $type_sale == 2 ? "selected" : "" }}>Để lại số điện thoại</option>
                               </select>
                             </div>  
-                            @if(Auth::user()->role <= 2)
+                            @else
+                            <input type="hidden" name="type_sale" value="2">
+                            @endif
+                            @if(Auth::user()->role == 2)
                             <div class="form-group">              
                               <select class="form-control" name="cskh_status" id="cskh_status">
                                   <option value="">--Trạng thái--</option>
@@ -47,30 +50,28 @@
                                   <option value="3" {{ $cskh_status == 3 ? "selected" : "" }}>Đã lọc</option>
                               </select>
                             </div>  
-                             @if(Auth::user()->role < 5)
-                            @if($prList->count() > 0)
-                            <div class="form-group">              
-                              <select class="form-control" name="pr_id" id="pr_id">
-                                  <option value="">--PR--</option>
-                                  @foreach($prList as $pr)
-                                  <option value="{{ $pr->id }}" {{ $pr->id == $pr_id ? "selected" : "" }}>{{ $pr->full_name }}</option>
-                                  @endforeach
-                              </select>
-                            </div> 
                             @endif
-                            @endif
-                           
                             @if(Auth::user()->role == 3)
                             <div class="form-group">              
                               <select class="form-control" name="pr_status" id="pr_status">
                                   <option value="">--Trạng thái--</option>
                                   <option value="1" {{ $pr_status == 1 ? "selected" : "" }}>Chưa chăm sóc</option>
                                   <option value="2" {{ $pr_status == 2 ? "selected" : "" }}>Đang chăm sóc</option>
-                                  <option value="3" {{ $pr_status == 3 ? "selected" : "" }}>Giao dịch thành công</option>
                                   <option value="4" {{ $pr_status == 4 ? "selected" : "" }}>Không thành công</option>
                               </select>
                             </div>  
                             @endif <!--Auth::user()->role == 3-->
+                            @if(in_array(Auth::user()->role, [1,6]))
+                            @if($prList->count() > 0)
+                            <div class="form-group">              
+                              <select class="form-control" name="pr_id" id="pr_id">
+                                  <option value="">--CTV--</option>
+                                  @foreach($prList as $ctv)
+                                  <option value="{{ $ctv->id }}" {{ $ctv->id == $pr_id ? "selected" : "" }}>{{ $ctv->full_name }}</option>
+                                  @endforeach
+                              </select>
+                            </div> 
+                            @endif   <!--$ctvList->count() > 0-->
                             @endif
                             @if(in_array(Auth::user()->role, [1,2,4]))
                             @if($ctvList->count() > 0)
@@ -90,6 +91,26 @@
                         </div></div>
 
                         @endif
+                @if($henList->count() > 0)
+                <div class="panel panel-warning" style="padding: 10px">
+                  <h4>Các cuộc hẹn hôm nay:</h4>
+                  <table class="table table-bordered">
+                    <tr>
+                      <th>Khách hàng</th>
+                      <th>Điện thoại</th>
+                      <th>Ghi chú</th>
+                    </tr>
+                    @foreach($henList as $hen)
+                    <tr>
+                      <td>{{ $hen->info->full_name }}</td>
+                      <td>{{ $hen->info->phone }}</td>
+                      <td>{{ $hen->ghi_chu }}</td>
+                    </tr>
+                    @endforeach
+                    
+                  </table>
+                </div>
+                @endif
                 <div class="box">
                     <div class="box-header with-border">
                         <h3 class="box-title">Danh sách ( {{ $items->total() }} )</h3>
@@ -102,21 +123,21 @@
                         <table class="table table-bordered" id="table-list-data">
                             <tr>
                                 <th style="width: 1%">#</th>
-                                @if($type_sale == 2)
-                                <th>Họ tên khách</th>
+                                @if(Auth::user()->role == 4)
+                                <th>Hình thức bán</th>
+                                <th>CTV</th>
+                                @else
+                                <th>Khách hàng</th>
                                 <th>Số điện thoại</th>
                                 @endif
-                                <th>Sản phẩm</th>
-                                @if(Auth::user()->role < 5)
-                                <th>CTV</th>
-                                @endif
+                                <th>Sản phẩm</th>                                
                                 @if($type_sale == 2 && Auth::user()->role < 3)
                                 <th>PR</th>
                                 @endif
                                 <th width="180px" class="text-center">Trạng thái</th>
                                 <th width="">Trạng thái GD</th>
                                 <th width="120px">Ngày tham gia</th>
-                                @if(Auth::user()->role == 5)
+                                @if(Auth::user()->role == 5 || Auth::user()->role == 4)
                                 <th class="text-right">Hoa hồng</th>
                                 @endif
                                 <th width="1%;white-space:nowrap">Thao tác</th>
@@ -128,15 +149,21 @@
                                 @foreach( $items as $item )
                                 <?php $i ++; ?>
                                 <tr id="row-{{ $item->id }}">
-                                    <td><span class="order">{{ $i }}</span></td>
-                                    @if($type_sale == 2)
-                                    <td>{{ $item->full_name }}</td>
+                                    <td><span class="order">{{ $i }}</span>
+                                    </td>
+                                    @if(Auth::user()->role != 4)
+                                    <td>
+                                      @if($item->type_sale == 2)
+                                      {{ $item->full_name }}
+                                      @else
+                                      BÁN TRỰC TIẾP
+                                      @endif
+                                      
+                                    </td>
                                     <td>{{ $item->phone }}
-
-                                
-                                      @if(Auth::user()->role == 2 || Auth::user()->role == 3)
-                                        @if($item->cskh_status < 3)
-                                        
+                                      @if( (Auth::user()->role == 2 || Auth::user()->role == 3 ) && $item->type_sale == 2)
+                                      
+                                        @if($item->cskh_status < 3)                                        
                                         <button type="button" class="btn btn-info tao-lich-hen btn-sm"  title="Tạo lịch hẹn" data-value="{{ $item->id }}" data-toggle="modal" data-target="#lichModal">Lịch hẹn <span class="badge">({{ $item->hen($item->id)->count() }})</span></button>
                                         @endif <!--item->cskh_status < 3-->
                                         @if($item->cskh_status == 3 && $item->pr_status < 3 && Auth::user()->role == 3)
@@ -146,7 +173,21 @@
                               
                                     <!--if pr status != 3-->
                                     </td>
+                                    @else
+                                    <td>
+                                      @if($item->type_sale == 1)
+                                      Bán trực tiếp
+                                      @else
+                                      Để lại số điện thoại
+                                      @endif
+                                    </td>
+                                    <td>
+                                      <a href="{{ route('sales.index', ['ctv_id' => $item->ctv_id])}}" target="_blank">{{ $item->ctv->full_name }}
+                                    </td>
                                     @endif
+                                
+                                      
+                                
                                     <td>{{ $item->product->title }}
                                     @if($item->status_sales == 1)
                                     <span class="label label-info">Chưa bán</span>
@@ -155,12 +196,9 @@
                                     @elseif($item->status_sales == 3)
                                     <span class="label label-warning">Đã cọc</span>
                                     @endif
-                                    </td>
-                                    @if(Auth::user()->role < 5)
-                                    <td>
-                                         <a href="{{ route( 'sales.edit', [ 'id' => $item->id ]) }}">{{ $item->ctv->full_name }}</a>
-                                    </td>
-                                    @endif
+                                    </td>                                   
+                                  
+                                    
                                     @if($type_sale == 2 && Auth::user()->role < 3)
                                     <td>
                                         @if($item->pr)
@@ -169,24 +207,23 @@
                                     </td>
                                     @endif
                                     <td class="text-center">
-                                    @if(Auth::user()->role == 2)
-                                    <select class="change-status form-control" data-table="ctv_join_sale" data-col="cskh_status" data-id="{{ $item->id }}">
+                                    @if(Auth::user()->role == 2 && $item->type_sale == 2)
+                                    <select class="change-status form-control" disabled="disabled" data-table="ctv_join_sale" data-col="cskh_status" data-id="{{ $item->id }}" data-old="{{ $item->cskh_status }}">
                                         <option value="1" {{ $item->cskh_status == 1 ? "selected" : "" }}>Chưa gọi</option>
                                         <option value="2" {{ $item->cskh_status == 2 ? "selected" : "" }}>Đang gọi</option>
                                         <option value="3" {{ $item->cskh_status == 3 ? "selected" : "" }}>Đã lọc</option>
                                     </select>
                                     @endif
                                     @if(Auth::user()->role == 3)
-                                    <select class="change-status form-control" data-table="ctv_join_sale" data-col="pr_status" data-id="{{ $item->id }}">
+                                    <select class="change-status form-control" disabled="disabled" data-table="ctv_join_sale" data-col="pr_status" data-id="{{ $item->id }}" data-old="{{ $item->pr_status }}">
                                         <option value="1" {{ $item->pr_status == 1 ? "selected" : "" }}>Chưa chăm sóc</option>
                                         <option value="2" {{ $item->pr_status == 2 ? "selected" : "" }}>Đang chăm sóc</option>
-                                        <option value="3" {{ $item->pr_status == 3 ? "selected" : "" }}>Giao dịch thành công</option>
                                         <option value="4" {{ $item->pr_status == 4 ? "selected" : "" }}>Không thành công</option>
                                     </select>
                                     @endif
 
                                     @if(Auth::user()->role == 4 && $item->type_sale == 1)
-                                    <select class="change-status form-control" data-table="ctv_join_sale" data-col="status_join" data-id="{{ $item->id }}">
+                                    <select class="change-status form-control" disabled="disabled" data-table="ctv_join_sale" data-col="status_join" data-id="{{ $item->id }}" data-old="{{ $item->status_join }}">
                                         <option value="1" {{ $item->status_join == 1 ? "selected" : "" }}>Chưa duyệt</option>
                                         <option value="2" {{ $item->status_join == 2 ? "selected" : "" }}>Đã duyệt</option>   
                                     </select>
@@ -217,16 +254,20 @@
                                     <td>
                                         {{ date('d-m-Y', strtotime($item->created_at)) }}
                                     </td>
-                                    @if(Auth::user()->role == 5)
+                                    @if(Auth::user()->role == 5 || Auth::user()->role == 4)
                                     <td class="text-right" style="font-weight:bold;">
+
                                       @if($item->is_success == 0)
-                                        @if($item->type_sale == 1)
-                                        {{ number_format($item->product->hoa_hong_ctv*$item->product->price/100) }}
+                                        <?php
+                                        $phantram = Auth::user()->role == 5 ? $item->product->hoa_hong_ctv : $item->product->hoa_hong_cs;
+                                        ?>
+                                        @if($item->type_sale == 1 || Auth::user()->role == 4)
+                                        {{ number_format($phantram*$item->product->price/100) }}
                                         @else
-                                        {{ number_format(($item->product->hoa_hong_ctv*$item->product->price/100)/2) }}
+                                        {{ number_format(($phantram*$item->product->price/100)/2) }}
                                         @endif
                                       @else
-                                      {{ number_format($item->hh_ctv) }}
+                                      {{ Auth::user()->role == 5 ? number_format($item->hh_ctv) : number_format($item->hh_cs) }}
                                       @endif
                                     </td>
                                     @endif
@@ -240,10 +281,12 @@
                                             @endif
                                         @endif
                                         @if(Auth::user()->role ==2)
-                                            
+                                        @if($item->type_sale == 2)
                                         <a href="{{ route( 'sales.edit', [ 'id' => $item->id ]) }}" class="btn-sm btn btn-warning"><span class="glyphicon glyphicon-pencil"></span></a>
-                                        
-                                        <a onclick="return callDelete('{{ $item->full_name }}','{{ route( 'sales.destroy', [ 'id' => $item->id ]) }}');" class="btn-sm btn btn-danger"><span class="glyphicon glyphicon-trash"></span></a>
+                                        @endif
+                                          @if(Auth::user()->role ==1)
+                                          <a onclick="return callDelete('{{ $item->full_name }}','{{ route( 'sales.destroy', [ 'id' => $item->id ]) }}');" class="btn-sm btn btn-danger"><span class="glyphicon glyphicon-trash"></span></a>
+                                          @endif
                                         @endif
                                     </td>
                                     
@@ -347,6 +390,7 @@
               });
         });
       $('.change-status').change(function(){
+          if(confirm('Bạn chắc chắn chuyển trạng thái của thông tin này ?')){
             var col = $(this).data('col');
             var table = $(this).data('table');
             var id = $(this).data('id');
@@ -365,6 +409,10 @@
                       window.location.reload();                     
                   }
               });
+          }else{
+            $(this).val($(this).data('old'));
+          }
+
       });
       $('.btnSuccess').click(function(){
             if(confirm('Bạn có chắc chắn không?')){
@@ -382,7 +430,7 @@
                           id : id,
                           status : status
                       },
-                      success: function(data){
+                      success: function(data){                        
                           window.location.reload();                     
                       }
                   });
