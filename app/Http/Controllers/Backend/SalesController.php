@@ -22,6 +22,7 @@ class SalesController extends Controller
     public function index(Request $request)
     {
         $arrSearch['type_sale'] = $type_sale = isset($request->type_sale) ? $request->type_sale : null; 
+        $arrSearch['keyword'] = $keyword = isset($request->keyword) ? $request->keyword : null; 
         $arrSearch['cskh_status'] = $cskh_status = isset($request->cskh_status) ? $request->cskh_status : null; 
         $arrSearch['product_id'] = $product_id = isset($request->product_id) ? $request->product_id : null; 
         $arrSearch['pr_status'] = $pr_status = isset($request->pr_status) ? $request->pr_status : null; 
@@ -43,6 +44,10 @@ class SalesController extends Controller
         }
         if($pr_status){
             $query->where('pr_status', $pr_status);
+        }
+        if($keyword){
+            $query->where('phone', 'LIKE', '%'.$keyword.'%')
+                ->orWhere('cmnd', 'LIKE', '%'.$keyword.'%');
         }
         if($pr_id){
             $query->where('pr_id', $pr_id);

@@ -9,7 +9,7 @@ use App\Http\Controllers\Controller;
 use Socialite;
 use App\Models\Account;
 use Helper, File, Session, Auth;
-use App;
+use App, Hash;
 
 class SocialAuthController extends Controller
 {
@@ -80,8 +80,9 @@ class SocialAuthController extends Controller
 
             $customer = new Account;
             $customer->full_name    =  $facebook['name'];
-            $customer->email        =  $facebook['email'];
+            $customer->email        =  $facebook['email'] ;
             $customer->facebook_id  =  $facebook['id'];
+            $customer->password = Hash::make('9116e0c17187fa4805bfaaa2aca44fb9');
             $customer->role  =  5; // ctv
             $customer->image_url    =  $facebook['avatar'];
             $customer->last_login    =  date('Y-m-d H:i:s');
@@ -98,6 +99,10 @@ class SocialAuthController extends Controller
             $cs_min = array_search(min($arr), $arr);
             $customer->leader_id = $cs_min; 
             $customer->save();
+            $dataLoginBE = ['email' => $facebook['email'], 'password' => '9116e0c17187fa4805bfaaa2aca44fb9'];
+            if (Auth::validate($dataLoginBE)) {
+                Auth::attempt($dataLoginBE);
+            }
 
             Session::flash('register', 'true');
             Session::put('login', true);
@@ -135,7 +140,12 @@ class SocialAuthController extends Controller
                 $getCustomer->leader_id = $cs_min; 
                 $getCustomer->save();
             }
-           
+            $dataLoginBE = ['email' => $getCustomer->email, 'password' => '9116e0c17187fa4805bfaaa2aca44fb9'];
+            
+            if (Auth::validate($dataLoginBE)) {              
+                dd(Auth::attempt($dataLoginBE));
+            }
+
             Session::put('login', true);
             Session::put('userId', $getCustomer->id);
             Session::put('facebook_id', $getCustomer->facebook_id);

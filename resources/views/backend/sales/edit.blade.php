@@ -118,11 +118,12 @@
             @if(Auth::user()->role == 4)
             <div class="form-group">
                   <label for="email">Trạng thái <span class="red-star">*</span></label>
-                  <select class="form-control" name="status_join" id="status_join">
-                      <option value="1" {{ $detail->status_join == 1 ? "selected" : "" }}>Chưa duyệt</option>
-                      <option value="2" {{ $detail->status_join == 2 ? "selected" : "" }}>Đã duyệt</option>
-                  </select>
-                </div>
+                  <label>
+                    <input type="radio" name="status_join" value="1" {{ $detail->status_join == 1 ? "checked" : "" }}> Chưa duyệt  
+                  </label>
+                  <label>
+                    <input type="radio" name="status_join" value="2" {{ $detail->status_join == 2 ? "checked" : "" }}> Đã duyệt  
+                  </label>                
             </div> 
             @endif
             <!-- /.box-body -->    

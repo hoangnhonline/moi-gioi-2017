@@ -88,6 +88,9 @@ $role = Auth::user()->role;
                             </div> 
                             @endif   <!--$ctvList->count() > 0-->
                               @endif
+                            <div class="form-group">              
+                              <input type="text" name="keyword" value="{{ $arrSearch['keyword'] }}" class="form-control" placeholder="Số ĐT hoặc CMND">
+                            </div> 
                              <!-- check lon hon CTV-->                          
                             <button style="margin-top:-5px;" type="submit" class="btn btn-primary btn-sm">Lọc</button>
                         </form>

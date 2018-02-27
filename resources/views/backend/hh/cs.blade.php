@@ -20,7 +20,7 @@
     <div class="row">
       <!-- left column -->
 
-      <div class="col-md-7">
+      <div class="col-md-9">
         <!-- general form elements -->
         <div class="box box-primary">
           <div class="box-header with-border">            
@@ -47,11 +47,7 @@
                   <tr>
                     <td width="130px">Mã CSCTV</td>
                     <td>CS{{ $detailCS->id }}</td>
-                  </tr>
-                  <tr>
-                    <td>Họ tên</td>
-                    <td>{{ $detailCS->full_name }}</td>
-                  </tr>
+                  </tr>                  
                   <tr>
                     <td>Số điện thoại</td>
                     <td>{{ $detailCS->phone }}</td>
@@ -62,12 +58,14 @@
                   </tr>
                 </table>
               </div>
-              <p class="panel-info panel" style="color:red;padding:10px">Nếu bạn không hài lòng với chăm sóc CTV hiện tại bạn có thể chọn CS CTV khác theo danh dách bên dưới.</p>             
+              <p class="panel-info panel" style="color:red;padding:10px">Nếu bạn không hài lòng với chăm sóc CTV hiện tại bạn có thể chuyển CS CTV khác theo danh dách bên dưới.
+              <br><br>
+              <span style="text-transform:uppercase">Quý vui lòng liên hệ sđt: 0911.356.178 để thông báo trước khi chuyển, Xin cám ơn.</span></p>             
                 <div class="form-group" id="div_cs">
                   <label>Chăm sóc CTV</label>
                   <select class="form-control" name="leader_id" id="leader_id">
                     @foreach($csctvList as $cs)
-                    <option value="{{ $cs->id }}" {{ old('leader_id', Auth::user()->leader_id) == $cs->id ? "selected" : "" }}>[CS{{ $cs->id }}] {{ $cs->full_name }} </option>
+                    <option value="{{ $cs->id }}" {{ old('leader_id', Auth::user()->leader_id) == $cs->id ? "selected" : "" }}> CS{{ $cs->id }} </option>
                     @endforeach
                     
                   </select>
