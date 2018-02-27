@@ -1,5 +1,8 @@
 @extends('backend.layout')
 @section('content')
+<?php 
+$role = Auth::user()->role;
+?>
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
@@ -23,14 +26,14 @@
                 <p class="alert alert-info" >{{ Session::get('message') }}</p>
                 @endif
                 <!--<a href="{{ route('sales.create') }}" class="btn btn-info btn-sm" style="margin-bottom:5px">Tạo mới</a>-->
-                @if(Auth::user()->role <= 5)
+                @if($role <= 5)
                 <div class="panel panel-default">
                       <div class="panel-heading">
                         <h3 class="panel-title">Bộ lọc</h3>
                       </div>
                       <div class="panel-body">
                         <form class="form-inline" id="searchForm" role="form" method="GET" action="{{ route('sales.index') }}">   
-                            @if(Auth::user()->role != 2 && Auth::user()->role != 3)
+                            @if($role != 2 && $role != 3)
                             <div class="form-group">              
                               <select class="form-control" name="type_sale" id="type_sale">
                                   <option value="">--Hình thức bán--</option>
@@ -41,7 +44,7 @@
                             @else
                             <input type="hidden" name="type_sale" value="2">
                             @endif
-                            @if(Auth::user()->role == 2)
+                            @if($role == 2)
                             <div class="form-group">              
                               <select class="form-control" name="cskh_status" id="cskh_status">
                                   <option value="">--Trạng thái--</option>
@@ -51,7 +54,7 @@
                               </select>
                             </div>  
                             @endif
-                            @if(Auth::user()->role == 3)
+                            @if($role == 3)
                             <div class="form-group">              
                               <select class="form-control" name="pr_status" id="pr_status">
                                   <option value="">--Trạng thái--</option>
@@ -60,8 +63,8 @@
                                   <option value="4" {{ $pr_status == 4 ? "selected" : "" }}>Không thành công</option>
                               </select>
                             </div>  
-                            @endif <!--Auth::user()->role == 3-->
-                            @if(in_array(Auth::user()->role, [1,6]))
+                            @endif <!--$role == 3-->
+                            @if(in_array($role, [1,6]))
                             @if($prList->count() > 0)
                             <div class="form-group">              
                               <select class="form-control" name="pr_id" id="pr_id">
@@ -73,7 +76,7 @@
                             </div> 
                             @endif   <!--$ctvList->count() > 0-->
                             @endif
-                            @if(in_array(Auth::user()->role, [1,2,4]))
+                            @if(in_array($role, [1,2,4]))
                             @if($ctvList->count() > 0)
                             <div class="form-group">              
                               <select class="form-control" name="ctv_id" id="ctv_id">
@@ -123,7 +126,7 @@
                         <table class="table table-bordered" id="table-list-data">
                             <tr>
                                 <th style="width: 1%">#</th>
-                                @if(Auth::user()->role == 4)
+                                @if($role == 4)
                                 <th>Hình thức bán</th>
                                 <th>CTV</th>
                                 @else
@@ -131,14 +134,15 @@
                                 <th>Số điện thoại</th>
                                 @endif
                                 <th>Sản phẩm</th>                                
-                                @if($type_sale == 2 && Auth::user()->role < 3)
+                                @if($type_sale == 2 && $role < 3)
                                 <th>PR</th>
                                 @endif
                                 <th width="180px" class="text-center">Trạng thái</th>
                                 <th width="">Trạng thái GD</th>
                                 <th width="120px">Ngày tham gia</th>
-                                @if(Auth::user()->role == 5 || Auth::user()->role == 4)
-                                <th class="text-right">Hoa hồng</th>
+                                @if(in_array($role, [3,4,5]))
+                                <th class="text-right">Hoa hồng                                
+                                </th>
                                 @endif
                                 <th width="1%;white-space:nowrap">Thao tác</th>
                                 
@@ -151,7 +155,7 @@
                                 <tr id="row-{{ $item->id }}">
                                     <td><span class="order">{{ $i }}</span>
                                     </td>
-                                    @if(Auth::user()->role != 4)
+                                    @if($role != 4)
                                     <td>
                                       @if($item->type_sale == 2)
                                       {{ $item->full_name }}
@@ -161,12 +165,12 @@
                                       
                                     </td>
                                     <td>{{ $item->phone }}
-                                      @if( (Auth::user()->role == 2 || Auth::user()->role == 3 ) && $item->type_sale == 2)
+                                      @if( ($role == 2 || $role == 3 ) && $item->type_sale == 2)
                                       
                                         @if($item->cskh_status < 3)                                        
                                         <button type="button" class="btn btn-info tao-lich-hen btn-sm"  title="Tạo lịch hẹn" data-value="{{ $item->id }}" data-toggle="modal" data-target="#lichModal">Lịch hẹn <span class="badge">({{ $item->hen($item->id)->count() }})</span></button>
                                         @endif <!--item->cskh_status < 3-->
-                                        @if($item->cskh_status == 3 && $item->pr_status < 3 && Auth::user()->role == 3)
+                                        @if($item->cskh_status == 3 && $item->pr_status < 3 && $role == 3)
                                         <button type="button" class="btn btn-info tao-lich-hen btn-sm"  title="Tạo lịch hẹn" data-value="{{ $item->id }}" data-toggle="modal" data-target="#lichModal">Lịch hẹn <span class="badge">({{ $item->hen($item->id)->count() }})</span></button>
                                         @endif
                                       @endif
@@ -174,14 +178,14 @@
                                     <!--if pr status != 3-->
                                     </td>
                                     @else
-                                    <td>
+                                    <td style="white-space:nowrap;">
                                       @if($item->type_sale == 1)
                                       Bán trực tiếp
                                       @else
                                       Để lại số điện thoại
                                       @endif
                                     </td>
-                                    <td>
+                                    <td style="white-space:nowrap;">
                                       <a href="{{ route('sales.index', ['ctv_id' => $item->ctv_id])}}" target="_blank">{{ $item->ctv->full_name }}
                                     </td>
                                     @endif
@@ -196,39 +200,49 @@
                                     @elseif($item->status_sales == 3)
                                     <span class="label label-warning">Đã cọc</span>
                                     @endif
+                                    @if($item->notes)
+                                    <br/><u>Ghi chú :</u> 
+                                    <span style="font-style:italic">{{ $item->notes }}</span>
+                                    @endif
+
                                     </td>                                   
                                   
                                     
-                                    @if($type_sale == 2 && Auth::user()->role < 3)
-                                    <td>
+                                    @if($type_sale == 2 && $role < 3)
+                                    <td style="white-space:nowrap">
                                         @if($item->pr)
                                         {{ $item->pr->full_name }}
                                         @endif
                                     </td>
                                     @endif
                                     <td class="text-center">
-                                    @if(Auth::user()->role == 2 && $item->type_sale == 2)
-                                    <select class="change-status form-control" disabled="disabled" data-table="ctv_join_sale" data-col="cskh_status" data-id="{{ $item->id }}" data-old="{{ $item->cskh_status }}">
-                                        <option value="1" {{ $item->cskh_status == 1 ? "selected" : "" }}>Chưa gọi</option>
-                                        <option value="2" {{ $item->cskh_status == 2 ? "selected" : "" }}>Đang gọi</option>
-                                        <option value="3" {{ $item->cskh_status == 3 ? "selected" : "" }}>Đã lọc</option>
-                                    </select>
+                                    @if($role == 2 && $item->type_sale == 2)
+                                      @if( $item->cskh_status == 1)
+                                      Chưa gọi
+                                      @elseif( $item->cskh_status == 2)
+                                      Đang gọi
+                                      @elseif($item->cskh_status == 3)
+                                      Đã lọc
+                                      @endif                                    
                                     @endif
-                                    @if(Auth::user()->role == 3)
-                                    <select class="change-status form-control" disabled="disabled" data-table="ctv_join_sale" data-col="pr_status" data-id="{{ $item->id }}" data-old="{{ $item->pr_status }}">
-                                        <option value="1" {{ $item->pr_status == 1 ? "selected" : "" }}>Chưa chăm sóc</option>
-                                        <option value="2" {{ $item->pr_status == 2 ? "selected" : "" }}>Đang chăm sóc</option>
-                                        <option value="4" {{ $item->pr_status == 4 ? "selected" : "" }}>Không thành công</option>
-                                    </select>
+                                    @if($role == 3)
+                                      @if( $item->pr_status == 1)
+                                        Chưa chăm sóc
+                                        @elseif( $item->pr_status == 2)
+                                        Đang chăm sóc
+                                        @elseif($item->pr_status == 4)
+                                        Không thành công
+                                      @endif                                      
                                     @endif
 
-                                    @if(Auth::user()->role == 4 && $item->type_sale == 1)
-                                    <select class="change-status form-control" disabled="disabled" data-table="ctv_join_sale" data-col="status_join" data-id="{{ $item->id }}" data-old="{{ $item->status_join }}">
-                                        <option value="1" {{ $item->status_join == 1 ? "selected" : "" }}>Chưa duyệt</option>
-                                        <option value="2" {{ $item->status_join == 2 ? "selected" : "" }}>Đã duyệt</option>   
-                                    </select>
+                                    @if($role == 4 && $item->type_sale == 1)
+                                    @if( $item->status_join == 1)
+                                        Chưa duyệt
+                                        @elseif( $item->status_join == 2)
+                                        Đã duyệt
+                                      @endif                                       
                                     @endif
-                                    @if(Auth::user()->role == 5 && $item->type_sale == 1)
+                                    @if($role == 5 && $item->type_sale == 1)
                                     @if($item->status_join == 1)
                                     <span class="label label-danger">Chưa duyệt</span>
                                     @else
@@ -254,40 +268,52 @@
                                     <td>
                                         {{ date('d-m-Y', strtotime($item->created_at)) }}
                                     </td>
-                                    @if(Auth::user()->role == 5 || Auth::user()->role == 4)
+                                    @if(in_array($role, [3, 4, 5]))
                                     <td class="text-right" style="font-weight:bold;">
 
                                       @if($item->is_success == 0)
                                         <?php
-                                        $phantram = Auth::user()->role == 5 ? $item->product->hoa_hong_ctv : $item->product->hoa_hong_cs;
+                                        if($role == 5){
+                                          $phantram = $item->product->hoa_hong_ctv;
+                                        }elseif( $role == 4 ){
+                                          $phantram = $item->product->hoa_hong_cs;
+                                        }elseif( $role == 3 ){
+                                          $phantram = $item->product->hoa_hong_pr;
+                                        }
                                         ?>
-                                        @if($item->type_sale == 1 || Auth::user()->role == 4)
+                                        @if($item->type_sale == 1 || $role == 4 || $role == 3)
                                         {{ number_format($phantram*$item->product->price/100) }}
                                         @else
                                         {{ number_format(($phantram*$item->product->price/100)/2) }}
                                         @endif
                                       @else
-                                      {{ Auth::user()->role == 5 ? number_format($item->hh_ctv) : number_format($item->hh_cs) }}
-                                      @endif
+                                        @if($role == 5)
+                                        {{ number_format($item->hh_ctv) }}
+                                        @elseif($role == 4)
+                                        {{ number_format($item->hh_cs) }}
+                                        @elseif($role == 3)
+                                        {{ number_format($item->hh_pr) }}
+                                        @endif                                      
+                                      @endif <!--GD da dong va thanh cong-->
                                     </td>
                                     @endif
                                     <td style="white-space:nowrap; text-align:right">
                                         @if($type_sale == 2)
                                         <a href="{{ route( 'sales.detail', [ 'id' => $item->id ]) }}" class="btn-sm btn btn-info">Chi tiết</a>
                                         @endif
-                                        @if(Auth::user()->role == 1 || Auth::user()->role == 6)
+                                        @if($role == 1 || $role == 6)
                                             @if($item->is_close == 1 && $item->is_success == 0)
                                             <button data-table="ctv_join_sale" data-col="is_success" data-id="{{ $item->id }}" class="btn-sm btn btn-success btnSuccess">GD thành công</button>
                                             @endif
                                         @endif
-                                        @if(Auth::user()->role ==2)
-                                        @if($item->type_sale == 2)
+                                        
+                                        @if($item->type_sale == 2 && $role != 4 && $item->is_close == 0 || ($item->status_join == 1 && $item->type_sale == 1))
                                         <a href="{{ route( 'sales.edit', [ 'id' => $item->id ]) }}" class="btn-sm btn btn-warning"><span class="glyphicon glyphicon-pencil"></span></a>
                                         @endif
-                                          @if(Auth::user()->role ==1)
-                                          <a onclick="return callDelete('{{ $item->full_name }}','{{ route( 'sales.destroy', [ 'id' => $item->id ]) }}');" class="btn-sm btn btn-danger"><span class="glyphicon glyphicon-trash"></span></a>
-                                          @endif
+                                        @if($role ==1)
+                                        <a onclick="return callDelete('{{ $item->full_name }}','{{ route( 'sales.destroy', [ 'id' => $item->id ]) }}');" class="btn-sm btn btn-danger"><span class="glyphicon glyphicon-trash"></span></a>
                                         @endif
+                                        
                                     </td>
                                     
                                 </tr>

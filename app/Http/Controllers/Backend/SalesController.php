@@ -28,7 +28,9 @@ class SalesController extends Controller
         $arrSearch['pr_id'] = $pr_id = isset($request->pr_id) ? $request->pr_id : null; 
         $arrSearch['ctv_id'] = $ctv_id = isset($request->ctv_id) ? $request->ctv_id : null;  
         $query = CtvJoinSale::whereRaw(1);
+        $type_sale = (Auth::user()->role == 2 || Auth::user()->role == 3 ) ? 2: $type_sale;
         if($type_sale){
+
             $query->where('type_sale', $type_sale);
         }
         if($cskh_status){
@@ -161,21 +163,40 @@ class SalesController extends Controller
     public function update(Request $request)
     {
         $dataArr = $request->all();
-        
-        $this->validate($request,[            
-            'full_name' => 'required',            
-            'cmnd' => 'required',
-            'phone' => 'required',            
-            'address' => 'required',
-            'vung_quan_tam' => 'required',            
-            'nhu_cau' => 'required',            
-            'loai_bds' => 'required',            
-        ]);       
+        if($dataArr['type_sale'] == 2){
+            $this->validate($request,[            
+                'full_name' => 'required',            
+                'cmnd' => 'required',
+                'phone' => 'required',            
+                'address' => 'required',
+                'vung_quan_tam' => 'required',            
+                'nhu_cau' => 'required',            
+                'loai_bds' => 'required',            
+            ]);       
+        }
         
         $model = CtvJoinSale::find($dataArr['id']);
 
         $model->update($dataArr);        
         
+        if(isset($dataArr['cskh_status']) && $dataArr['cskh_status'] == 3 && !$model->pr_id){ // gan cho PR
+            $pr_min = null;
+            $pr_list = Account::where(['status'=>1, 'role' => 3])->select(['id'])->get();              
+            $arr = [];
+            if($pr_list->count() > 0){
+                foreach($pr_list as $pr){
+                    $count = CtvJoinSale::where('pr_id', $pr->id)->get()->count();
+                    $arr[$pr->id] = $count;
+                }
+            }
+          
+            $pr_min = array_search(min($arr), $arr);
+            $sales = CtvJoinSale::find($dataArr['id']);
+            $sales->pr_id = $pr_min;
+            $sales->updated_user = Auth::user()->id;
+            $sales->save();
+        }
+
         Session::flash('message', 'Cập nhật thành công');        
 
         return redirect()->route('sales.index');

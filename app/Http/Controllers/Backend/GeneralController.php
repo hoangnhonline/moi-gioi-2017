@@ -47,23 +47,7 @@ class GeneralController extends Controller
             $status = $request->status;
             $id = $request->id;
             DB::table($table)->where('id', $id)->update([$column => $status, 'updated_user' => Auth::user()->id ]);
-            if($column == "cskh_status" && $status == 3){
-                $pr_min = null;
-                $pr_list = Account::where(['status'=>1, 'role' => 3])->select(['id'])->get();              
-                $arr = [];
-                if($pr_list->count() > 0){
-                    foreach($pr_list as $pr){
-                        $count = CtvJoinSale::where('pr_id', $pr->id)->get()->count();
-                        $arr[$pr->id] = $count;
-                    }
-                }
-              
-                $pr_min = array_search(min($arr), $arr);
-                $sales = CtvJoinSale::find($id);
-                $sales->pr_id = $pr_min;
-                $sales->updated_user = Auth::user()->id;
-                $sales->save();
-            }
+            
             // set giao dich thanh cong
             if($column == "is_success" && $status == 1){
                 $sales = CtvJoinSale::find($id);
