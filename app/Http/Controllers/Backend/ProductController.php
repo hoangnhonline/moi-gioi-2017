@@ -565,6 +565,7 @@ class ProductController extends Controller
         ProductImg::where('product_id', $id)->delete();
         TagObjects::deleteTags( $id, 1);
         TagObjects::deleteTags( $id, 3);
+        CtvJoinSale::where('product_id', $id)->delete();
         // redirect
         Session::flash('message', 'Xóa tin thành công');
         

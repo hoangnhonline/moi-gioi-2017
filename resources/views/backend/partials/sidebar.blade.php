@@ -79,13 +79,7 @@
           <li {{ in_array(\Request::route()->getName(), ['estate-type.index', 'estate-type.edit', 'estate-type.create']) ? "class=active" : "" }}><a href="{{ route('estate-type.index') }}"><i class="fa fa-circle-o"></i> Danh mục</a></li>
           @endif
         </ul>
-      </li>     
-      <li {{ in_array(\Request::route()->getName(), ['cart.create', 'cart.edit', 'cart.index','cart-product.create', 'cart-product.edit', 'cart-product.index']) ? "class=active" : "" }}>
-        <a href="{{ route('cart.index') }}">
-          <i class="fa fa-pencil-square-o"></i> 
-          <span>Giỏ hàng</span>         
-        </a>       
-      </li>      
+      </li>            
       <li class="treeview {{ in_array(\Request::route()->getName(), ['work-group.create', 'work-group.edit', 'work-group.index', 'user-work.create', 'user-work.edit', 'user-work.index']) ? 'active' : '' }}">
         <a href="#">
           <i class="fa fa-twitch"></i> 
@@ -101,7 +95,7 @@
           @endif
         </ul>
       </li>
-      @if(Auth::user()->role > 1)      
+      @if(Auth::user()->role == 1)
       <li {{ (in_array(\Request::route()->getName(), ['custom-link.edit', 'custom-link.index', 'custom-link.create']) && isset($block_id) && $block_id == 1 )? "class=active" : "" }}>
         <a href="{{ route('custom-link.index', ['block_id' => 1 ]) }}">
           <i class="fa fa-pencil-square-o"></i> 
@@ -109,7 +103,7 @@
         </a>       
       </li>
       @endif
-      
+      @if(Auth::user()->role == 1)
       <li class="treeview {{ in_array(\Request::route()->getName(), ['pages.index', 'pages.create']) ? 'active' : '' }}">
         <a href="#">
           <i class="fa fa-twitch"></i> 
@@ -140,7 +134,9 @@
         @endif    
         </ul>
        
-      </li>              
+      </li> 
+      @endif <!--Auth::user()->role == 1-->
+
       @endif  
       @if(Auth::user()->role == 1)
       <li {{ in_array(\Request::route()->getName(), ['newsletter.edit', 'newsletter.index']) ? "class=active" : "" }}>
@@ -156,8 +152,6 @@
           <span>Liên hệ</span>          
         </a>       
       </li>
-      @endif
-      @if(Auth::user()->role == 1)
       <li {{ in_array(\Request::route()->getName(), ['banner.list', 'banner.edit', 'banner.create']) ? "class=active" : "" }}>
         <a href="{{ route('banner.list') }}">
           <i class="fa fa-file-image-o"></i> 

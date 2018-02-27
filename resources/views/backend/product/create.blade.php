@@ -552,9 +552,7 @@ $(document).on('click', '.remove-image', function(){
   if( confirm ("Bạn có chắc chắn không ?")){
     $(this).parents('.col-md-3').remove();
   }
-});
-
-    $(document).ready(function(){
+});   
      
          
       $('#type, #estate_type_id').change(function(){
@@ -700,8 +698,7 @@ $(document).on('click', '.remove-image', function(){
           })
         
       });
-      $('#city_id').change(function(){         
-
+      $('#city_id').change(function(){                 
           $.ajax({
             url : '{{ route('get-child') }}',
             data : {

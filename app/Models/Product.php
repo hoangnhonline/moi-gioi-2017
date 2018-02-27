@@ -107,5 +107,9 @@ class Product extends Model  {
             ->get();
         return $query;
    }
+   public function sales()
+    {
+        return $this->hasMany('App\Models\CtvJoinSale', 'product_id');
+    }
     
 }

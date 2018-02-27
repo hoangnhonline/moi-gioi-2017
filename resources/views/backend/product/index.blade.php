@@ -222,10 +222,10 @@
                   </td>
                   <td style="white-space:nowrap; text-align:right">
                     <a class="btn btn-default btn-sm" href="{{ route('chi-tiet', [$item->slug_loai, $item->slug, $item->id] ) }}" target="_blank"><i class="fa fa-eye" aria-hidden="true"></i> Xem</a>
-                    <a href="{{ route( 'product.edit', [ 'id' => $item->id ]) }}" class="btn btn-warning btn-sm"><span class="glyphicon glyphicon-pencil"></span></a>                 
-
+                    <a href="{{ route( 'product.edit', [ 'id' => $item->id ]) }}" class="btn btn-warning btn-sm"><span class="glyphicon glyphicon-pencil"></span></a>                    
+                    @if($item->sales->count() == 0 || Auth::user()->role == 1 || (Auth::user()->role == 6 && $item->sales->count() == 0))                    
                     <a onclick="return callDelete('{{ $item->title }}','{{ route( 'product.destroy', [ 'id' => $item->id ]) }}');" class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-trash"></span></a>
-
+                    @endif
                   </td>
                 </tr> 
                 @endforeach
