@@ -254,7 +254,16 @@ class CustomerController extends Controller
         ];
 
         CtvJoinSale::create($data);
-
+        if($params['typeSales'] == 2){
+            $rs = Customer::where('cmnd', $params['cmnd'])->where('status', 1)->get();
+            if($rs){
+                $data['status'] = 1;
+                Customer::create($data);
+            }else{
+                $rs->update($data);
+            }
+            
+        }
         return response()->json(['error' => 0]);
 
     }

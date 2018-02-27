@@ -25,46 +25,17 @@ class Customer extends Model  {
      */
     protected $fillable = [
       'id',
-      'full_name',
-      'email',
+      'ctv_id',
+      'full_name',      
       'address',
       'phone',     
-      'username',
-      'password',
-      'type',
-      'last_login',
-      'status',      
-      'facebook_id',      
-      'image_url',
-      'key_reset',
-      'score'
+      'cmnd',    
+      'status'      
     ];
 
-    public function tinh()
+    public function ctv()
     {
-        return $this->hasOne('App\Models\City', 'id', 'city_id');
-    }
-    public function courses()
-    {
-        return $this->hasMany('App\Models\UserCourses', 'user_id');
-    }
-
-    public function huyen()
-    {
-        return $this->hasOne('App\Models\District', 'id', 'district_id');
-    }
-    public function xa()
-    {
-        return $this->hasOne('App\Models\Ward', 'id', 'ward_id');
-    }
-    public function country()
-    {
-        return $this->hasOne('App\Models\Country', 'id', 'country_id');
-    }
-    public static function joinedProduct($customerId){
-      $query = CtvJoinSale::where(['customer_id' => $customerId])
-              ->pluck('product_id')->toArray();
-        return $query;
+        return $this->hasOne('App\Models\Account', 'id', 'ctv_id');
     }
 
 }

@@ -24,6 +24,10 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+.btn.login-button-fb, .btn.login-button-fb:hover {
+    background-color: #2151B2 !important;
+    color: white !important;
+}
 
 /* Pen Title */
 .pen-title {

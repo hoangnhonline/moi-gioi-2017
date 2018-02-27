@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Models\Account;
-use Session;
+use Session, Auth;
 
 class AuthenticationController extends Controller
 {
@@ -72,6 +72,9 @@ class AuthenticationController extends Controller
         Session::forget('avatar');
         Session::forget('facebook_id');  
         Session::forget('new-register');
+        if(Auth::check()){
+            Auth::logout();
+        }
         return redirect()->route('home');
     }
 }

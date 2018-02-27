@@ -28,6 +28,14 @@ class UserController extends Controller
             'role' => 1,
             'status' => 1
         ));*/       
+        if ( Auth::check() )
+        {
+            if(in_array(Auth::user()->role, [2,3,4,5])){
+                return redirect()->route('sales.index');    
+            }
+
+            return redirect()->route('dashboard.index');
+        }        
         return view('backend.login');
     }
 
@@ -85,6 +93,12 @@ class UserController extends Controller
     public function logout()
     {
         Auth::logout();
+        Session::forget('login');
+        Session::forget('userId');
+        Session::forget('username');
+        Session::forget('avatar');
+        Session::forget('facebook_id');  
+        Session::forget('new-register');
         return redirect()->route('backend.login-form');
     }
    

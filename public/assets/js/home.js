@@ -59,7 +59,7 @@ $(document).ready(function() {
             token : token
           },
           success : function(data){
-            //location.reload();
+            location.reload();
           }
         });
 

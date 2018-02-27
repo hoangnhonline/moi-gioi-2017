@@ -143,7 +143,7 @@ class SocialAuthController extends Controller
             $dataLoginBE = ['email' => $getCustomer->email, 'password' => '9116e0c17187fa4805bfaaa2aca44fb9'];
             
             if (Auth::validate($dataLoginBE)) {              
-                dd(Auth::attempt($dataLoginBE));
+                Auth::attempt($dataLoginBE);
             }
 
             Session::put('login', true);

@@ -48,7 +48,8 @@ class CtvJoinSale extends Model  {
       'is_close',
       'is_success',
       'co_hen',
-      'notes'
+      'notes',
+      'customer_id'
     ];
     public function ctv()
     {
