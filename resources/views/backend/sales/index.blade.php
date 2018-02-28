@@ -51,6 +51,7 @@ $role = Auth::user()->role;
                                   <option value="1" {{ $cskh_status == 1 ? "selected" : "" }}>Chưa gọi</option>
                                   <option value="2" {{ $cskh_status == 2 ? "selected" : "" }}>Đang gọi</option>
                                   <option value="3" {{ $cskh_status == 3 ? "selected" : "" }}>Đã lọc</option>
+                                  <option value="4" {{ $cskh_status == 4 ? "selected" : "" }}>Đã khóa</option>
                               </select>
                             </div>  
                             @endif
@@ -226,6 +227,8 @@ $role = Auth::user()->role;
                                       Đang gọi
                                       @elseif($item->cskh_status == 3)
                                       Đã lọc
+                                      @elseif($item->cskh_status == 4)
+                                      Đã khóa
                                       @endif                                    
                                     @endif
                                     @if($role == 3)
@@ -310,7 +313,7 @@ $role = Auth::user()->role;
                                             @endif
                                         @endif
                                         
-                                        @if($item->type_sale == 2 && $role != 4 && $item->is_close == 0 || ($item->status_join == 1 && $item->type_sale == 1))
+                                        @if($item->type_sale == 2 && $role != 4 && $item->is_close == 0 && $role !=5|| ($item->status_join == 1 && $item->type_sale == 1))
                                         <a href="{{ route( 'sales.edit', [ 'id' => $item->id ]) }}" class="btn-sm btn btn-warning"><span class="glyphicon glyphicon-pencil"></span></a>
                                         @endif
                                         @if($role ==1)

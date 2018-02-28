@@ -42,18 +42,7 @@
                           @endforeach
                       </ul>
                   </div>
-              @endif 
-
-                <div class="form-group">
-                  <label for="email">Trạng thái <span class="red-star">*</span></label>
-                  <select class="form-control" disabled="disabled"  data-table="ctv_join_sale" data-col="cskh_status" data-id="{{ $detail->id }}">
-                      <option value="1" {{ $detail->pr_status == 1 ? "selected" : "" }}>Chưa chăm sóc</option>
-                      <option value="2" {{ $detail->pr_status == 2 ? "selected" : "" }}>Đang chăm sóc</option>
-                      <option value="3" {{ $detail->pr_status == 3 ? "selected" : "" }}>Giao dịch thành công</option>
-
-                      <option value="4" {{ $detail->pr_status == 4 ? "selected" : "" }}>Không thành công</option>
-                  </select>
-                </div>                
+              @endif                    
                <!-- text input -->
               <div class="form-group">
                 <label>Họ tên khách<span class="red-star">*</span></label>

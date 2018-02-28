@@ -99,6 +99,7 @@
                       <option value="1" {{ $detail->cskh_status == 1 ? "selected" : "" }}>Chưa gọi</option>
                       <option value="2" {{ $detail->cskh_status == 2 ? "selected" : "" }}>Đang gọi</option>
                       <option value="3" {{ $detail->cskh_status == 3 ? "selected" : "" }}>Đã lọc</option>
+                      <option value="4" {{ $detail->cskh_status == 4 ? "selected" : "" }}>Đã khóa</option>
                   </select>
                 </div>
             </div>  
