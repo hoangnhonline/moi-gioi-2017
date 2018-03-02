@@ -11,6 +11,7 @@ use App\Models\LoaiSp;
 use App\Models\SanPham;
 use App\Models\Orders;
 use App\Models\OrderDetail;
+use App\Models\CrawlData;
 use Helper, File, Session, Auth, DB;
 use Carbon\Carbon;
 class ReportController extends Controller
@@ -20,6 +21,14 @@ class ReportController extends Controller
     *
     * @return Response
     */
+    public function data(Request $request){
+        $type = $request->type ? $request->type : null;
+        $query = CrawlData::whereRaw('1');
+        if($type){
+
+        }
+        return view('backend.report.data', compact( 'type', 'items'));     
+    }
     public function index(Request $request)
     {        
         $date_type = $request->date_type ? $request->date_type : "7-ngay-qua";
