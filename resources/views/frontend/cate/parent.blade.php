@@ -13,7 +13,7 @@
             class="img_trung" src="{{ Helper::showImageThumb($pro->image_urls) }}"
             alt="đất nền xã nhuận đức ,củ chi" style="height: 198.587px;"></a>
          <a class="chitiet" href="{{ route('chi-tiet', [$pro->slug_loai, $pro->slug, $pro->id]) }}">Chi tiết</a>
-         <a class="tham-gia-ban" href="#bat-dong-san/dat-nen-xa-nhuan-duc-cu-chi/1147.html">Tham gia ban</a> 
+         <a class="tham-gia-ban" href="#bat-dong-san/dat-nen-xa-nhuan-duc-cu-chi/1147.html">Tham gia bán</a> 
          <div class="clear"></div>
       </div>
       <a class="tensp" href="{{ route('chi-tiet', [$pro->slug_loai, $pro->slug, $pro->id]) }}">{!! $pro->title !!}</a>        

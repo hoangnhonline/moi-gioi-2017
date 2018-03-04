@@ -68,8 +68,8 @@ class Product extends Model  {
                             'updated_user',
                             'hoa_hong_cs',
                             'hoa_hong_pr',
-                            'hoa_hong_ctv'
-
+                            'hoa_hong_ctv',
+                            'hoa_hong'
                         ];
 
     public static function productTag( $id )

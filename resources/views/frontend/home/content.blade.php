@@ -28,7 +28,7 @@
             style="color:#1060EB;">{!! $pro->price_text !!}</span></p>     
       
          <p class="size_chatlieu">Hoa hồng :
-            <span style="color:#1060EB;">{{ number_format($pro->hoa_hong_ctv*$pro->price/100) }}</span>
+            <span style="color:#1060EB;">{{ number_format($pro->hoa_hong_ctv*$pro->hoa_hong/100) }}</span>
          </p>
       
       <div class="clear"></div>

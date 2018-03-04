@@ -192,15 +192,19 @@
                         <hr>
                         <u style="font-size:20px; font-weight:bold">HOA HỒNG</u>
                         <div class="clearfix"></div>
-                        <div class="form-group col-md-4" >                  
+                        <div class="form-group col-md-3" >                  
+                            <label>Tổng hoa hồng<span class="red-star">*</span></label>
+                            <input type="text" class="form-control" name="hoa_hong" id="hoa_hong" value="{{ old('hoa_hong', $detail->hoa_hong) }}" placeholder="VND"> 
+                        </div>
+                        <div class="form-group col-md-3" >                  
                             <label>PR<span class="red-star">*</span></label>
                             <input type="text" class="form-control" name="hoa_hong_pr" id="hoa_hong_pr" value="{{ old('hoa_hong_pr', $detail->hoa_hong_pr) }}" placeholder="%"> 
                         </div>
-                        <div class="form-group col-md-4" >                  
+                        <div class="form-group col-md-3" >                  
                             <label>Chăm sóc CTV<span class="red-star">*</span></label>
                             <input type="text" class="form-control" name="hoa_hong_cs" id="hoa_hong_cs" value="{{ old('hoa_hong_cs', $detail->hoa_hong_cs) }}" placeholder="%"> 
                         </div>
-                        <div class="form-group col-md-4" >                  
+                        <div class="form-group col-md-3" >                  
                             <label>CTV<span class="red-star">*</span></label>
                             <input type="text" class="form-control" name="hoa_hong_ctv" id="hoa_hong_ctv" value="{{ old('hoa_hong_ctv', $detail->hoa_hong_ctv) }}" placeholder="%"> 
                         </div>
