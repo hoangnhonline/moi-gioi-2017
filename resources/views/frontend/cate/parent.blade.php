@@ -18,11 +18,11 @@
       </div>
       <a class="tensp" href="{{ route('chi-tiet', [$pro->slug_loai, $pro->slug, $pro->id]) }}">{!! $pro->title !!}</a>        
       
-         <p class="giagoc">Giá: <span
+          <p class="giagoc"><span
             style="color:#1060EB;">{!! $pro->price_text !!}</span></p>     
       
          <p class="size_chatlieu">Hoa hồng :
-            <span style="color:#1060EB;">{{ $pro->hoa_hong_ctv }}%</span>
+            <span style="color:#1060EB;">{{ number_format($pro->hoa_hong_ctv*$pro->hoa_hong*$pro->price/100/100) }}</span>
          </p>
       
       <div class="clear"></div>
