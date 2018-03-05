@@ -288,9 +288,9 @@ $role = Auth::user()->role;
                                         }
                                         ?>
                                         @if($item->type_sale == 1 || $role == 4 || $role == 3)
-                                        {{ number_format($phantram*$item->product->price/100) }}
+                                        {{ number_format($phantram*$item->product->hoa_hong*$item->product->price/100/100) }}
                                         @else
-                                        {{ number_format(($phantram*$item->product->price/100)/2) }}
+                                        {{ number_format(($item->product->hoa_hong*$phantram*$item->product->price/100/100)) }}
                                         @endif
                                       @else
                                         @if($role == 5)

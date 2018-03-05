@@ -6,17 +6,17 @@
             <div class="khung_menu12">
                <ul>
                   <li>
-                     <a href="{{ route('danh-muc', "du-an-ban" ) }}">Dự án bán</a>
+                     <a href="{{ route('danh-muc', "ban-du-an" ) }}">Bán dự án</a>
                      <ul>
                      </ul>
                   </li>
                   <li>
-                     <a href="{{ route('danh-muc', "nha-ban" ) }}">Nhà bán</a>
+                     <a href="{{ route('danh-muc', "nha-le" ) }}">Nhà lẻ</a>
                      <ul>
                      </ul>
                   </li>
                   <li>
-                     <a href="{{ route('danh-muc', "dat-ban" ) }}">Đất bán</a>
+                     <a href="{{ route('danh-muc', "san-pham-cho-thue" ) }}">Sản phẩm cho thuê</a>
                      <ul>
                      </ul>
                   </li>
@@ -62,11 +62,11 @@
       <ul>
          <li><a href="{{ route('home') }}" title="Trang chủ" class="trangchu active_trangchu">trang chủ</a></li>
          <li><a href="{{ route('danh-muc', 'gioi-thieu' ) }}" class="gioithieu ">giới thiệu</a></li>
-         <li><a class="trangchu " href="{{ route('danh-muc', 'du-an-ban') }}">Dự án bán </a>
+         <li><a class="trangchu " href="{{ route('danh-muc', 'ban-du-an') }}">Bán dự án </a>
          </li>
-         <li><a class="trangchu " href="{{ route('danh-muc', 'nha-ban') }}">Nhà bán </a>
+         <li><a class="trangchu " href="{{ route('danh-muc', 'nha-le') }}">Nhà lẻ </a>
          </li>
-         <li><a class="trangchu " href="{{ route('danh-muc', 'dat-ban') }}">Đất bán</a>
+         <li><a class="trangchu " href="{{ route('danh-muc', 'san-pham-cho-thue') }}">Sản phẩm cho thuê</a>
          </li>         
          <li><a href="{{ route('news-list', 'tin-tuc') }}" class="tintuc ">tin tức</a></li>
          <li><a href="{{ route('contact') }}" class="lienhe ">liên hệ</a></li>
