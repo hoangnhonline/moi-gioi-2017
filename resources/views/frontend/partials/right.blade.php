@@ -1,6 +1,6 @@
 <p class="title_tuvansanpham">Tìm kiếm</p>
 <div style="width: 50%;height: 2px;background-color: red;margin-bottom: 14px;margin-left: 35px;"></div>
-<form id="frm_search" action="#tim-kiem.html" method="post">
+<form id="frm_search" action="{{ route('search') }}" method="GET">
    <div class="tk-rr">
       <div class="tk-ct">
          <div style="font-size:13px;color:#444;font-weight:bold;padding:10px">
@@ -8,67 +8,60 @@
          </div>
          <div class="ip-but">
             <p class="p_search_right">Chọn loại tin</p>
-            <select class="seldientich lodtin" name="id_item2">
+            <select class="seldientich lodtin" name="estate_type_id" id="estate_type_id">
                <option value="0">Loại tin</option>
-               <option value="1">Đất nền</option>
-               <option value="2">Căn hộ</option>
-               <option value="3">Nhà xưởng</option>
+               @foreach( $estateTypeArr as $value )
+             <option value="{{ $value->id }}"
+             {{ isset($estate_type_id) && $estate_type_id == $value->id ? "selected" : "" }}
+             >{{ $value->name }}</option>
+             @endforeach
             </select>
          </div>
          <div class="ip-but">
             <p class="p_search_right">Tỉnh/Thành</p>
-            <select name="tinhthanh" id="isthanhpho">
+            <select class="seldientich" name="city_id" id="city_id">
                <option value="0"> Chọn thành phố</option>
-               <option value="3">TP Hồ Chí Minh</option>
-               <option value="31">Bình Dương</option>
-               <option value="33">long an</option>
+               @foreach($cityList as $city)
+               <option @if(isset($city_id) && $city_id == $city->id) selected @endif value="{{ $city->id }}">{{ $city->name }}</option>
+               @endforeach
             </select>
          </div>
          <div class="ip-but">
             <p class="p_search_right">Quận/Huyện</p>
-            <select name="quanhuyen" id="isquanhuyen">
+            <select class="seldientich" name="district_id" id="district_id">
                <option value="0">Quận/ Huyện</option>
+               <?php 
+               if(isset($city_id)){
+               $districtList = App\Models\District::where('city_id', $city_id)->get();
+               }
+               ?>
+               @foreach($districtList as $district)
+               <option @if(isset($district_id) && $district_id == $district->id) selected @endif value="{{ $district->id }}">{{ $district->name }}</option>
+               @endforeach
             </select>
          </div>
          <div class="ip-but">
             <p class="p_search_right">Diện tích</p>
-            <select class="seldientich" id="dientichcc" name="dtbds">
+            <select class="seldientich" id="area_id" name="area_id">
                <option value="0">Diện tích</option>
-               <option value="100">Không xác định</option>
-               <option value="1">&lt;= 30 m2</option>
-               <option value="2">30-50 m2</option>
-               <option value="3">50-80 m2</option>
-               <option value="4">80-100 m2</option>
-               <option value="5">100-150 m2</option>
-               <option value="6">150-200 m2</option>
-               <option value="7">200-250 m2</option>
-               <option value="8">250-300 m2</option>
-               <option value="9">300-500 m2</option>
-               <option value="10">&gt;=500 m2</option>
+               @foreach($areaList as $area)
+               <option @if(isset($area_id) && $area_id == $area->id) selected @endif value="{{ $area->id }}">{{ $area->name }}</option>
+               @endforeach
             </select>
          </div>
          <div class="ip-but">
             <p class="p_search_right">Chọn giá</p>
-            <select class="selgia" name="pricebds" id="cboPrice">
+            <select class="selgia" name="price_id" id="price_id">
                <option value="0">Mức giá</option>
-               <option value="100">Thỏa thuận</option>
-               <option value="200">10 - 50 triệu</option>
-               <option value="201">50 - 100 triệu</option>
-               <option value="202">100 - 300 triệu</option>
-               <option value="1">300 - 500 triệu</option>
-               <option value="2">500 - 800 triệu</option>
-               <option value="3">800 - 1 tỷ</option>
-               <option value="4">1 - 2 tỷ</option>
-               <option value="5">2 - 3 tỷ</option>
-               <option value="6">3 - 5 tỷ</option>
-               <option value="7">5 - 7 tỷ</option>
-               <option value="8">7 - 10 tỷ</option>
+               @foreach($priceList as $price)
+               <option @if(isset($price_id) && $price_id == $price->id) selected @endif value="{{ $price->id }}">{{ $price->name }}</option>
+               @endforeach
             </select>
          </div>
          <div class="ip-but">
             <input onclick="reset()" style="margin-right:15px" type="button" class="btn_search_right"
                value="Chọn lại">
-            <input type="button" class="btn_search_right" value="Tìm kiếm" onclick="load_data()">
+            <input id="btnSearch" type="submit" class="btn_search_right" value="Tìm kiếm">
          </div>
       </div>
    </div>

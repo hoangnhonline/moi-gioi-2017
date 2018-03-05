@@ -317,6 +317,32 @@ function searchProduct() {
 }
 </script>
 @yield('javascript_page')
+<script type="text/javascript">
+  $(document).ready(function(){
+     $('#city_id').change(function(){                 
+          $.ajax({
+            url : '{{ route('get-child') }}',
+            data : {
+              mod : 'district',
+              col : 'city_id',
+              id : $('#city_id').val()
+            },
+            type : 'POST',
+            dataType : 'html',
+            success : function(data){
+              $('#district_id').html(data);              
+            }
+          })
+        
+      });
+     $('#btnSearch').click(function(){    
+        if($('#estate_type_id').val() == ''){
+          swal({ title: '', text: 'Vui lòng chọn loại bất động sản.', type: 'error' });
+          return false;
+        }   
+      });
+  });
+</script>
 @include('frontend.partials.modal')
 <input type="hidden" id="route-ajax-login-fb" value="{{route('ajax-login-by-fb')}}">
    <input type="hidden" id="fb-app-id" value="{{ env('FACEBOOK_APP_ID') }}">
