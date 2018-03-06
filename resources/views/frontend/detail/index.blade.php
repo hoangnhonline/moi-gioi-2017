@@ -113,7 +113,7 @@
 	    			</tr>
 	    			<tr>
 	    				<td><b>Di động</b></td>
-	    				<td>{{ $detail->contact_mobile }}</td>
+	    				<td>{{ $detail->contact_phone }}</td>
 	    			</tr>	    			
 	    		</table>
 	    	</div>
