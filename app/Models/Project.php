@@ -46,5 +46,16 @@ class Project extends Model  {
                             'display_order'
                         ];
 
-    
+    public function product()
+    {
+        return $this->hasMany('App\Models\Product', 'project_id');
+    }
+    public function city()
+    {
+        return $this->belongsTo('App\Models\City', 'city_id');
+    }
+    public function district()
+    {
+        return $this->belongsTo('App\Models\Distict', 'district_id');
+    }
 }

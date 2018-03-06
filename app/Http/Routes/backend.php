@@ -35,6 +35,14 @@ Route::group(['namespace' => 'Backend', 'prefix' => 'backend', 'middleware' => '
         Route::get('{id}/destroy', ['as' => 'video.destroy', 'uses' => 'VideoController@destroy']);
         Route::post('/update', ['as' => 'video.update', 'uses' => 'VideoController@update']);
     });
+    Route::group(['prefix' => 'project'], function () {
+        Route::get('/', ['as' => 'project.index', 'uses' => 'ProjectController@index']);
+        Route::get('/create', ['as' => 'project.create', 'uses' => 'ProjectController@create']);
+        Route::post('/store', ['as' => 'project.store', 'uses' => 'ProjectController@store']);
+        Route::get('{id}/edit',   ['as' => 'project.edit', 'uses' => 'ProjectController@edit']);       
+        Route::get('{id}/destroy', ['as' => 'project.destroy', 'uses' => 'ProjectController@destroy']);
+        Route::post('/update', ['as' => 'project.update', 'uses' => 'ProjectController@update']);
+    });
     Route::group(['prefix' => 'sales'], function () {
         Route::get('/', ['as' => 'sales.index', 'uses' => 'SalesController@index']);
         Route::get('/create', ['as' => 'sales.create', 'uses' => 'SalesController@create']);
