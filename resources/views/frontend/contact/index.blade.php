@@ -8,7 +8,7 @@
     <li class="active">Liên hệ</li>
   </ul>
 </article><!-- /block-breadcrumb -->
-<section class="block-content " style="padding:10px 20px">
+<section class="block-content ">
         <div class="block-common">  
         <div id="contact" class="page-content page-contact">
             <div id="message-box-conact"></div>
@@ -16,12 +16,12 @@
                 
                 <div class="col-sm-12 ">	
                     <h3 class="page-heading">
-                        <span class="page-heading-title2">THÔNG TIN Liên hệ</span>
+                        <span class="page-heading-title2">THÔNG TIN LIÊN HỆ</span>
                     </h3>               
                     <div class="content">
-                        <h4>NhaDat - Chợ Công Nghệ Giá Sỉ</h4>                        
-                        <p>Hotline: <span class="tel">1900 63 69 75</span></p>                        
-                        <p>Email: <a href="mailto:muahang@icho.vn">muahang@icho.vn</a></p>
+                        <h4 style="font-size: 17px">CÔNG TY TNHH DỊCH VỤ TƯ VẤN BẤT ĐỘNG SẢN THANH PHÚ THỊNH LAND</h4>                        
+                        <p>Hotline: <span class=""> 0919.356.178</span></p>                        
+                        <p>Email: <a href="mailto:bdsthanhphuthinhland@gmail.com">bdsthanhphuthinhland@gmail.com</a></p>
                     </div>
                     @if(Session::has('message'))
 	                <p class="alert alert-info" >{{ Session::get('message') }}</p>
@@ -36,7 +36,7 @@
 	                @endif	
                     <div class="contact-form-box">
                         <div class="form-selector">                            
-                            <textarea style="font-size:14px" class="form-control input-sm" rows="8" id="content" name="content" placeholder="Nhập nội dung bạn muốn liên hệ hoặc góp ý với NhaDat">{{ old('content') }}</textarea>
+                            <textarea style="font-size:14px" class="form-control input-sm" rows="8" id="content" name="content" placeholder="Nhập nội dung bạn muốn liên hệ hoặc góp ý với THANH PHÚ THỊNH LAND">{{ old('content') }}</textarea>
 
                         </div>
                         <input type="hidden" name="type" value="1">                        

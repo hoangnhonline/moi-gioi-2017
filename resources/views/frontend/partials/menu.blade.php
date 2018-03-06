@@ -60,16 +60,16 @@
 <div class="menu menu_fix">
    <div class="menu_desktop" style="display: none;">
       <ul>
-         <li><a href="{{ route('home') }}" title="Trang chủ" class="trangchu active_trangchu">trang chủ</a></li>
-         <li><a href="{{ route('danh-muc', 'gioi-thieu' ) }}" class="gioithieu ">giới thiệu</a></li>
-         <li><a class="trangchu " href="{{ route('danh-muc', 'ban-du-an') }}">Bán dự án </a>
+         <li><a href="{{ route('home') }}" title="Trang chủ" class="trangchu @if($routeName == "home") active_trangchu @endif">trang chủ</a></li>
+         <li><a href="{{ route('danh-muc', 'gioi-thieu' ) }}" class="trangchu {{ isset($slug) && $slug == "gioi-thieu" ? "active_trangchu" : "" }}">giới thiệu</a></li>
+         <li><a class="trangchu {{ isset($estate_type_id) && $estate_type_id == 2 ? "active_trangchu" : "" }}" href="{{ route('danh-muc', 'ban-du-an') }}">Bán dự án </a>
          </li>
-         <li><a class="trangchu " href="{{ route('danh-muc', 'nha-le') }}">Nhà lẻ </a>
+         <li><a class="trangchu {{ isset($estate_type_id) && $estate_type_id == 3 ? "active_trangchu" : "" }}" href="{{ route('danh-muc', 'nha-le') }}">Nhà lẻ </a>
          </li>
-         <li><a class="trangchu " href="{{ route('danh-muc', 'cho-thue') }}">Cho thuê</a>
+         <li><a class="trangchu {{ isset($estate_type_id) && $estate_type_id == 5 ? "active_trangchu" : "" }}" href="{{ route('danh-muc', 'cho-thue') }}">Cho thuê</a>
          </li>         
-         <li><a href="{{ route('news-list', 'tin-tuc') }}" class="tintuc ">tin tức</a></li>
-         <li><a href="{{ route('contact') }}" class="lienhe ">liên hệ</a></li>
+         <li><a href="{{ route('news-list', 'tin-tuc') }}" class="trangchu @if($routeName == "news-list" || $routeName == "news-detail") active_trangchu @endif">tin tức</a></li>
+         <li><a href="{{ route('contact') }}" class="trangchu @if($routeName == "contact") trangchu active_trangchu @endif">liên hệ</a></li>
       </ul>
       <div class="clear"></div>
    </div>
