@@ -58,9 +58,7 @@
                @endforeach
             </select>
          </div>
-         <div class="ip-but">
-            <input onclick="reset()" style="margin-right:15px" type="button" class="btn_search_right"
-               value="Chọn lại">
+         <div class="ip-but" style="text-align: center;">            
             <input id="btnSearch" type="submit" class="btn_search_right" value="Tìm kiếm">
          </div>
       </div>
