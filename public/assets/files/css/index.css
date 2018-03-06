@@ -5698,6 +5698,7 @@ ul.tabs li a {
     transition: all 0.5s;
     height: 40px;
     text-transform: uppercase;
+    overflow: hidden;
 }
 
 .tensp:hover {
@@ -5721,7 +5722,7 @@ ul.tabs li a {
     padding: 2px;
     text-align: left;
     color: #868383;
-    width: 40%;
+    width: 39%;
     float: left;
     padding-left: 10px;
 }
