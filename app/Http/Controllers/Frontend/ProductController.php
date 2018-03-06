@@ -48,7 +48,7 @@ class ProductController extends Controller
                 $seo['title'] = $seo['description'] = $seo['keywords'] = $rs->name;
             }            
             $type = $rs->type;                                     
-            return view('frontend.cate.parent', compact('productList','productArr', 'rs', 'hoverInfo', 'socialImage', 'seo', 'type', 'estate_type_id'));
+            return view('frontend.cate.parent', compact('productList','productArr', 'rs', 'hoverInfo', 'socialImage', 'seo', 'type', 'estate_type_id', 'slug'));
         }else{
             $detailPage = Pages::where('slug', $slug)->first();
             if(!$detailPage){
@@ -57,7 +57,7 @@ class ProductController extends Controller
             $seo['title'] = $detailPage->meta_title ? $detailPage->meta_title : $detailPage->title;
             $seo['description'] = $detailPage->meta_description ? $detailPage->meta_description : $detailPage->title;
             $seo['keywords'] = $detailPage->meta_keywords ? $detailPage->meta_keywords : $detailPage->title;           
-            return view('frontend.pages.index', compact('detailPage', 'seo'));    
+            return view('frontend.pages.index', compact('detailPage', 'seo', 'slug'));    
         }
     }
     public function ban(Request $request)

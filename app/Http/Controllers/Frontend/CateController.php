@@ -95,10 +95,11 @@ class CateController extends Controller
             if(!$detailPage){
                 return redirect()->route('home');
             }
+           
             $seo['title'] = $detailPage->meta_title ? $detailPage->meta_title : $detailPage->title;
             $seo['description'] = $detailPage->meta_description ? $detailPage->meta_description : $detailPage->title;
             $seo['keywords'] = $detailPage->meta_keywords ? $detailPage->meta_keywords : $detailPage->title;           
-            return view('frontend.pages.index', compact('detailPage', 'seo'));    
+            return view('frontend.pages.index', compact('detailPage', 'seo', 'slug'));    
         }
     }
     public function getSeoInfo($meta_id){
