@@ -6,14 +6,13 @@
             <div class="khung_menu12">
                <ul>
                   <li>
-                     <a href="{{ route('danh-muc', "ban-du-an" ) }}">Bán dự án</a>
-                     <ul>
-                     </ul>
+                     <a href="{{ route('danh-muc', "ban-du-an" ) }}">Bán dự án</a>                     
                   </li>
                   <li>
-                     <a href="{{ route('danh-muc', "nha-le" ) }}">Nhà lẻ</a>
-                     <ul>
-                     </ul>
+                     <a href="{{ route('danh-muc', "nha-le" ) }}">Nhà lẻ</a>                     
+                  </li>
+                  <li>
+                     <a href="{{ route('danh-muc', "dat-le" ) }}">Đất lẻ</a>
                   </li>
                   <li>
                      <a href="{{ route('danh-muc', "cho-thue" ) }}">Cho thuê</a>
@@ -66,6 +65,8 @@
          </li>
          <li><a class="trangchu {{ isset($estate_type_id) && $estate_type_id == 3 ? "active_trangchu" : "" }}" href="{{ route('danh-muc', 'nha-le') }}">Nhà lẻ </a>
          </li>
+         <li><a class="trangchu {{ isset($estate_type_id) && $estate_type_id == 7 ? "active_trangchu" : "" }}" href="{{ route('danh-muc', 'dat-le') }}">Đất lẻ </a>
+         </li>
          <li><a class="trangchu {{ isset($estate_type_id) && $estate_type_id == 5 ? "active_trangchu" : "" }}" href="{{ route('danh-muc', 'cho-thue') }}">Cho thuê</a>
          </li>         
          <li><a href="{{ route('news-list', 'tin-tuc') }}" class="trangchu @if($routeName == "news-list" || $routeName == "news-detail") active_trangchu @endif">tin tức</a></li>
@@ -103,11 +104,10 @@
             </ul>
             <div class="clear"></div>
             <div class="menu_nho">
-               <a href="#">Trang chủ</a>
-               <a href="#gioi-thieu.html">Giới thiệu</a>
-               <a href="#phong-thuy.html">Phong thủy</a>
-               <a href="#tin-tuc.html">Tin tức</a>
-               <a href="#lien-he.html">Liên hệ</a>
+               <a href="{{ route('home') }}">Trang chủ</a>
+               <a href="{{ route('danh-muc', 'gioi-thieu' ) }}">Giới thiệu</a>               
+               <a href="{{ route('news-list', 'tin-tuc') }}">Tin tức</a>
+               <a href="{{ route('contact') }}">Liên hệ</a>
                <div class="clear"></div>
             </div>
             <div class="clear"></div>

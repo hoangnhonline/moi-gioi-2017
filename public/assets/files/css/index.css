@@ -5110,9 +5110,9 @@ div.at4-arrow.at-up {
 }
 
 .khung_menu12 li {
-    float: left;
-    margin-right: 20px;
-    width: 130px;
+    float: left;    
+    width: 50%;
+    margin-bottom: 10px;
 }
 
 .khung_menu12 li a {
