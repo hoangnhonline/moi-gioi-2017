@@ -558,15 +558,7 @@ $(document).on('click', '.remove-image', function(){
   }
 });   
      
-         
-      $('#type, #estate_type_id').change(function(){
-
-        var url ="{{ route('product.create') }}?type=" + $('#type').val();
-        if($('#estate_type_id').val() > 0){
-          url += '&estate_type_id=' + $('#estate_type_id').val();
-        }
-        location.href = url;
-      });
+     
       $(".select2").select2();
       $('#dataForm').submit(function(){
         

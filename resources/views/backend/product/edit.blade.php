@@ -642,15 +642,7 @@ $(document).ready(function(){
   @if($detail->cart_status == 2)
   $('#row_all input, #row_all textarea, #row_all select').attr('disabled', 'disbaled');
 
-  @endif
-  $('#type, #estate_type_id').change(function(){
-
-        var url ="{{ route('product.edit', [$detail->id]) }}?type=" + $('#type').val();
-        if($('#estate_type_id').val() > 0){
-          url += '&estate_type_id=' + $('#estate_type_id').val();
-        }
-        location.href = url;
-      });
+  @endif 
 $('#pac-input').on('keypress', function(e) {
         return e.which !== 13;
     });
