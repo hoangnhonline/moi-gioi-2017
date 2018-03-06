@@ -168,9 +168,10 @@ class CrawlerController extends Controller
     }
     public function ward(){
         set_time_limit(10000);
-        $districtArr = [72,73,74,75,76];
+        $districtArr = [642,643,644,645,646,647,648,649,650,651,727];
         foreach ($districtArr as $dis) {
             $url = 'https://dothi.net/Handler/SearchHandler.ashx?module=GetWard&distId='. $dis; 
+            echo $url;
             $chs = curl_init();            
             curl_setopt($chs, CURLOPT_URL, $url);
             curl_setopt($chs, CURLOPT_RETURNTRANSFER, 1); 
@@ -180,6 +181,7 @@ class CrawlerController extends Controller
             curl_close($chs);
 
             $data = json_decode($result, true);
+            //dd($data);
             $i = 0;
             $district_id = District::where('id_dothi', $dis)->first()->id;
             foreach($data as $ward){
@@ -189,9 +191,9 @@ class CrawlerController extends Controller
                     'name' => $ward['Text'],
                     'prefix' => $ward['WardPrefix'],
                     'district_id' => $district_id,
-                    'city_id' => 1,
+                    'city_id' => 58,
                     'display_order' => $i,
-                    'slug' => Helper::changeFileName($ward['Text'])
+                    'slug' => str_slug($ward['Text'])
                 ]);           
             }            
         }

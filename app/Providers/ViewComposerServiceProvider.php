@@ -62,7 +62,7 @@ class ViewComposerServiceProvider extends ServiceProvider
 			}
 	        $settingArr = Settings::whereRaw('1')->lists('value', 'name');
 	        $articleCate = ArticlesCate::orderBy('display_order', 'desc')->get();	     
-	        $cityList = City::whereIn('id', [1, 6])->get();
+	        $cityList = City::whereIn('id', [1, 3, 6, 23, 58])->get();
 	        $districtList = District::where('city_id', 1)->where('status',1)->get();	      
 	        $priceList = Price::where('type', 1)->get();
         	$areaList = Area::all();
