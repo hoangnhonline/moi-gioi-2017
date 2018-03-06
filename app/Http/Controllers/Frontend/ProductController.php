@@ -39,7 +39,7 @@ class ProductController extends Controller
                 ->orderBy('product.is_hot', 'desc')
                 ->orderBy('product.cart_status', 'asc')
                 ->orderBy('product.id', 'desc');
-                $productList  = $query->paginate(10);
+                $productList  = $query->paginate(12);
                 $productArr = $productList->toArray();
             
             if( $rs->meta_id > 0){

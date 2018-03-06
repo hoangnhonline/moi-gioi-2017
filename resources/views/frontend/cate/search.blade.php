@@ -1,9 +1,9 @@
 @extends('frontend.layout')
 @include('frontend.partials.meta')
 @section('content')
-<p class="title-home"><a>Kết quả tìm kiếm : có <b>{{ number_format(count($productList)) }}</b> bất động sản</a></p>
+<p class="title-home">Kết quả tìm kiếm @if($productList->count() > 0) : có <b>{{ number_format(count($productList)) }}</b> bất động sản @endif</p>
 <div class="clear"></div>
-@if(!empty( (array) $productList ))
+@if($productList->count() > 0)
 <div>
    
    @foreach( $productList as $pro )
@@ -30,6 +30,12 @@
    @endforeach     
    
    <div class="clear"></div>
+   <div style="text-align:center">
+   {{ $productList->links() }}
+   </div> 
 </div>
+@else
+<p style="text-align: center;">Không tìm thấy kết quả nào.</p>
 @endif
+<div class="clearfix" style="margin-bottom: 20px;"></div>
 @endsection

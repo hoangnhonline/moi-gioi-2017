@@ -3,7 +3,7 @@
 @section('content')
 <p class="title-home"><a>{{ $rs->name }}</a></p>
 <div class="clear"></div>
-@if(!empty( (array) $productList ))
+@if($productList->count() > 0)
 <div>
    
    @foreach( $productList as $pro )
@@ -30,6 +30,12 @@
    @endforeach     
    
    <div class="clear"></div>
+   <div style="text-align:center">
+   {{ $productList->links() }}
+   </div> 
 </div>
+@else
+<p style="text-align: center;">Đang cập nhật.</p>
 @endif
+<div class="clearfix" style="margin-bottom: 20px;"></div>
 @stop

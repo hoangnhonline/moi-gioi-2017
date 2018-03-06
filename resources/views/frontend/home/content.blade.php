@@ -40,6 +40,9 @@
    </div>
    <div class="clear"></div>
 </div>
+@else
+<p style="padding-left: 20px">Đang cập nhật.</p>
 @endif
+<div class="clearfix" style="margin-bottom: 20px;"></div>
 @endforeach
 @stop
