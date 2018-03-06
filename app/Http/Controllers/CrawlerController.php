@@ -201,9 +201,11 @@ class CrawlerController extends Controller
     public function street(){
         set_time_limit(10000);
         //$districtArr = [54,61,71];
-        $districtArr = [53,55,56,57,58,59,60,62,63,64,65,66,67,68,69,70,72,73,75,75,76];
-        foreach ($districtArr as $dis) {
-            $url = 'https://dothi.net/Handler/SearchHandler.ashx?module=GetStreet&distId='. $dis; 
+        $districtList = District::whereIn('city_id', [58, 3, 23])->get();        
+        foreach ($districtList as $districtDetail) {
+            $url = 'https://dothi.net/Handler/SearchHandler.ashx?module=GetStreet&distId='. $districtDetail->id_dothi; 
+            echo $url;
+            echo "<hr>";
             $chs = curl_init();            
             curl_setopt($chs, CURLOPT_URL, $url);
             curl_setopt($chs, CURLOPT_RETURNTRANSFER, 1); 
@@ -214,7 +216,7 @@ class CrawlerController extends Controller
 
             $data = json_decode($result, true);
             $i = 0;
-            $district_id = District::where('id_dothi', $dis)->first()->id;
+            $district_id = $districtDetail->id;
             foreach($data as $street){
                 
                 $i++;                
@@ -223,9 +225,9 @@ class CrawlerController extends Controller
                     'name' => $street['Text'],
                     'prefix' => $street['StreetPrefix'],
                     'district_id' => $district_id,
-                    'city_id' => 1,
+                    'city_id' => $districtDetail->city_id,
                     'display_order' => $i,
-                    'slug' => Helper::changeFileName($street['Text'])
+                    'slug' => str_slug($street['Text'])
                 ]);           
                 
             }                        
