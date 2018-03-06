@@ -16,7 +16,7 @@
                      </ul>
                   </li>
                   <li>
-                     <a href="{{ route('danh-muc', "cho-thue" ) }}">Sản phẩm cho thuê</a>
+                     <a href="{{ route('danh-muc', "cho-thue" ) }}">Cho thuê</a>
                      <ul>
                      </ul>
                   </li>
@@ -66,7 +66,7 @@
          </li>
          <li><a class="trangchu " href="{{ route('danh-muc', 'nha-le') }}">Nhà lẻ </a>
          </li>
-         <li><a class="trangchu " href="{{ route('danh-muc', 'cho-thue') }}">Sản phẩm cho thuê</a>
+         <li><a class="trangchu " href="{{ route('danh-muc', 'cho-thue') }}">Cho thuê</a>
          </li>         
          <li><a href="{{ route('news-list', 'tin-tuc') }}" class="tintuc ">tin tức</a></li>
          <li><a href="{{ route('contact') }}" class="lienhe ">liên hệ</a></li>
