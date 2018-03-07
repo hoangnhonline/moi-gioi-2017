@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Models\Banner;
-use App\Models\LoaiSp;
+use App\Models\CateType;
 use App\Models\Cate;
 use App\Models\LandingProjects;
 use Helper, File, Session, Auth;
@@ -20,16 +20,14 @@ class BannerController extends Controller
     * @return Response
     */
     public function index(Request $request)
-    {
-        if(Auth::user()->role > 1){
-            return redirect()->route('dashboard.index');
-        }
+    {      
+          
         $arrSearch['status'] = $status = isset($request->status) ? $request->status : null;
         $arrSearch['object_id'] = $object_id = $request->object_id;
         $arrSearch['object_type'] = $object_type = $request->object_type;
         $detail = (object) [];
         if( $object_type == 1){
-            $detail = LoaiSp::find( $object_id );
+            $detail = CateType::find( $object_id );
         }
         if( $object_type == 2){
             $detail = Cate::find( $object_id );
@@ -61,6 +59,7 @@ class BannerController extends Controller
         return view('backend.banner.index', compact( 'items', 'detail', 'arrSearch'));
     }
     public function lists(Request $request){
+          
         return view('backend.banner.list');   
     }
     /**
@@ -70,11 +69,12 @@ class BannerController extends Controller
     */
     public function create(Request $request)
     {
+          
         $detail = (object) [];
         $object_id = $request->object_id;
         $object_type = $request->object_type;
         if( $object_type == 1){
-            $detail = LoaiSp::find( $object_id );
+            $detail = CateType::find( $object_id );
         }
         if( $object_type == 2){
             $detail = Cate::find( $object_id );
@@ -119,20 +119,7 @@ class BannerController extends Controller
         */
         $dataArr['status'] = isset($dataArr['status'])  ? 1 : 0;
         
-        if($dataArr['image_url'] && $dataArr['image_name']){
-            
-            $tmp = explode('/', $dataArr['image_url']);
-
-            if(!is_dir('uploads/'.date('Y/m/d'))){
-                mkdir('uploads/'.date('Y/m/d'), 0777, true);
-            }
-
-            $destionation = date('Y/m/d'). '/'. end($tmp);
-            
-            File::move(config('moigioi.upload_path').$dataArr['image_url'], config('moigioi.upload_path').$destionation);
-            
-            $dataArr['image_url'] = $destionation;
-        }
+        
         $dataArr['created_user'] = Auth::user()->id;
 
         $dataArr['updated_user'] = Auth::user()->id;
@@ -162,13 +149,14 @@ class BannerController extends Controller
     */
     public function edit(Request $request)
     {
+          
         $id = $request->id;
         $detailBanner = Banner::find($id);
         $detail = Banner::find($id);
         $object_id = $request->object_id;
         $object_type = $request->object_type;
         if( $object_type == 1){
-            $detail = LoaiSp::find( $object_id );
+            $detail = CateType::find( $object_id );
         }
         if( $object_type == 2){
             $detail = Cate::find( $object_id );
@@ -194,20 +182,7 @@ class BannerController extends Controller
         $dataArr['updated_user'] = Auth::user()->id;
         $dataArr['status'] = isset($dataArr['status'])  ? 1 : 0;
 
-        if($dataArr['image_url'] && $dataArr['image_name']){
-            
-            $tmp = explode('/', $dataArr['image_url']);
-
-            if(!is_dir('uploads/'.date('Y/m/d'))){
-                mkdir('uploads/'.date('Y/m/d'), 0777, true);
-            }
-
-            $destionation = date('Y/m/d'). '/'. end($tmp);
-            
-            File::move(config('moigioi.upload_path').$dataArr['image_url'], config('moigioi.upload_path').$destionation);
-            
-            $dataArr['image_url'] = $destionation;
-        }
+       
         
         $model = Banner::find($dataArr['id']);
 
@@ -226,6 +201,7 @@ class BannerController extends Controller
     */
     public function destroy($id)
     {
+          
         // delete
         $model = Banner::find($id);
         $model->delete();

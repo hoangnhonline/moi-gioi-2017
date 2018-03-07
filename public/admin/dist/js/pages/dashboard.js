@@ -8,6 +8,7 @@ function singleUpload(obj) {
     window.KCFinder.callBack = function(url) {
       console.log($('#app_url').val());
        $('#' + obj.data('set')).val(url);
+        $('#' + obj.data('image')).attr('src', $('#app_url').val() + url);
        $('#' + 'thumbnail_' + obj.data('set')).attr('src', $('#app_url').val() + url);
         window.KCFinder = null;
     };

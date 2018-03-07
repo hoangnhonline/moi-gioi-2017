@@ -79,7 +79,7 @@
 <input type="hidden" id="url_open_kc_finder" value="{{ URL::asset('public/admin/dist/js/kcfinder/browse.php?type=images') }}">
   <div class="control-sidebar-bg"></div>
 </div>
-<input type="hidden" id="upload_url" value="{{ config('kkaffee.upload_url') }}">
+<input type="hidden" id="upload_url" value="{{ config('moigioi.upload_url') }}">
 <input type="hidden" id="app_url" value="{{ env('APP_URL') }}">
 <!-- ./wrapper -->
 

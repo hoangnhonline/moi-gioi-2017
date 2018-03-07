@@ -200,15 +200,22 @@
 
                <!-- Wrapper for slides -->
                <div class="carousel-inner" role="listbox">
-                   <div class="item active">
-                       <img src="{{ URL::asset('public/assets/images/slide1.png') }}" alt="...">
-
-                   </div>
-                   <div class="item">
-                       <img src="{{ URL::asset('public/assets/images/slide2.jpg') }}" alt="...">
-
-                   </div>
-
+                    <?php 
+                    $bannerArr = DB::table('banner')->where(['object_id' => 1, 'object_type' => 3])->orderBy('display_order', 'asc')->get();
+                    ?>
+                    <?php $i = 0; ?>
+                    @foreach($bannerArr as $banner)
+                    <?php $i++; ?>
+                    <div class="item @if($i == 1) active @endif">
+                    @if($banner->ads_url !='')
+                    <a href="{{ $banner->ads_url }}" title="banner slide {{ $i }}">
+                    @endif
+                    <img src="{{ Helper::showImage($banner->image_url) }}" alt="banner top {{ $i }}">
+                    @if($banner->ads_url !='')
+                    </a>
+                    @endif
+                    </div>
+                    @endforeach 
                </div>
 
                <!-- Controls -->

@@ -284,7 +284,7 @@
                         </div>
                         <div class="form-group col-md-6 none-padding pleft-5" >                  
                             <label>Địa chỉ</label>
-                            <input type="text" class="form-control" name="contact_address" id="contact_address" value="{{ old('contact_address', '34 Trần Hưng Đạo, P.Tân Thành, Q.Tân Phú') }}">
+                            <input type="text" class="form-control" name="contact_address" id="contact_address" value="{{ old('contact_address', '34 Trần Hưng Đạo, P.Tân Sơn Nhì, Q.Tân Phú') }}">
                         </div>                        
                         <div class="form-group col-md-6 " >                  
                             <label>Điện thoại</label>
