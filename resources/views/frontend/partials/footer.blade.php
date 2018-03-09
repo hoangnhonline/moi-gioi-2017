@@ -7,7 +7,11 @@
       </p>
       <p style="display: block;padding: 2px 0px;color: #fff;font-size: 13px;"><img src="{{ URL::asset('public/assets/files/diachi.png') }}"
          alt="dat cu chi">&nbsp;&nbsp;
-         Số 9C, Đường Tân Thới Nhất 20, Tổ 52, KP4, P.TTN, Quận 12, TP.HCM
+         Trụ Sở: Số 9C, Đường Tân Thới Nhất 20, P.TTN, Q.12, TP.HCM
+      </p>
+	<p style="display: block;padding: 2px 0px;color: #fff;font-size: 13px;"><img src="{{ URL::asset('public/assets/files/diachi.png') }}"
+         alt="dat cu chi">&nbsp;&nbsp;
+         VPGD: 34 Trần Hưng Đạo, P. Tân Sơn Nhì, Q. Tân Phú. TP.HCM
       </p>
       <p style="display: block;padding: 2px 0px;color: #fff;font-size: 13px;"><img src="{{ URL::asset('public/assets/files/dienthoai.png') }}"
          alt="dat cu chi">&nbsp;&nbsp;
@@ -32,19 +36,13 @@
    <div class="lienket">
       <p class="title_lienket">liên kết</p>
       <p>
-         <a href="https://www.facebook.com/profile.php?id=100009158656222&amp;fref=ts" target="_blank"
+         <a href="https://www.facebook.com/groups/152134482135649/" target="_blank"
             title="facebook"><img class="img_mxh" src="{{ URL::asset('public/assets/files/facebook.png') }}" alt="dat cu chi"></a>
          &nbsp;&nbsp;
          <a href="#" target="_blank" title="google"><img class="img_mxh" src="{{ URL::asset('public/assets/files/google.png') }}"
             alt="dat cu chi"></a>
          &nbsp;&nbsp;
-         <a href="#" target="_blank" title="skype"><img class="img_mxh" src="{{ URL::asset('public/assets/files/skype.png') }}"
-            alt="dat cu chi"></a>
-         &nbsp;&nbsp;
-         <a href="#" target="_blank" title="vber"><img class="img_mxh" src="{{ URL::asset('public/assets/files/vber.png') }}" alt="dat cu chi"></a>
-         &nbsp;&nbsp;
-         <a href="#0919.356.178" target="_blank" title="zalo"><img class="img_mxh" src="{{ URL::asset('public/assets/files/zalo.png') }}"
-            alt="dat cu chi"></a>
+       
       </p>     
       <div class="clear"></div>
    </div>

@@ -4,7 +4,6 @@
    <div class="tk-rr">
       <div class="tk-ct">
          <div style="font-size:13px;color:#444;font-weight:bold;padding:10px">
-            Bạn muốn tìm bất động sản, hãy theo hướng dẫn dưới đây
          </div>
          <div class="ip-but">
             <p class="p_search_right">Chọn loại tin</p>

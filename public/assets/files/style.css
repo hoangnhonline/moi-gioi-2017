@@ -1,9 +1,9 @@
-* {margin: 0px;padding: 0px;}
-body {color:#000;background:#FFF;font-family:utm_avo;font-size: 13px;}
+* {margin: 0px;padding: 0px; }
+body {color:#000;background:#FFF;font-size: 13px;overflow-x: hidden !important;}
 ul li{list-style:none;}
 a{text-decoration:none;color:#000;}
 .phantrang { text-align: center; width:100%; float:left; margin-bottom:10px;padding-left:0px;padding-top:10px;}
-.phantrang a{ width:25px; height:25px; margin:2px;     background: #00F;
+.phantrang a{ width:25px; height:25px; margin:2px;     background: #484848;
     color: #FFFFFF;font-weight:bold; padding:3px 10px;border-radius:6px;}
 .phantrang span{ width:25px; height:25px; margin:3px; background:#000; color:#fff; padding:3px 10px;border-radius:6px;}
 .phantrang li{list-style:none; float:left;}
