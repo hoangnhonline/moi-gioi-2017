@@ -26,8 +26,8 @@
    <div class="hotro">
       <p class="title_hotro">hỗ trợ</p>
       <div class="clear"></div>
-      <a href="#lien-he.html">Liên hệ</a>
-      <a href="#lien-he.html">Bản đồ</a>
+      <a href="http://lkmoigioi.com/huong-dan-su-dung.html">Hướng dẫn sử dụng</a>
+      <a href="http://lkmoigioi.com/bao-mat.html">Chính sách bảo mật</a>
       <a href="#khuyen-mai.html">Tin khuyến mãi</a>
       <a href="#tuyen-dung.html">Tuyển dụng</a>
       <div class="clear"></div>
@@ -48,7 +48,7 @@
    </div>
    <div class="clear"></div>
    <a style="display: block;text-align: center;text-transform: uppercase;color: #fff;border-top: 1px solid rgba(255, 255, 255, 0.25);margin-top: 10px;padding: 10px 0px;"
-      href="http://sahoweb.com/" target="_blank" title="ptit">copyright © 2018 THANH PHÚ THỊNH LAND</a>
+      href="/" target="_blank" title="ptit">copyright © 2018 THANH PHÚ THỊNH LAND</a>
    <div class="clear"></div>
 </div>
 <div class="clear"></div>

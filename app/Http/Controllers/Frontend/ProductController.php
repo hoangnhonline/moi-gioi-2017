@@ -238,5 +238,6 @@ class ProductController extends Controller
             return view('erros.404');
         }
     }
+  
 }
 

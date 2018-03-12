@@ -29,9 +29,8 @@ class DetailController extends Controller
     public static $loaiSpArrKey = [];    
 
     public function __construct(){
-        
-       
 
+       
     }
     /**
     * Display a listing of the resource.
@@ -75,6 +74,7 @@ class DetailController extends Controller
                     ->where('product.id', '<>', $detail->id)                                     
                     ->orderBy('product.cart_status', 'asc')
                     ->orderBy('product.id', 'desc')->limit(6)->get();
+	
      
         $type = $detail->type;
         $estate_type_id = $detail->estate_type_id;
@@ -91,7 +91,7 @@ class DetailController extends Controller
         if(Session::get('userId') > 0){
             $joinedProductArrId = Account::joinedProduct(Session::get('userId'));       
         }
-        return view('frontend.detail.index', compact('detail', 'rsLoai', 'hinhArr', 'productArr', 'seo', 'socialImage', 'otherList',
+        return view('frontend.detail.index', compact('commission','detail', 'rsLoai', 'hinhArr', 'productArr', 'seo', 'socialImage', 'otherList',
             'type',
             'estate_type_id',
             'street_id',

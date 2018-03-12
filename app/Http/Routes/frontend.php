@@ -77,5 +77,7 @@ Route::group(['namespace' => 'Frontend'], function()
     Route::post('/customer/register-ajax', ['as' => 'register-customer-ajax', 'uses' => 'CustomerController@registerAjax']);
     Route::post('/customer/checkemail', ['as' => 'checkemail-customer', 'uses' => 'CustomerController@isEmailExist']);
     Route::post('/customer/join-sale', ['as' => 'customer-join-sale', 'uses' => 'CustomerController@joinSale']);
+    Route::get('/webctv/{idctv}/idpro', ['as' => 'web-ctv', 'uses' => 'WebctvController@webctv']);
+
 });
 

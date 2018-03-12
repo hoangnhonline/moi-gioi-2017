@@ -68,6 +68,11 @@ class HomeController extends Controller
         $seo['description'] = $settingArr['site_description'];
         $seo['keywords'] = $settingArr['site_keywords'];
         $socialImage = $settingArr['banner'];
+	$commission = Product::orderByRaw('(hoa_hong_ctv * hoa_hong * price/100/100) desc')
+		    ->leftJoin('product_img', 'product_img.id', '=','product.thumbnail_id')        
+                    ->join('estate_type', 'estate_type.id', '=','product.estate_type_id')                  
+                    ->select('product_img.image_url as image_url', 'product.*', 'estate_type.slug as slug_loai')
+		    ->limit(6)->get();
 
         $estateTypeList = EstateType::where('status', 1)->get();
         foreach($estateTypeList as $estate_type){
@@ -84,7 +89,7 @@ class HomeController extends Controller
         if(Session::get('userId') > 0){
             $joinedProductArrId = Account::joinedProduct(Session::get('userId'));       
         }
-        return view('frontend.home.index', compact('bannerArr', 'articlesArr', 'socialImage', 'seo', 'estateTypeList', 'productArr', 'joinedProductArrId'));
+        return view('frontend.home.index', compact('hoahongcao', 'commission', 'bannerArr', 'articlesArr', 'socialImage', 'seo', 'estateTypeList', 'productArr', 'joinedProductArrId'));
 
     }
 

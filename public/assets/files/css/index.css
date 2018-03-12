@@ -5639,6 +5639,15 @@ ul.tabs li a {
     transition: all 0.5s;
     margin-bottom: 20px;
 }
+.productsidebar {
+    width: 100%;
+    height: auto;
+    border: 1px solid rgba(204, 204, 204, 0.35);
+    float: left;
+    margin-right: 1%;
+    transition: all 0.5s;
+    margin-bottom: 20px;
+}
 
 .product:hover {
     border: 1px solid #1060EB;
