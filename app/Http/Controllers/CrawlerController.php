@@ -83,7 +83,94 @@ class CrawlerController extends Controller
         for($page = $limit; $page >= 1; $page--){ 
                 //$url = "http://bepducthanh.vn/bo-bep-gas-khuyen-mai-d4p".$page.".html";
             $arrReturn = [];
-              $url = "https://muaban.net/ban-nha-can-ho-ho-chi-minh-l59-c32?cp=".$page;   
+            $url = "https://muaban.net/ban-nha-can-ho-ho-chi-minh-l59-c32?cp=".$page;   
+
+           // http://bepducthanh.vn/thiet-bi-nha-bep-d2.html                         
+            $ch = curl_init();
+            curl_setopt( $ch, CURLOPT_USERAGENT, "Mozilla/5.0 (Windows; U; Windows NT 5.1; rv:1.7.3) Gecko/20041001 Firefox/0.10.1" );
+            curl_setopt( $ch, CURLOPT_URL, $url );
+            curl_setopt( $ch, CURLOPT_FOLLOWLOCATION, true );
+            curl_setopt( $ch, CURLOPT_RETURNTRANSFER, true );
+            curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+            $result = curl_exec($ch);
+         // dd($result);
+           
+            curl_close($ch);
+            // Create a DOM object
+            $crawler = new simple_html_dom();
+            // Load HTML from a string
+            $crawler->load($result);
+            //dd($crawler);       
+            $i = 0;
+            //var_dump('<h1>', $page, "</h1>");
+            $arrInsert = [];            
+            foreach($crawler->find('div.mbn-box-list-content') as $element){
+          
+                $href = $element->find('a', 0)->href;
+
+                $rs = CrawlData::where('url',$href)->first();
+                if(!$rs){
+                    $this->getDetailMuaBan($href);
+
+                }
+                          
+             }
+        }            
+          
+    }
+    public function getDetailMuaBan($url){         
+        $ch = curl_init();
+        curl_setopt( $ch, CURLOPT_USERAGENT, "Mozilla/5.0 (Windows; U; Windows NT 5.1; rv:1.7.3) Gecko/20041001 Firefox/0.10.1" );
+        curl_setopt( $ch, CURLOPT_URL, $url );
+        curl_setopt( $ch, CURLOPT_FOLLOWLOCATION, true );
+        curl_setopt( $ch, CURLOPT_RETURNTRANSFER, true );
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+        $result = curl_exec($ch);
+      //dd($result);
+        curl_close($ch);
+        // Create a DOM object
+        $crawler = new simple_html_dom();
+        // Load HTML from a string
+        $crawler->load($result);
+        //dd($crawler->find('#product-options-wrapper .option select', 0)->innertext);
+        if($crawler->find('#dvContent .ct-contact', 0)){
+            $select = $crawler->find('#dvContent .ct-contact', 0);
+            $arrData['url'] = $url;
+            $arrData['site_id'] = 1; // muaban.net 
+            if($select->find('.col-md-2')){          
+                foreach($select->find('.col-md-2') as $opt){                            
+                    
+                    $value = trim($opt->plaintext);
+                    if($value == 'Điện thoại:'){
+                        $arrData['phone'] = trim($opt->next_sibling()->plaintext);
+                    }elseif($value == "Liên hệ:"){
+                        $arrData['name'] = trim($opt->next_sibling()->plaintext);
+                    }elseif($value == "Địa chỉ:"){
+                        $arrData['address'] = trim($opt->next_sibling()->plaintext);
+                    }
+                    if(isset($arrData['phone'])){
+                        $rsData = CrawlData::where('phone', $arrData['phone'])->first();
+                        if($rsData){
+                            $rsData->lap = $rsData->lap + 1;
+                            $rsData->save();
+                        }else{
+                            CrawlData::create($arrData);        
+                        }
+                    }
+                }                
+            }
+        }
+        
+    }
+    //https://nha.chotot.com/tp-ho-chi-minh/mua-ban-nha-dat
+    public function chotot(){
+        set_time_limit(10000);
+        $limit = 10;
+
+        for($page = $limit; $page >= 1; $page--){ 
+                //$url = "http://bepducthanh.vn/bo-bep-gas-khuyen-mai-d4p".$page.".html";
+            $arrReturn = [];
+              $url = "https://nha.chotot.com/tp-ho-chi-minh/mua-ban-nha-dat?page=".$page;   
 
                    // http://bepducthanh.vn/thiet-bi-nha-bep-d2.html                         
                     $ch = curl_init();
@@ -105,23 +192,81 @@ class CrawlerController extends Controller
                     //var_dump('<h1>', $page, "</h1>");
                     $arrInsert = [];
                     $i=0;
-                    foreach($crawler->find('div.mbn-box-list-content') as $element){
-                  
-                        $href = $element->find('a', 0)->href;
-                        $rs = CrawlUrl::where('url',$href)->first();
-                        if(!$rs){
-                            $i++;
-                            echo $i."-".$href;
-                            echo "<hr>";
-                            CrawlUrl::create(['url' => $href]);
+                    foreach($crawler->find('div._1Bf8SBxRaJEgrc1xvKtNdp li.WIWLLwjT8zgtCiXu_IiZ9') as $element){
+                        if($element->find('a', 0)){
+                            $href = $element->find('a', 0)->href;
+                            $rs = CrawlUrl::where('url',$href)->first();
+                            if(!$rs){
+                                $this->getDetailChoTot("https://nha.chotot.com".$href);
+                            }
                         }
                                   
                      }
                 }
                 
           
-    }
+    } 
+    public function getDetailChoTot($url){         
+       $url = "https://nha.chotot.com/quan-go-vap/mua-ban-nha-dat/216-191-tret-lau-moi-hxh-duong-so-4-44043452.htm";
+        $ch = curl_init();
+        curl_setopt( $ch, CURLOPT_USERAGENT, "Mozilla/5.0 (Windows; U; Windows NT 5.1; rv:1.7.3) Gecko/20041001 Firefox/0.10.1" );
+        curl_setopt( $ch, CURLOPT_URL, $url );
+        curl_setopt( $ch, CURLOPT_FOLLOWLOCATION, true );
+        curl_setopt( $ch, CURLOPT_RETURNTRANSFER, true );
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
 
+        $result = curl_exec($ch);
+        //"account_name":"([^"]+)"
+      dd($result);
+      //preg_match("/tel:[0-9]*/", $result, $out);
+
+      
+dd($out);
+        curl_close($ch);
+        // Create a DOM object
+        $crawler = new simple_html_dom();
+        // Load HTML from a string
+        $crawler->load($result);
+        //dd($crawler->find('#product-options-wrapper .option select', 0)->innertext);
+        foreach($crawler->find('._179MyRQo6QuqZW68nLiY8x') as $a){
+            var_dump($a->innertext);
+        }
+        dd('123');
+        if($crawler->find('._179MyRQo6QuqZW68nLiY8x', 0)){
+            $select = $crawler->find('._179MyRQo6QuqZW68nLiY8x', 0);
+            dd($select->innertext);
+            $arrData['url'] = $url;
+            $arrData['site_id'] = 2; // muaban.net 
+            if($select->find('._1UhGio5AiiNwuF41hEhcV0', 0)){
+                $arrData['name'] = $select->find('._1UhGio5AiiNwuF41hEhcV0', 0)->plaintext;
+
+            }
+            dd($arrData);
+            if($select->find('.col-md-2')){          
+                foreach($select->find('.col-md-2') as $opt){                            
+                    
+                    $value = trim($opt->plaintext);
+                    if($value == 'Điện thoại:'){
+                        $arrData['phone'] = trim($opt->next_sibling()->plaintext);
+                    }elseif($value == "Liên hệ:"){
+                        $arrData['name'] = trim($opt->next_sibling()->plaintext);
+                    }elseif($value == "Địa chỉ:"){
+                        $arrData['address'] = trim($opt->next_sibling()->plaintext);
+                    }
+                    if(isset($arrData['phone'])){
+                        $rsData = CrawlData::where('phone', $arrData['phone'])->first();
+                        if($rsData){
+                            $rsData->lap = $rsData->lap + 1;
+                            $rsData->save();
+                        }else{
+                            CrawlData::create($arrData);        
+                        }
+                    }
+                }                
+            }
+        }
+        
+    }
     public function muaban2(){
         set_time_limit(10000);
         $limit = 10;

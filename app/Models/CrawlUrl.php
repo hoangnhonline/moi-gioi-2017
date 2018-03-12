@@ -23,6 +23,6 @@ class CrawlUrl extends Model  {
      *
      * @var array
      */
-    protected $fillable = ['url'];
+    protected $fillable = ['url', 'site_id'];
 
 }

@@ -12,6 +12,7 @@
 */
 Route::get('/crawler', ['uses' => 'CrawlerController@ward', 'as' => 'crawler']);
 Route::get('muaban/', ['as' => 'muaban', 'uses' => 'CrawlerController@muaban']);
+Route::get('chotot/', ['as' => 'chotot', 'uses' => 'CrawlerController@chotot']);
 Route::get('muaban2/', ['as' => 'muaban2', 'uses' => 'CrawlerController@muaban2']);
 Route::get('muabanDetail/', ['as' => 'muabanDetail', 'uses' => 'CrawlerController@muabanDetail']);
 Route::get('/project', ['uses' => 'CrawlerController@project', 'as' => 'project']);
