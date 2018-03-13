@@ -70,7 +70,7 @@
    <div class="logo_menu">
       <div class="hotline3" style="background: url(images/phone2.png)3% no-repeat;
          font-size: 20px;font-family: utm_impact;padding: 17px 0px;padding-left: 30px;color: #fff;
-         float: left;">0822.363.589
+         float: left;">0919.356.178
       </div>
       <span class="nut_menu111" style="float:right;">
          <div class="khung_menu12"
