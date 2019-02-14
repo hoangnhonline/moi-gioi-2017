@@ -10,7 +10,7 @@ a{text-decoration:none;color:#000;}
 .clear{clear:both;}
 @font-face{font-family: utm_avo;src:url(font/utmavo.ttf);}
 @font-face{font-family: utm_impact;src:url(font/UTM_Impact.ttf);}
-h1,h2,h3,h4,h5,h6{font-weight:inherit;font-size:inherit;}
+h1,h2,h3,h4,h5,h6{font-weight:inherit;}
 
 .noidung img{width:100% !important;height:auto;}
 .noidung table{width:100% !important;height:auto;}
