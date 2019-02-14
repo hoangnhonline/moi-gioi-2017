@@ -31,7 +31,7 @@
 	    	{!! Helper::getName($detail->district_id, 'district') !!} - {!! Helper::getName($detail->city_id, 'city') !!}
 	    </div><!-- /cate-news-detail-location -->
 	    <ul class="cate-news-detail-price clearfix">
-			<li><p>Giá: <span>{{ $detail->price }} {!! Helper::getName($detail->price_unit_id, 'price_unit') !!}</span></p></li>
+			<li><p>Giá: <span>{{ number_format($detail->price) }} {!! Helper::getName($detail->price_unit_id, 'price_unit') !!}</span></p></li>
 			<li><p>Diện tích: <span>{!! $detail->area !!} m<sup>2</sup></span></p></li>
 	    </ul><!-- /cate-news-detail-price -->
 	    @if(!in_array($detail->id, $joinedProductArrId))
@@ -124,7 +124,7 @@
 	<div class="clearfix"></div>
 	<article class="block block-news-with-region">
 		<div class="block-title block-title-common">
-			<h3><span class="icon-tile"><i class="fa fa-th-list"></i></span> TIN RAO CÙNG KHU VỰC</h3>
+			<h3><span class="icon-tile"><i class="fa fa-th-list"></i></span> SẢN PHẨM CÙNG KHU VỰC</h3>
 		</div>
 		<div class="block-contents">
 			<div class="news-with-region-list">
